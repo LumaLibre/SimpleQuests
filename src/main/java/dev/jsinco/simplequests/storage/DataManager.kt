@@ -1,5 +1,6 @@
 package dev.jsinco.simplequests.storage
 
+import dev.jsinco.simplequests.enums.StorageMethod
 import dev.jsinco.simplequests.objects.ActiveQuest
 import dev.jsinco.simplequests.objects.QuestPlayer
 import java.util.UUID

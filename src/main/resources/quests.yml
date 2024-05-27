@@ -12,6 +12,7 @@ farming:
     action: BREAK
     type: POTATOES
     amount: 1000
+    menu-item: POTATO
 
 anothercategory:
   place_diamonds_1:

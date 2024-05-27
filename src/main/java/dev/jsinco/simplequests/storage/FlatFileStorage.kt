@@ -5,8 +5,10 @@ import dev.jsinco.abstractjavafilelib.schemas.JsonSavingSchema
 import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.enums.QuestAction
 import dev.jsinco.simplequests.enums.RewardType
+import dev.jsinco.simplequests.enums.StorageMethod
 import dev.jsinco.simplequests.objects.ActiveQuest
 import dev.jsinco.simplequests.objects.QuestPlayer
+import dev.jsinco.simplequests.objects.StorableQuest
 import java.util.UUID
 
 class FlatFileStorage : DataManager {
@@ -29,24 +31,14 @@ class FlatFileStorage : DataManager {
         val list: List<LinkedTreeMap<*, *>> = savesFile.get("$uuid.activeQuests") as? List<LinkedTreeMap<*, *>> ?: emptyList()
 
         for (linkedTreeMap in list) {
-            activeQuestList.add(ActiveQuest(
-                (linkedTreeMap["progress"] as Double).toInt(),
-                linkedTreeMap["category"] as String,
-                linkedTreeMap["id"] as String,
-                linkedTreeMap["name"] as String,
-                linkedTreeMap["type"] as String,
-                QuestAction.valueOf(linkedTreeMap["questAction"] as String),
-                (linkedTreeMap["amount"] as Double).toInt(),
-                (linkedTreeMap["rewardType"] as? String?).let { if (it != null) RewardType.valueOf(it) else null },
-                linkedTreeMap["rewardValue"]
-            ))
+            activeQuestList.add(ActiveQuest(linkedTreeMap["category"] as String, linkedTreeMap["id"] as String, (linkedTreeMap["progress"] as Double).toInt()))
         }
 
         return activeQuestList
     }
 
     override fun setActiveQuests(uuid: UUID, activeQuests: List<ActiveQuest>) {
-        savesFile.set("$uuid.activeQuests", activeQuests)
+        savesFile.set("$uuid.activeQuests", StorableQuest.serializeToStorableQuests(activeQuests))
         savesFile.save()
     }
 
@@ -56,7 +48,7 @@ class FlatFileStorage : DataManager {
 
     override fun saveQuestPlayer(questPlayer: QuestPlayer) {
         savesFile.set("${questPlayer.uuid}.completedQuests", questPlayer.completedQuestIds)
-        savesFile.set("${questPlayer.uuid}.activeQuests", questPlayer.activeQuests)
+        savesFile.set("${questPlayer.uuid}.activeQuests", StorableQuest.serializeToStorableQuests(questPlayer.activeQuests))
         savesFile.save()
         Util.debugLog("Saved QuestPlayer: ${questPlayer.uuid}")
     }

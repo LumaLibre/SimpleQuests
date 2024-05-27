@@ -42,12 +42,18 @@ public final class SimpleQuests extends JavaPlugin {
         for (QuestPlayer questPlayer : QuestManager.getQuestPlayers()) {
             dataManager.saveQuestPlayer(questPlayer);
         }
+        if (dataManager instanceof SQLiteStorage sqLiteStorage) {
+            sqLiteStorage.closeConnection();
+        }
     }
 
     public static void loadData() {
         configFile = new SnakeYamlConfig("config.yml");
         questsFile = new SnakeYamlConfig("quests.yml");
 
+        if (dataManager instanceof SQLiteStorage sqLiteStorage) {
+            sqLiteStorage.closeConnection();
+        }
 
         switch (StorageMethod.valueOf(configFile.getString("storage-method").toUpperCase())) {
             case FLATFILE -> dataManager = new FlatFileStorage();

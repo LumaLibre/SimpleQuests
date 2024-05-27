@@ -47,11 +47,6 @@ public final class QuestManager {
                 final ConfigurationSection questSection = categorySection.getConfigurationSection(id);
                 final QuestAction questAction = QuestAction.valueOf(questSection.getString("action"));
 
-                RewardType rewardType = null;
-                if (questSection.getString("reward.type") != null) {
-                    rewardType = RewardType.valueOf(questSection.getString("reward.type"));
-                }
-
                 quests.add(new Quest(
                         category,
                         id,
@@ -59,8 +54,9 @@ public final class QuestManager {
                         questSection.getString("type").toUpperCase(),
                         questAction,
                         questSection.getInt("amount"),
-                        rewardType,
-                        questSection.get("reward.value")
+                        questSection.getString("reward.type"),
+                        questSection.get("reward.value"),
+                        questSection.getString("menu-item")
                 ));
             }
         }
@@ -82,7 +78,6 @@ public final class QuestManager {
         }
 
         final QuestPlayer questPlayer = dataManager.loadQuestPlayer(uuid);
-        System.out.println(questPlayer);
         if (!questPlayer.getActiveQuests().isEmpty()) {
             cacheQuestPlayer(questPlayer);
         }

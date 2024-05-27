@@ -4,10 +4,9 @@ import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
 import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.Util
-import dev.jsinco.simplequests.enums.QuestAction
-import dev.jsinco.simplequests.enums.RewardType
 import dev.jsinco.simplequests.objects.ActiveQuest
 import dev.jsinco.simplequests.objects.QuestPlayer
+import dev.jsinco.simplequests.objects.StorableQuest
 import java.io.File
 import java.io.IOException
 import java.sql.Connection
@@ -87,17 +86,7 @@ class SQLiteStorage : DataManager {
                 val list: List<LinkedTreeMap<*, *>> = gson.fromJson(jsonStringList, List::class.java) as? List<LinkedTreeMap<*, *>> ?: emptyList()
 
                 for (linkedTreeMap in list) {
-                    activeQuests.add(ActiveQuest(
-                        (linkedTreeMap["progress"] as Double).toInt(),
-                        linkedTreeMap["category"] as String,
-                        linkedTreeMap["id"] as String,
-                        linkedTreeMap["name"] as String,
-                        linkedTreeMap["type"] as String,
-                        QuestAction.valueOf(linkedTreeMap["questAction"] as String),
-                        (linkedTreeMap["amount"] as Double).toInt(),
-                        (linkedTreeMap["rewardType"] as? String?).let { if (it != null) RewardType.valueOf(it) else null },
-                        linkedTreeMap["rewardValue"]
-                    ))
+                    activeQuests.add(ActiveQuest(linkedTreeMap["category"] as String, linkedTreeMap["id"] as String, (linkedTreeMap["progress"] as Double).toInt()))
                 }
 
                 return activeQuests
@@ -112,7 +101,7 @@ class SQLiteStorage : DataManager {
         try {
             connection.prepareStatement("INSERT OR REPLACE INTO questPlayers (uuid, activeQuests) VALUES (?, ?);").use { statement ->
                 statement.setString(1, uuid.toString())
-                statement.setString(2, gson.toJson(activeQuests))
+                statement.setString(2, gson.toJson(StorableQuest.serializeToStorableQuests(activeQuests)))
                 statement.executeUpdate()
                 statement.close()
             }
@@ -131,7 +120,7 @@ class SQLiteStorage : DataManager {
             connection.prepareStatement("INSERT OR REPLACE INTO questPlayers (uuid, completedQuestIds, activeQuests) VALUES (?, ?, ?);").use { statement ->
                 statement.setString(1, questPlayer.uuid.toString())
                 statement.setString(2, gson.toJson(questPlayer.completedQuestIds))
-                statement.setString(3, gson.toJson(questPlayer.activeQuests))
+                statement.setString(3, gson.toJson(StorableQuest.serializeToStorableQuests(questPlayer.activeQuests)))
                 statement.executeUpdate()
                 statement.close()
             }
@@ -139,6 +128,14 @@ class SQLiteStorage : DataManager {
             e.printStackTrace()
         }
         Util.debugLog("Saved QuestPlayer: ${questPlayer.uuid}")
+    }
+
+    fun closeConnection() {
+        try {
+            connection.close()
+        } catch (e: SQLException) {
+            e.printStackTrace()
+        }
     }
 
 }

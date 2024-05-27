@@ -5,6 +5,7 @@ import dev.jsinco.simplequests.enums.RewardType;
 import dev.jsinco.simplequests.hooks.VaultHook;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.Nullable;
 
@@ -18,8 +19,9 @@ public class Quest {
     private final int amount;
     @Nullable private final RewardType rewardType;
     @Nullable private final Object rewardValue;
+    @Nullable private final Material menuItem;
 
-    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable RewardType rewardType, @Nullable Object rewardValue) {
+    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable RewardType rewardType, @Nullable Object rewardValue, @Nullable Material menuItem) {
         this.category = category;
         this.id = id;
         this.name = name;
@@ -28,6 +30,19 @@ public class Quest {
         this.amount = amount;
         this.rewardType = rewardType;
         this.rewardValue = rewardValue;
+        this.menuItem = menuItem;
+    }
+
+    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable String rewardTypeStr, @Nullable Object rewardValue, @Nullable String menuItemStr) {
+        this.category = category;
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.questAction = questAction;
+        this.amount = amount;
+        this.rewardValue = rewardValue;
+        this.rewardType = rewardTypeStr != null ? RewardType.valueOf(rewardTypeStr) : null;
+        this.menuItem = menuItemStr != null ? Material.getMaterial(menuItemStr) : null;
     }
 
     public String getCategory() {
@@ -62,6 +77,11 @@ public class Quest {
     @Nullable
     public Object getRewardValue() {
         return rewardValue;
+    }
+
+    @Nullable
+    public Material getMenuItem() {
+        return menuItem;
     }
 
     public void executeReward(OfflinePlayer player) {

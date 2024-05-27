@@ -2,6 +2,7 @@ package dev.jsinco.simplequests.listeners
 
 import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.enums.QuestAction
+import dev.jsinco.simplequests.gui.AbstractGui
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
@@ -9,8 +10,22 @@ import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.entity.EntityDeathEvent
 import org.bukkit.event.inventory.CraftItemEvent
+import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.event.inventory.InventoryCloseEvent
 
 class Events : Listener {
+
+    @EventHandler
+    fun onInventoryClick(event: InventoryClickEvent) {
+        if (event.inventory.getHolder(false) !is AbstractGui) return
+        (event.inventory.holder as AbstractGui).onInventoryClick(event)
+    }
+    @EventHandler
+    fun onInventoryClose(event: InventoryCloseEvent) {
+        if (event.inventory.getHolder(false) !is AbstractGui) return
+        (event.inventory.holder as AbstractGui).onInventoryClose(event)
+    }
+
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onBlockBreak(event: BlockBreakEvent) {
