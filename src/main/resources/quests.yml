@@ -1,0 +1,26 @@
+farming:
+  farming_potatoes_1:
+    name: 'Farm Potatoes'
+    action: BREAK
+    type: POTATOES
+    amount: 500
+    reward:
+      type: MONEY
+      value: 100
+  farming_potatoes_2:
+    name: 'Farm Potatoes'
+    action: BREAK
+    type: POTATOES
+    amount: 1000
+
+anothercategory:
+  place_diamonds_1:
+    name: 'Place Diamond Blocks'
+    action: PLACE
+    type: DIAMOND_BLOCK
+    amount: 10
+  place_diamonds_2:
+    name: 'Another Category Quest'
+    action: PLACE
+    type: DIAMOND_BLOCK
+    amount: 20
