@@ -1,5 +1,6 @@
 package dev.jsinco.simplequests.objects;
 
+import dev.jsinco.simplequests.QuestManager;
 import dev.jsinco.simplequests.Util;
 import dev.jsinco.simplequests.enums.QuestAction;
 import dev.jsinco.simplequests.enums.RewardType;
@@ -22,35 +23,40 @@ public class Quest {
     private final String type;
     private final QuestAction questAction;
     private final int amount;
+    private final List<String> description;
     @Nullable private final RewardType rewardType;
     @Nullable private final Object rewardValue;
     @Nullable private final Material menuItem;
-    private final List<String> description;
+    @Nullable private final String requiredCompletedQuest;
 
-    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable RewardType rewardType, @Nullable Object rewardValue, @Nullable Material menuItem, @Nullable List<String> description) {
+
+
+    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable List<String> description, @Nullable RewardType rewardType, @Nullable Object rewardValue, @Nullable Material menuItem, @Nullable String requiredCompletedQuest) {
         this.category = category;
         this.id = id;
         this.name = name;
         this.type = type;
         this.questAction = questAction;
         this.amount = amount;
+        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
         this.rewardType = rewardType;
         this.rewardValue = rewardValue;
         this.menuItem = menuItem;
-        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
+        this.requiredCompletedQuest = requiredCompletedQuest;
     }
 
-    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable String rewardTypeStr, @Nullable Object rewardValue, @Nullable String menuItemStr, @Nullable List<String> description) {
+    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable List<String> description, @Nullable String rewardTypeStr, @Nullable Object rewardValue, @Nullable String menuItemStr, @Nullable String requiredCompletedQuest) {
         this.category = category;
         this.id = id;
         this.name = name;
         this.type = type;
         this.questAction = questAction;
         this.amount = amount;
+        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
         this.rewardValue = rewardValue;
         this.rewardType = rewardTypeStr != null ? RewardType.valueOf(rewardTypeStr.toUpperCase()) : null;
         this.menuItem = menuItemStr != null ? Material.getMaterial(menuItemStr.toUpperCase()) : null;
-        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
+        this.requiredCompletedQuest = requiredCompletedQuest;
     }
 
     public String getCategory() {
@@ -77,6 +83,10 @@ public class Quest {
         return amount;
     }
 
+    public List<String> getDescription() {
+        return description;
+    }
+
     @Nullable
     public RewardType getRewardType() {
         return rewardType;
@@ -92,9 +102,17 @@ public class Quest {
         return menuItem;
     }
 
-    public List<String> getDescription() {
-        return description;
+    @Nullable
+    public String getRequiredCompletedQuest() {
+        return requiredCompletedQuest;
     }
+
+    @Nullable public Quest getRequiredCompletedQuestObject() {
+        if (requiredCompletedQuest == null) return null;
+        final String[] split = requiredCompletedQuest.split(":");
+        return QuestManager.getQuest(split[0], split[1]);
+    }
+
 
     public void executeReward(OfflinePlayer player) {
         if (rewardType == null || rewardValue == null) return;
@@ -111,7 +129,7 @@ public class Quest {
         }
     }
 
-    public String simpleIdentifier() {
-        return category + "-" + id;
+    public String fullIdentifier() {
+        return category + ":" + id;
     }
 }

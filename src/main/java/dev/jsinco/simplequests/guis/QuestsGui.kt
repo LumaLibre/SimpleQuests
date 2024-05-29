@@ -134,11 +134,18 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
         meta.setDisplayName(Util.colorText("&#7280FF&l${quest.name}"))
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ITEM_SPECIFICS, ItemFlag.HIDE_ATTRIBUTES)
 
+        if (!questPlayer.hasCompletedQuest(quest.requiredCompletedQuest)) {
+            meta.lore = listOf("", "&fYou must complete", "&a\"${quest.requiredCompletedQuestObject?.name}\"", "&fto view this quest!").map { Util.colorText(it) }
+            item.itemMeta = meta
+            return
+        }
+
 
         val progress = questPlayer.getInProgressQuest(quest)?.let { Util.createProgressBar(it) }
         meta.lore = quest.description.toMutableList().also {
             it.add(0, "")
             if (progress != null) {
+                it.add("")
                 it.add("&6Progress: $progress")
             }
             it.addAll(listOf("",

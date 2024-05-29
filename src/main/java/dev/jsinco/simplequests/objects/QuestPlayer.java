@@ -57,7 +57,7 @@ public class QuestPlayer {
 
             if (activeQuest.getAmount() <= activeQuest.getProgress()) {
                 activeQuests.remove(activeQuest);
-                completedQuests.add(activeQuest.simpleIdentifier());
+                completedQuests.add(activeQuest.fullIdentifier());
 
                 activeQuest.executeReward(getPlayer());
                 Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have completed the quest: &a\"" + activeQuest.getName() + "\"&r!"));
@@ -72,15 +72,20 @@ public class QuestPlayer {
             return false;
         }
 
+        if (quest.getRequiredCompletedQuest() != null && !completedQuests.contains(quest.getRequiredCompletedQuest())) {
+            Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You must complete the quest: &a\"" + quest.getRequiredCompletedQuestObject().getName() + "\"&r!"));
+            return false;
+        }
+
         final ActiveQuest activeQuest = new ActiveQuest(quest);
 
         for (ActiveQuest aQ : activeQuests) {
-            if (aQ.simpleIdentifier().equals(quest.simpleIdentifier())) {
+            if (aQ.fullIdentifier().equals(quest.fullIdentifier())) {
                 return false;
             }
         }
 
-        if (completedQuests.contains(quest.simpleIdentifier())) {
+        if (completedQuests.contains(quest.fullIdentifier())) {
             return false;
         }
 
@@ -92,7 +97,7 @@ public class QuestPlayer {
 
     public boolean dropQuest(Quest quest) {
         for (ActiveQuest activeQuest : activeQuests) {
-            if (activeQuest.simpleIdentifier().equals(quest.simpleIdentifier())) {
+            if (activeQuest.fullIdentifier().equals(quest.fullIdentifier())) {
                 activeQuests.remove(activeQuest);
                 Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have dropped the quest: &a\"" + quest.getName() + "\"&r!"));
                 return true;
@@ -103,7 +108,13 @@ public class QuestPlayer {
     }
 
     public boolean hasCompletedQuest(Quest quest) {
-        return completedQuests.contains(quest.simpleIdentifier());
+        if (quest == null) return true;
+        return completedQuests.contains(quest.fullIdentifier());
+    }
+
+    public boolean hasCompletedQuest(String fullIdentifier) {
+        if (fullIdentifier == null) return true;
+        return completedQuests.contains(fullIdentifier);
     }
 
     public int getMaxQuests(String category) {
@@ -119,7 +130,7 @@ public class QuestPlayer {
     @Nullable
     public ActiveQuest getInProgressQuest(Quest quest) {
         for (ActiveQuest activeQuest : activeQuests) {
-            if (activeQuest.simpleIdentifier().equals(quest.simpleIdentifier())) {
+            if (activeQuest.fullIdentifier().equals(quest.fullIdentifier())) {
                 return activeQuest;
             }
         }

@@ -23,7 +23,7 @@ class SQLiteStorage : DataManager {
     private lateinit var connection: Connection
 
     init {
-        val file = File(plugin.dataFolder, "data.db")
+        val file = File(plugin.dataFolder, "saves.db")
         if (!file.exists()) {
             try {
                 file.createNewFile()
@@ -87,7 +87,7 @@ class SQLiteStorage : DataManager {
                 val list: List<LinkedTreeMap<*, *>> = gson.fromJson(jsonStringList, List::class.java) as? List<LinkedTreeMap<*, *>> ?: emptyList()
 
                 for (linkedTreeMap in list) {
-                    activeQuests.add(ActiveQuest(linkedTreeMap["category"] as String, linkedTreeMap["id"] as String, (linkedTreeMap["progression"] as Double).toInt()))
+                    activeQuests.add(ActiveQuest(linkedTreeMap["category"] as String, linkedTreeMap["id"] as String, (linkedTreeMap["progress"] as Double).toInt()))
                 }
 
                 return activeQuests

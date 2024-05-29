@@ -11,7 +11,7 @@ import java.util.UUID
 
 class FlatFileStorage : DataManager {
 
-    private val savesFile = JsonSavingSchema("data.json")
+    private val savesFile = JsonSavingSchema("saves.json")
 
     override fun getCompletedQuestIds(uuid: UUID): List<String> {
         return savesFile.get("$uuid.completedQuests") as? List<String> ?: emptyList()
@@ -29,7 +29,7 @@ class FlatFileStorage : DataManager {
         val list: List<LinkedTreeMap<*, *>> = savesFile.get("$uuid.activeQuests") as? List<LinkedTreeMap<*, *>> ?: emptyList()
 
         for (linkedTreeMap in list) {
-            activeQuestList.add(ActiveQuest(linkedTreeMap["category"] as String, linkedTreeMap["id"] as String, (linkedTreeMap["progression"] as Double).toInt()))
+            activeQuestList.add(ActiveQuest(linkedTreeMap["category"] as String, linkedTreeMap["id"] as String, (linkedTreeMap["progress"] as Double).toInt()))
         }
 
         return activeQuestList

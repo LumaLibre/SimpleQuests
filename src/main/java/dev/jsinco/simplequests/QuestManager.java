@@ -57,10 +57,11 @@ public final class QuestManager {
                         questSection.getString("type").toUpperCase(),
                         questAction,
                         questSection.getInt("amount"),
+                        description,
                         questSection.getString("reward.type"),
                         questSection.get("reward.value"),
                         questSection.getString("menu-item"),
-                        description
+                        questSection.getString("required")
                 );
 
                 quests.add(quest);

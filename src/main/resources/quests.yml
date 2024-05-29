@@ -16,18 +16,22 @@ farming: # Category
     menu-item: POTATO
     description:
       - test
+    reward:
+      type: COMMAND
+      value: "give %player% diamond"
   potatoes_3:
     name: 'Farm Potatoes 3'
     action: BREAK
     type: POTATOES
     amount: 500000
     menu-item: BAKED_POTATO
+    required: "farming:potatoes_2"
   carrots_1:
     name: 'Farm Carrots'
     action: BREAK
     type: CARROTS
     amount: 500
-    menu-item: CARROT
+    menu-item: CARRORT
   carrots_2:
     name: 'Farm Carrots 2'
     action: BREAK
