@@ -42,8 +42,8 @@ public final class SimpleQuests extends JavaPlugin {
         for (QuestPlayer questPlayer : QuestManager.getQuestPlayers()) {
             dataManager.saveQuestPlayer(questPlayer);
         }
-        if (dataManager instanceof SQLiteStorage sqLiteStorage) {
-            sqLiteStorage.closeConnection();
+        if (dataManager != null && dataManager.getStorageMethod() == StorageMethod.SQLITE) {
+            ((SQLiteStorage) dataManager).closeConnection();
         }
     }
 
@@ -51,8 +51,8 @@ public final class SimpleQuests extends JavaPlugin {
         configFile = new SnakeYamlConfig("config.yml");
         questsFile = new SnakeYamlConfig("quests.yml");
 
-        if (dataManager instanceof SQLiteStorage sqLiteStorage) {
-            sqLiteStorage.closeConnection();
+        if (dataManager != null && dataManager.getStorageMethod() == StorageMethod.SQLITE) {
+            ((SQLiteStorage) dataManager).closeConnection();
         }
 
         switch (StorageMethod.valueOf(configFile.getString("storage-method").toUpperCase())) {

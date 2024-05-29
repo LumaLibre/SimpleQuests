@@ -4,7 +4,7 @@ import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.enums.GuiItemType
 import dev.jsinco.simplequests.gui.tools.AbstractGui
-import dev.jsinco.simplequests.gui.tools.Gui
+import dev.jsinco.simplequests.gui.tools.GuiCreator
 import dev.jsinco.simplequests.objects.QuestPlayer
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -23,9 +23,10 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
             Util.basicItem(Material.SHORT_GRASS) to listOf(1, 7, 37, 43),
             Util.basicItem(Material.FERN) to listOf(2, 6, 38, 42),
             Util.basicItem(Material.PINK_TULIP) to listOf(3, 5),
-            Util.basicItem(Material.LILY_PAD) to listOf(4, 40),
+            Util.basicItem(Material.LILY_PAD) to listOf(4),
             Util.basicItem(Material.PAPER, 10000).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "previous") } to listOf(39),
-            Util.basicItem(Material.PAPER, 10001).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "next") } to listOf(41)
+            Util.basicItem(Material.PAPER, 10001).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "next") } to listOf(41),
+            Util.basicItem(Material.BARRIER).also { Util.setGuiItemData(it, GuiItemType.RETURN, "return") } to listOf(40),
         )
         val inventoryMap: List<Int> = listOf(
             0,9,18,27,36,
@@ -38,9 +39,17 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
             7,16,25,34,43,
             8,17,26,35,44
         )
+
+        val lore = listOf(
+            "",
+            "%s %s %s!",
+            "",
+            "&6• &eLeft click to begin this quest",
+            "&6• &eRight click to drop this quest"
+        )
     }
 
-    val generatedPages: MutableList<Gui> = mutableListOf()
+    val generatedPages: MutableList<Inventory> = mutableListOf()
     var lastQueriedQuestIndex: Int = 0
 
     fun generatePage(): Boolean {
@@ -67,26 +76,28 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
             val quest = quests[lastQueriedQuestIndex]
             val item = Util.basicItem(quest.menuItem ?: Material.WHITE_STAINED_GLASS).also { Util.setGuiItemData(it, GuiItemType.QUEST, quest.id) }
             val meta = item.itemMeta
-            meta.setDisplayName(Util.colorText("&a&l${quest.name}"))
-            if (questPlayer.hasCompletedQuest(quest)) {
+            meta.setDisplayName(Util.colorText("&f&l${quest.name}"))
+            if (questPlayer.getInProgressQuest(quest) != null) {
                 meta.addEnchant(Enchantment.LUCK, 1, true)
+            } else if (questPlayer.hasCompletedQuest(quest)) {
+                item.type = Material.PAPER
             }
-            meta.lore = listOf("", Util.colorText("&f${quest.questAction} ${quest.type} for ${quest.rewardType}"))
+            /*listOf(
+                "",
+                "${Util.format(quest.questAction.name)} ${quest.amount.toString().format("%,d")} &6${Util.format(quest.type)}",
+                "&fto receive ",
+                "&6• &eLeft click to begin this quest",
+                "&6• &eRight click to drop this quest"
+            )*/
+            meta.lore = quest.description.map { Util.colorText(it) }
             item.itemMeta = meta
 
             items.add(item)
             lastQueriedQuestIndex++
         }
 
-        val gui = Gui(
-            inv,
-            items,
-            Pair(0, 45),
-            listOf(),
-            inventoryMap
-        )
 
-        generatedPages.add(gui)
+        generatedPages.add(GuiCreator(inv, items, Pair(0, 45), listOf(), inventoryMap).inv)
         return true
     }
 
@@ -100,8 +111,11 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
         when (itemData.first) {
             GuiItemType.QUEST -> {
                 val quest = QuestManager.getQuest(category, itemData.second) ?: return
-                questPlayer.startQuest(quest)
-                player.closeInventory()
+                if (event.isLeftClick) {
+                    questPlayer.startQuest(quest)
+                } else {
+                    questPlayer.dropQuest(quest)
+                }
             }
 
             GuiItemType.PAGE_SWITCHER -> {
@@ -110,26 +124,23 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
                         if (generatedPages.indexOf(generatedPages.last()) == 0) {
                             return
                         }
-                        player.openInventory(generatedPages[generatedPages.indexOf(generatedPages.last()) - 1].inv)
+                        player.openInventory(generatedPages[generatedPages.indexOf(generatedPages.last()) - 1])
                     }
                     "next" -> { // TODO: redo this
-                        var gui: Gui? = null
-                        for (gui1 in generatedPages) {
-                            if (gui1.inv == event.inventory) {
-                                gui = gui1
-                                break
-                            }
-                        }
 
-                        if (generatedPages.indexOf(gui) == generatedPages.size - 1) {
+                        if (generatedPages.indexOf(event.inventory) == generatedPages.size - 1) {
                             if (generatePage()) {
-                                player.openInventory(generatedPages.last().inv)
+                                player.openInventory(generatedPages.last())
                             }
                         } else {
-                            player.openInventory(generatedPages[generatedPages.indexOf(gui) + 1].inv)
+                            player.openInventory(generatedPages[generatedPages.indexOf(event.inventory) + 1])
                         }
                     }
                 }
+            }
+
+            GuiItemType.RETURN -> {
+                player.openInventory(CategoriesGui().inventory)
             }
 
             else -> {}
@@ -139,6 +150,6 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
     override fun onInventoryClose(event: InventoryCloseEvent) {}
 
     override fun getInventory(): Inventory {
-        return generatedPages.last().inv
+        return generatedPages.last()
     }
 }

@@ -1,5 +1,6 @@
 package dev.jsinco.simplequests.objects;
 
+import dev.jsinco.simplequests.Util;
 import dev.jsinco.simplequests.enums.QuestAction;
 import dev.jsinco.simplequests.enums.RewardType;
 import dev.jsinco.simplequests.hooks.VaultHook;
@@ -8,6 +9,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class Quest {
 
@@ -20,8 +23,9 @@ public class Quest {
     @Nullable private final RewardType rewardType;
     @Nullable private final Object rewardValue;
     @Nullable private final Material menuItem;
+    private final List<String> description;
 
-    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable RewardType rewardType, @Nullable Object rewardValue, @Nullable Material menuItem) {
+    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable RewardType rewardType, @Nullable Object rewardValue, @Nullable Material menuItem, @Nullable List<String> description) {
         this.category = category;
         this.id = id;
         this.name = name;
@@ -31,9 +35,10 @@ public class Quest {
         this.rewardType = rewardType;
         this.rewardValue = rewardValue;
         this.menuItem = menuItem;
+        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
     }
 
-    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable String rewardTypeStr, @Nullable Object rewardValue, @Nullable String menuItemStr) {
+    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable String rewardTypeStr, @Nullable Object rewardValue, @Nullable String menuItemStr, @Nullable List<String> description) {
         this.category = category;
         this.id = id;
         this.name = name;
@@ -41,8 +46,9 @@ public class Quest {
         this.questAction = questAction;
         this.amount = amount;
         this.rewardValue = rewardValue;
-        this.rewardType = rewardTypeStr != null ? RewardType.valueOf(rewardTypeStr) : null;
-        this.menuItem = menuItemStr != null ? Material.getMaterial(menuItemStr) : null;
+        this.rewardType = rewardTypeStr != null ? RewardType.valueOf(rewardTypeStr.toUpperCase()) : null;
+        this.menuItem = menuItemStr != null ? Material.getMaterial(menuItemStr.toUpperCase()) : null;
+        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
     }
 
     public String getCategory() {
@@ -82,6 +88,10 @@ public class Quest {
     @Nullable
     public Material getMenuItem() {
         return menuItem;
+    }
+
+    public List<String> getDescription() {
+        return description;
     }
 
     public void executeReward(OfflinePlayer player) {

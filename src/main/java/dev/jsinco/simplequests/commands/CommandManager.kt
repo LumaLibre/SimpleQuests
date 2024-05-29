@@ -7,6 +7,7 @@ import dev.jsinco.simplequests.commands.subcommands.QuestProgressionCommand
 import dev.jsinco.simplequests.commands.subcommands.ReloadCommand
 import dev.jsinco.simplequests.commands.subcommands.SaveCommand
 import dev.jsinco.simplequests.commands.subcommands.StartQuestCommand
+import dev.jsinco.simplequests.gui.CategoriesGui
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
@@ -26,7 +27,12 @@ class CommandManager(private val plugin: SimpleQuests) : TabExecutor {
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
-        if (args.isEmpty()) return false
+        if (args.isEmpty()) {
+            if (sender is Player) {
+                sender.openInventory(CategoriesGui().inventory)
+            }
+            return true
+        }
 
         val subCommand = commands[args[0]] ?: return false
 

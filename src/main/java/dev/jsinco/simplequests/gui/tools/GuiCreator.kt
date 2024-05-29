@@ -3,7 +3,7 @@ package dev.jsinco.simplequests.gui.tools
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 
-class Gui (
+class GuiCreator (
     val inv: Inventory,
     itemStacks: List<ItemStack>,
     startEndSlots: Pair<Int, Int>,

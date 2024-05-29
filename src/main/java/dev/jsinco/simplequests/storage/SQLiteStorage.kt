@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
 import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.Util
+import dev.jsinco.simplequests.enums.StorageMethod
 import dev.jsinco.simplequests.objects.ActiveQuest
 import dev.jsinco.simplequests.objects.QuestPlayer
 import dev.jsinco.simplequests.objects.StorableQuest
@@ -86,7 +87,7 @@ class SQLiteStorage : DataManager {
                 val list: List<LinkedTreeMap<*, *>> = gson.fromJson(jsonStringList, List::class.java) as? List<LinkedTreeMap<*, *>> ?: emptyList()
 
                 for (linkedTreeMap in list) {
-                    activeQuests.add(ActiveQuest(linkedTreeMap["category"] as String, linkedTreeMap["id"] as String, (linkedTreeMap["progress"] as Double).toInt()))
+                    activeQuests.add(ActiveQuest(linkedTreeMap["category"] as String, linkedTreeMap["id"] as String, (linkedTreeMap["progression"] as Double).toInt()))
                 }
 
                 return activeQuests
@@ -128,6 +129,10 @@ class SQLiteStorage : DataManager {
             e.printStackTrace()
         }
         Util.debugLog("Saved QuestPlayer: ${questPlayer.uuid}")
+    }
+
+    override fun getStorageMethod(): StorageMethod {
+        return StorageMethod.SQLITE
     }
 
     fun closeConnection() {

@@ -4,7 +4,7 @@ farming: # Category
     action: BREAK
     type: POTATOES
     amount: 500
-    menu-item: POTATO
+    menu-item: POISONOUS_POTATO
     reward:
       type: MONEY
       value: 100
@@ -14,12 +14,14 @@ farming: # Category
     type: POTATOES
     amount: 50000
     menu-item: POTATO
+    description:
+      - test
   potatoes_3:
     name: 'Farm Potatoes 3'
     action: BREAK
     type: POTATOES
     amount: 500000
-    menu-item: POTATO
+    menu-item: BAKED_POTATO
   carrots_1:
     name: 'Farm Carrots'
     action: BREAK
@@ -37,13 +39,13 @@ farming: # Category
     action: BREAK
     type: CARROTS
     amount: 500000
-    menu-item: CARROT
+    menu-item: GOLDEN_CARROT
   wheat_1:
     name: 'Farm Wheat'
     action: BREAK
     type: WHEAT
     amount: 500
-    menu-item: WHEAT
+    menu-item: WHEAT_SEEDS
   wheat_2:
     name: 'Farm Wheat 2'
     action: BREAK
@@ -55,225 +57,204 @@ farming: # Category
     action: BREAK
     type: WHEAT
     amount: 500000
-    menu-item: WHEAT
-  farming_pumpkins_1:
+    menu-item: HAY_BLOCK
+  pumpkins_1:
     name: 'Harvest 500 Pumpkins'
     action: BREAK
     type: PUMPKINS
     amount: 500
-
-  farming_pumpkins_2:
+    menu-item: PUMPKIN_SEEDS
+  pumpkins_2:
     name: 'Harvest 50,000 Pumpkins'
     action: BREAK
     type: PUMPKINS
     amount: 50000
-
-  farming_pumpkins_3:
+    menu-item: PUMPKIN
+  pumpkins_3:
     name: 'Harvest 500,000 Pumpkins'
     action: BREAK
     type: PUMPKINS
     amount: 500000
-
-  farming_melons_1:
+    menu-item: CARVED_PUMPKIN
+  melons_1:
     name: 'Harvest 500 Melons'
     action: BREAK
     type: MELONS
     amount: 500
-
-  farming_melons_2:
+    menu-item: MELON_SEEDS
+  melons_2:
     name: 'Harvest 50,000 Melons'
     action: BREAK
     type: MELONS
     amount: 50000
-
-  farming_melons_3:
+    menu-item: MELON_SLICE
+  melons_3:
     name: 'Harvest 500,000 Melons'
     action: BREAK
     type: MELONS
     amount: 500000
-
-
-  farming_apples_1:
-    name: 'Harvest 50 Apples'
-    action: BREAK
-    type: APPLES
-    amount: 50
-
-  farming_apples_2:
-    name: 'Harvest 500 Apples'
-    action: BREAK
-    type: APPLES
-    amount: 500
-
-  farming_apples_3:
-    name: 'Harvest 5,000 Apples'
-    action: BREAK
-    type: APPLES
-    amount: 5000
-
-
-  farming_chorus_fruits_1:
-    name: 'Harvest 50 Chorus Fruits'
-    action: BREAK
-    type: CHORUS_FRUITS
-    amount: 50
-
-  farming_chorus_fruits_2:
+    menu-item: MELON
+  chorus_1:
     name: 'Harvest 500 Chorus Fruits'
     action: BREAK
-    type: CHORUS_FRUITS
+    type: CHORUS_PLANT
     amount: 500
-
-  farming_chorus_fruits_3:
-    name: 'Harvest 5,000 Chorus Fruits'
+    menu-item: CHORUS_PLANT
+  chorus_2:
+    name: 'Harvest 50 Chorus Fruits'
     action: BREAK
-    type: CHORUS_FRUITS
+    type: CHORUS_FLOWER
+    amount: 500
+    menu-item: POPPED_CHORUS_FRUIT
+  chorus_3:
+    name: 'Harvest 500 Chorus Fruits'
+    action: BREAK
+    type: CHORUS_FLOWER
     amount: 5000
-
-
-  farming_sweet_berries_1:
+    menu-item: CHORUS_FLOWER
+  sweet_berries_1:
     name: 'Harvest 50 Sweet Berries'
     action: BREAK
     type: SWEET_BERRIES
     amount: 50
 
-  farming_sweet_berries_2:
+  sweet_berries_2:
     name: 'Harvest 500 Sweet Berries'
     action: BREAK
     type: SWEET_BERRIES
     amount: 500
 
-  farming_sweet_berries_3:
+  sweet_berries_3:
     name: 'Harvest 5,000 Sweet Berries'
     action: BREAK
     type: SWEET_BERRIES
     amount: 5000
 
-  farming_beetroot_1:
+  beetroot_1:
     name: 'Harvest 500 Beetroot'
     action: BREAK
     type: BEETROOT
     amount: 500
 
-  farming_beetroot_2:
+  beetroot_2:
     name: 'Harvest 50,000 Beetroot'
     action: BREAK
     type: BEETROOT
     amount: 50000
 
-  farming_beetroot_3:
+  beetroot_3:
     name: 'Harvest 500,000 Beetroot'
     action: BREAK
     type: BEETROOT
     amount: 500000
 
-  farming_kelp_1:
+  kelp_1:
     name: 'Harvest 500 Kelp'
     action: BREAK
     type: KELP
     amount: 500
 
-  farming_kelp_2:
+  kelp_2:
     name: 'Harvest 50,000 Kelp'
     action: BREAK
     type: KELP
     amount: 50000
 
-  farming_kelp_3:
+  kelp_3:
     name: 'Harvest 500,000 Kelp'
     action: BREAK
     type: KELP
     amount: 500000
 
 
-  farming_sugar_cane_1:
+  sugar_cane_1:
     name: 'Harvest 500 Sugar Cane'
     action: BREAK
     type: SUGAR_CANE
     amount: 500
 
-  farming_sugar_cane_2:
+  sugar_cane_2:
     name: 'Harvest 50,000 Sugar Cane'
     action: BREAK
     type: SUGAR_CANE
     amount: 50000
 
-  farming_sugar_cane_3:
+  sugar_cane_3:
     name: 'Harvest 500,000 Sugar Cane'
     action: BREAK
     type: SUGAR_CANE
     amount: 500000
 
 
-  farming_mushrooms_1:
+  mushrooms_1:
     name: 'Harvest 500 Mushrooms'
     action: BREAK
     type: MUSHROOMS
     amount: 500
 
-  farming_mushrooms_2:
+  mushrooms_2:
     name: 'Harvest 50,000 Mushrooms'
     action: BREAK
     type: MUSHROOMS
     amount: 50000
 
-  farming_mushrooms_3:
+  mushrooms_3:
     name: 'Harvest 500,000 Mushrooms'
     action: BREAK
     type: MUSHROOMS
     amount: 500000
 
-  farming_cocoa_beans_1:
+  cocoa_beans_1:
     name: 'Harvest 500 Cocoa Beans'
     action: BREAK
     type: COCOA_BEANS
     amount: 500
 
-  farming_cocoa_beans_2:
+  cocoa_beans_2:
     name: 'Harvest 5,000 Cocoa Beans'
     action: BREAK
     type: COCOA_BEANS
     amount: 5000
 
-  farming_cocoa_beans_3:
+  cocoa_beans_3:
     name: 'Harvest 50,000 Cocoa Beans'
     action: BREAK
     type: COCOA_BEANS
     amount: 50000
 
 
-  farming_nether_wart_1:
+  nether_wart_1:
     name: 'Harvest 500 Nether Wart'
     action: BREAK
     type: NETHER_WART
     amount: 500
 
-  farming_nether_wart_2:
+  nether_wart_2:
     name: 'Harvest 50,000 Nether Wart'
     action: BREAK
     type: NETHER_WART
     amount: 50000
 
-  farming_nether_wart_3:
+  nether_wart_3:
     name: 'Harvest 500,000 Nether Wart'
     action: BREAK
     type: NETHER_WART
     amount: 500000
 
 
-  farming_cactus_1:
+  cactus_1:
     name: 'Harvest 50 Cactus'
     action: BREAK
     type: CACTUS
     amount: 50
 
-  farming_cactus_2:
+  cactus_2:
     name: 'Harvest 500 Cactus'
     action: BREAK
     type: CACTUS
     amount: 500
 
-  farming_cactus_3:
+  cactus_3:
     name: 'Harvest 5,000 Cactus'
     action: BREAK
     type: CACTUS

@@ -1,6 +1,8 @@
 package dev.jsinco.simplequests
 
 import dev.jsinco.simplequests.enums.GuiItemType
+import dev.jsinco.simplequests.enums.RewardType
+import dev.jsinco.simplequests.objects.Quest
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Material
@@ -96,5 +98,27 @@ object Util {
         }
         item.itemMeta = meta
         return item
+    }
+
+    @JvmStatic
+    fun getDefaultQuestDescription(quest: Quest): List<String> {
+        val value = quest.rewardValue
+        val rewardDesc = when (quest.rewardType) {
+            RewardType.MONEY -> {
+                "$${value.toString().format("%,.2f")}"
+            }
+            RewardType.COMMAND -> {
+                "/$value will be executed"
+            }
+            else -> {"No reward :("}
+        }
+
+        return listOf(
+            "",
+            "&f${format(quest.questAction.name)} ${quest.amount.toString().format("%,d")} &6${format(quest.type)}",
+            "&fto receive &a$rewardDesc",
+            "&6• &eLeft click to begin this quest",
+            "&6• &eRight click to drop this quest"
+        )
     }
 }

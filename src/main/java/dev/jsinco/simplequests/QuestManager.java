@@ -40,6 +40,7 @@ public final class QuestManager {
 
     public static void loadQuests() { // async
         quests.clear();
+        mappedQuests.clear();
         final SnakeYamlConfig questsFile = SimpleQuests.getQuestsFile();
 
         for (String category : questsFile.getKeys()) {
@@ -47,6 +48,7 @@ public final class QuestManager {
             for (String id : categorySection.getKeys()) {
                 final ConfigurationSection questSection = categorySection.getConfigurationSection(id);
                 final QuestAction questAction = QuestAction.valueOf(questSection.getString("action"));
+                final List<String> description = questSection.get("description") != null ? (List<String>) questSection.get("description") : null;
 
                 final Quest quest = new Quest(
                         category,
@@ -57,7 +59,8 @@ public final class QuestManager {
                         questSection.getInt("amount"),
                         questSection.getString("reward.type"),
                         questSection.get("reward.value"),
-                        questSection.getString("menu-item")
+                        questSection.getString("menu-item"),
+                        description
                 );
 
                 quests.add(quest);

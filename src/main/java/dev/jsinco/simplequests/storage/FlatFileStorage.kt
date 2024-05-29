@@ -3,6 +3,7 @@ package dev.jsinco.simplequests.storage
 import com.google.gson.internal.LinkedTreeMap
 import dev.jsinco.abstractjavafilelib.schemas.JsonSavingSchema
 import dev.jsinco.simplequests.Util
+import dev.jsinco.simplequests.enums.StorageMethod
 import dev.jsinco.simplequests.objects.ActiveQuest
 import dev.jsinco.simplequests.objects.QuestPlayer
 import dev.jsinco.simplequests.objects.StorableQuest
@@ -48,5 +49,9 @@ class FlatFileStorage : DataManager {
         savesFile.set("${questPlayer.uuid}.activeQuests", StorableQuest.serializeToStorableQuests(questPlayer.activeQuests))
         savesFile.save()
         Util.debugLog("Saved QuestPlayer: ${questPlayer.uuid}")
+    }
+
+    override fun getStorageMethod(): StorageMethod {
+        return StorageMethod.FLATFILE
     }
 }

@@ -18,4 +18,6 @@ interface DataManager {
     fun loadQuestPlayer(uuid: UUID): QuestPlayer
 
     fun saveQuestPlayer(questPlayer: QuestPlayer)
+
+    fun getStorageMethod(): StorageMethod
 }

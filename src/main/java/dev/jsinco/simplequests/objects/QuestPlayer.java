@@ -96,7 +96,20 @@ public class QuestPlayer {
 
         activeQuests.add(activeQuest);
         QuestManager.cacheQuestPlayer(this);
+        Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have started the quest: &a\"" + quest.getName() + "\"&r!"));
         return true;
+    }
+
+    public boolean dropQuest(Quest quest) {
+        for (ActiveQuest activeQuest : activeQuests) {
+            if (activeQuest.simpleIdentifier().equals(quest.simpleIdentifier())) {
+                activeQuests.remove(activeQuest);
+                Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have dropped the quest: &a\"" + quest.getName() + "\"&r!"));
+                return true;
+            }
+        }
+        Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have not started this quest!"));
+        return false;
     }
 
     public boolean hasCompletedQuest(Quest quest) {
