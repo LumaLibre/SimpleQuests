@@ -79,19 +79,19 @@ farming: # Category
   melons_1:
     name: 'Harvest 500 Melons'
     action: BREAK
-    type: MELONS
+    type: MELON
     amount: 500
     menu-item: MELON_SEEDS
   melons_2:
     name: 'Harvest 50,000 Melons'
     action: BREAK
-    type: MELONS
+    type: MELON
     amount: 50000
     menu-item: MELON_SLICE
   melons_3:
     name: 'Harvest 500,000 Melons'
     action: BREAK
-    type: MELONS
+    type: MELON
     amount: 500000
     menu-item: MELON
   chorus_1:

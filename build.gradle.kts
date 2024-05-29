@@ -13,11 +13,13 @@ repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://jitpack.io")
+    maven("https://repo.rosewooddev.io/repository/public/")
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
+    compileOnly("org.black_ixx:playerpoints:3.2.5")
     implementation("com.github.Jsinco:AbstractJavaFileLib:1.4")
     implementation(kotlin("stdlib-jdk8"))
 }

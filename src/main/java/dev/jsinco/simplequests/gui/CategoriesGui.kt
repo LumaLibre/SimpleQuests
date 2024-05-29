@@ -9,10 +9,12 @@ import dev.jsinco.simplequests.gui.tools.AbstractGui
 import dev.jsinco.simplequests.gui.tools.PaginatedGui
 import org.bukkit.Bukkit
 import org.bukkit.Material
+import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 
 class CategoriesGui : AbstractGui {
@@ -24,8 +26,8 @@ class CategoriesGui : AbstractGui {
             Util.basicItem(Material.FERN) to listOf(2, 6, 47, 51),
             Util.basicItem(Material.PINK_TULIP) to listOf(3, 5),
             Util.basicItem(Material.LILY_PAD) to listOf(4, 49),
-            Util.basicItem(Material.PAPER, 10000).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "previous") } to listOf(48),
-            Util.basicItem(Material.PAPER, 10001).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "next") } to listOf(50)
+            Util.basicItem(Material.PAPER, "&#C08EFA&lPrevious",10000).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "previous") } to listOf(48),
+            Util.basicItem(Material.PAPER, "&#C08EFA&lNext", 10001).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "next") } to listOf(50)
         )
     }
 
@@ -46,14 +48,17 @@ class CategoriesGui : AbstractGui {
         for (cat in SimpleQuests.getQuestsFile().keys) {
             val itemStack = ItemStack(Material.getMaterial(configSection.getString(cat) ?: "WHITE_STAINED_GLASS_PANE") ?: Material.WHITE_STAINED_GLASS_PANE)
             val meta = itemStack.itemMeta
-            meta.setDisplayName(Util.format(cat))
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ITEM_SPECIFICS, ItemFlag.HIDE_ATTRIBUTES)
+            meta.addEnchant(Enchantment.LUCK, 1, true)
+            meta.setDisplayName(Util.colorText( "&#f498f6&l${Util.format(cat)} Quests"))
+            meta.lore = listOf(Util.colorText("&7Click to view quests in the"), Util.colorText("&#f498f6${Util.format(cat)} &7category!"))
             itemStack.itemMeta = meta
 
             Util.setGuiItemData(itemStack, GuiItemType.CATEGORY, cat)
             categoryItems.add(itemStack)
         }
 
-        paginatedGui = PaginatedGui(Util.colorText("&#f498f6&lQuest Categories"), inv, categoryItems, Pair(19, 35), listOf(26, 27), null)
+        paginatedGui = PaginatedGui(Util.colorText("&#f498f6&lQuest Categories"), inv, categoryItems, Pair(20, 34), listOf(26, 27, 28), null)
     }
 
     override fun onInventoryClick(event: InventoryClickEvent) {

@@ -2,6 +2,7 @@ package dev.jsinco.simplequests
 
 import dev.jsinco.simplequests.enums.GuiItemType
 import dev.jsinco.simplequests.enums.RewardType
+import dev.jsinco.simplequests.objects.ActiveQuest
 import dev.jsinco.simplequests.objects.Quest
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
@@ -16,7 +17,7 @@ import org.bukkit.persistence.PersistentDataType
 object Util {
 
     private val plugin: SimpleQuests = SimpleQuests.getInstance()
-    @JvmStatic var prefix: String = colorText(SimpleQuests.getConfigFile().getString("prefix") ?: "&8[&6SimpleQuests&8]")
+    @JvmStatic var prefix: String = colorText(SimpleQuests.getConfigFile().getString("prefix") ?: "&8[&6SimpleQuests&8]&r ")
     private const val WITH_DELIMITER = "((?<=%1\$s)|(?=%1\$s))"
 
     @JvmStatic
@@ -79,8 +80,8 @@ object Util {
         return createGuiItem(m, "&0", listOf(), false)
     }
 
-    fun basicItem(m: Material, customModelData: Int?): ItemStack {
-        return createGuiItem(m, "&0", listOf(), false, customModelData)
+    fun basicItem(m: Material, n: String, customModelData: Int?): ItemStack {
+        return createGuiItem(m, n, listOf(), false, customModelData)
     }
 
 
@@ -110,15 +111,25 @@ object Util {
             RewardType.COMMAND -> {
                 "/$value will be executed"
             }
-            else -> {"No reward :("}
+            RewardType.POINTS -> {
+                "$value Lumins"
+            }
+            else -> {
+                "No reward :("
+            }
         }
 
         return listOf(
-            "",
             "&f${format(quest.questAction.name)} ${quest.amount.toString().format("%,d")} &6${format(quest.type)}",
             "&fto receive &a$rewardDesc",
-            "&6• &eLeft click to begin this quest",
-            "&6• &eRight click to drop this quest"
         )
+    }
+
+
+    fun createProgressBar(quest: ActiveQuest, totalBars: Int = 25): String {
+        val completedBars = (quest.progress.toDouble() / quest.amount * totalBars).toInt()
+        val completed = "&a|".repeat(completedBars)
+        val remaining = "&7|".repeat(totalBars - completedBars)
+        return completed + remaining
     }
 }

@@ -5,6 +5,7 @@ import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.enums.GuiItemType
 import dev.jsinco.simplequests.gui.tools.AbstractGui
 import dev.jsinco.simplequests.gui.tools.GuiCreator
+import dev.jsinco.simplequests.objects.Quest
 import dev.jsinco.simplequests.objects.QuestPlayer
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -13,6 +14,7 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 
 class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGui {
@@ -24,9 +26,9 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
             Util.basicItem(Material.FERN) to listOf(2, 6, 38, 42),
             Util.basicItem(Material.PINK_TULIP) to listOf(3, 5),
             Util.basicItem(Material.LILY_PAD) to listOf(4),
-            Util.basicItem(Material.PAPER, 10000).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "previous") } to listOf(39),
-            Util.basicItem(Material.PAPER, 10001).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "next") } to listOf(41),
-            Util.basicItem(Material.BARRIER).also { Util.setGuiItemData(it, GuiItemType.RETURN, "return") } to listOf(40),
+            Util.basicItem(Material.PAPER, "&#C08EFA&lPrevious", 10000).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "previous") } to listOf(39),
+            Util.basicItem(Material.PAPER, "&#C08EFA&lNext", 10001).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "next") } to listOf(41),
+            Util.basicItem(Material.BARRIER, "&c&lReturn", null).also { Util.setGuiItemData(it, GuiItemType.RETURN, "return") } to listOf(40),
         )
         val inventoryMap: List<Int> = listOf(
             0,9,18,27,36,
@@ -38,14 +40,6 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
             6,15,24,33,42,
             7,16,25,34,43,
             8,17,26,35,44
-        )
-
-        val lore = listOf(
-            "",
-            "%s %s %s!",
-            "",
-            "&6• &eLeft click to begin this quest",
-            "&6• &eRight click to drop this quest"
         )
     }
 
@@ -59,7 +53,7 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
         }
 
 
-        val inv = Bukkit.createInventory(this, 45, "Quests")
+        val inv = Bukkit.createInventory(this, 45, Util.colorText("&#C08EFA&l${Util.format(category)} Quests"))
         for (item in initItems) {
             for (slot in item.value) {
                 inv.setItem(slot, item.key)
@@ -75,22 +69,7 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
 
             val quest = quests[lastQueriedQuestIndex]
             val item = Util.basicItem(quest.menuItem ?: Material.WHITE_STAINED_GLASS).also { Util.setGuiItemData(it, GuiItemType.QUEST, quest.id) }
-            val meta = item.itemMeta
-            meta.setDisplayName(Util.colorText("&f&l${quest.name}"))
-            if (questPlayer.getInProgressQuest(quest) != null) {
-                meta.addEnchant(Enchantment.LUCK, 1, true)
-            } else if (questPlayer.hasCompletedQuest(quest)) {
-                item.type = Material.PAPER
-            }
-            /*listOf(
-                "",
-                "${Util.format(quest.questAction.name)} ${quest.amount.toString().format("%,d")} &6${Util.format(quest.type)}",
-                "&fto receive ",
-                "&6• &eLeft click to begin this quest",
-                "&6• &eRight click to drop this quest"
-            )*/
-            meta.lore = quest.description.map { Util.colorText(it) }
-            item.itemMeta = meta
+            updateQuestGuiItem(quest, item)
 
             items.add(item)
             lastQueriedQuestIndex++
@@ -116,6 +95,7 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
                 } else {
                     questPlayer.dropQuest(quest)
                 }
+                updateQuestGuiItem(quest, item)
             }
 
             GuiItemType.PAGE_SWITCHER -> {
@@ -151,5 +131,36 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
 
     override fun getInventory(): Inventory {
         return generatedPages.last()
+    }
+
+    fun updateQuestGuiItem(quest: Quest, item: ItemStack) {
+        val meta = item.itemMeta
+        meta.setDisplayName(Util.colorText("&f&l${quest.name}"))
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ITEM_SPECIFICS, ItemFlag.HIDE_ATTRIBUTES)
+
+
+        val progress = questPlayer.getInProgressQuest(quest)?.let { Util.createProgressBar(it) }
+        meta.lore = quest.description.toMutableList().also {
+            it.add(0, "")
+            if (progress != null) {
+                it.add("&6Progress: $progress")
+            }
+            it.addAll(listOf("",
+                "&6• &eLeft click to begin this quest",
+                "&6• &eRight click to drop this quest"))
+        }.map { Util.colorText(it) }
+
+
+        if (progress != null) {
+            meta.addEnchant(Enchantment.LUCK, 1, true)
+        } else {
+            meta.removeEnchantments()
+        }
+
+        if (questPlayer.hasCompletedQuest(quest)) {
+            item.type = Material.PAPER
+            meta.addEnchant(Enchantment.LUCK, 1, true)
+        }
+        item.itemMeta = meta
     }
 }

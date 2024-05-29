@@ -18,7 +18,7 @@ class ReloadCommand : SubCommand {
             }
             SimpleQuests.loadData()
             QuestManager.loadQuests()
-            Util.prefix = Util.colorText(SimpleQuests.getConfigFile().getString("prefix") ?: "&8[&6SimpleQuests&8]")
+            Util.prefix = Util.colorText(SimpleQuests.getConfigFile().getString("prefix") ?: "&8[&6SimpleQuests&8]&r ")
             sender.sendMessage(Util.colorText("${Util.prefix}Finished reloading in &6${System.currentTimeMillis() - start}ms"))
         })
     }

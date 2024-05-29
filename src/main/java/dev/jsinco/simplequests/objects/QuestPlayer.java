@@ -79,6 +79,7 @@ public class QuestPlayer {
 
     public boolean startQuest(Quest quest) {
         if (activeQuests.size() >= maxActiveQuests) {
+            Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have too many active quests!"));
             return false;
         }
 
@@ -130,8 +131,9 @@ public class QuestPlayer {
     public String toString() {
         return "QuestPlayer{" +
                 "uuid=" + uuid +
-                ", completedQuestIds=" + completedQuests +
+                ", completedQuests=" + completedQuests +
                 ", activeQuests=" + activeQuests +
+                ", maxActiveQuests=" + maxActiveQuests +
                 '}';
     }
 

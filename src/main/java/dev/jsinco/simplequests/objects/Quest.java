@@ -3,8 +3,10 @@ package dev.jsinco.simplequests.objects;
 import dev.jsinco.simplequests.Util;
 import dev.jsinco.simplequests.enums.QuestAction;
 import dev.jsinco.simplequests.enums.RewardType;
+import dev.jsinco.simplequests.hooks.PlayerPointsHook;
 import dev.jsinco.simplequests.hooks.VaultHook;
 import net.milkbowl.vault.economy.Economy;
+import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -102,6 +104,10 @@ public class Quest {
                 econ.depositPlayer(player, (double) rewardValue);
             }
             case COMMAND -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), rewardValue.toString().replace("%player%", player.getName()));
+            case POINTS -> {
+                final PlayerPointsAPI playerPointsAPI = PlayerPointsHook.getApi();
+                playerPointsAPI.give(player.getUniqueId(), (int) rewardValue);
+            }
         }
     }
 
