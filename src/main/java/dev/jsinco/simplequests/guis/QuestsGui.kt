@@ -132,9 +132,9 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
         return generatedPages.last()
     }
 
-    fun updateQuestGuiItem(quest: Quest, item: ItemStack) {
+    private fun updateQuestGuiItem(quest: Quest, item: ItemStack) {
         val meta = item.itemMeta
-        meta.setDisplayName(Util.colorText("&f&l${quest.name}"))
+        meta.setDisplayName(Util.colorText("&#7280FF&l${quest.name}"))
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ITEM_SPECIFICS, ItemFlag.HIDE_ATTRIBUTES)
 
 

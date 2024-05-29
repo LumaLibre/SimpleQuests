@@ -32,7 +32,7 @@ class CategoriesGui : AbstractGui {
     }
 
 
-    val paginatedGui: PaginatedGui
+    private val paginatedGui: PaginatedGui
 
     init {
         val inv = Bukkit.createInventory(this, 54, "SimpleQuests Categories")
@@ -43,7 +43,7 @@ class CategoriesGui : AbstractGui {
         }
 
         val categoryItems: MutableList<ItemStack> = mutableListOf()
-        val configSection: ConfigurationSection = SimpleQuests.getConfigFile().getConfigurationSection("category-icons")
+        val configSection: ConfigurationSection = SimpleQuests.getConfigFile().getConfigurationSection("category-icons") // TODO
 
         for (cat in SimpleQuests.getQuestsFile().keys) {
             val itemStack = ItemStack(Material.getMaterial(configSection.getString(cat) ?: "WHITE_STAINED_GLASS_PANE") ?: Material.WHITE_STAINED_GLASS_PANE)
