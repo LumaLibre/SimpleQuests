@@ -3,9 +3,6 @@ package dev.jsinco.simplequests.storage
 import com.google.gson.internal.LinkedTreeMap
 import dev.jsinco.abstractjavafilelib.schemas.JsonSavingSchema
 import dev.jsinco.simplequests.Util
-import dev.jsinco.simplequests.enums.QuestAction
-import dev.jsinco.simplequests.enums.RewardType
-import dev.jsinco.simplequests.enums.StorageMethod
 import dev.jsinco.simplequests.objects.ActiveQuest
 import dev.jsinco.simplequests.objects.QuestPlayer
 import dev.jsinco.simplequests.objects.StorableQuest
@@ -31,7 +28,7 @@ class FlatFileStorage : DataManager {
         val list: List<LinkedTreeMap<*, *>> = savesFile.get("$uuid.activeQuests") as? List<LinkedTreeMap<*, *>> ?: emptyList()
 
         for (linkedTreeMap in list) {
-            activeQuestList.add(ActiveQuest(linkedTreeMap["category"] as String, linkedTreeMap["id"] as String, (linkedTreeMap["progress"] as Double).toInt()))
+            activeQuestList.add(ActiveQuest(linkedTreeMap["category"] as String, linkedTreeMap["id"] as String, (linkedTreeMap["progression"] as Double).toInt()))
         }
 
         return activeQuestList
@@ -47,7 +44,7 @@ class FlatFileStorage : DataManager {
     }
 
     override fun saveQuestPlayer(questPlayer: QuestPlayer) {
-        savesFile.set("${questPlayer.uuid}.completedQuests", questPlayer.completedQuestIds)
+        savesFile.set("${questPlayer.uuid}.completedQuests", questPlayer.completedQuests)
         savesFile.set("${questPlayer.uuid}.activeQuests", StorableQuest.serializeToStorableQuests(questPlayer.activeQuests))
         savesFile.save()
         Util.debugLog("Saved QuestPlayer: ${questPlayer.uuid}")

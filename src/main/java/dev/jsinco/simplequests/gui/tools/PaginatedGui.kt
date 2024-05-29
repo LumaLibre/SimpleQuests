@@ -1,4 +1,4 @@
-package dev.jsinco.simplequests.gui
+package dev.jsinco.simplequests.gui.tools
 
 import dev.jsinco.simplequests.Util
 import org.bukkit.Bukkit
@@ -11,20 +11,25 @@ class PaginatedGui (
     itemStacks: List<ItemStack>,
     startEndSlots: Pair<Int, Int>,
     ignoredSlots: List<Int>,
+    inventoryMap: List<Int>?
 ) {
 
     val pages: MutableList<Inventory> = mutableListOf()
-    val isEmpty = itemStacks.isEmpty()
+    val isEmpty: Boolean = itemStacks.isEmpty()
     var size : Int = 0
         private set
 
 
     init {
+        if (inventoryMap != null && inventoryMap.size != base.size) throw InvalidInventoryMapException()
+
         var currentPage = newPage()
         var currentItem = 0
         var currentSlot = startEndSlots.first
         while (currentItem < itemStacks.size) {
-            if (ignoredSlots.contains(currentSlot)) {
+            val slot = inventoryMap?.get(currentSlot) ?: currentSlot
+
+            if (ignoredSlots.contains(slot)) {
                 currentSlot++
                 continue
             }
@@ -34,8 +39,10 @@ class PaginatedGui (
                 currentSlot = startEndSlots.first
             }
 
-            if (currentPage.getItem(currentSlot) == null) {
-                currentPage.setItem(currentSlot, itemStacks[currentItem])
+
+
+            if (currentPage.getItem(slot) == null) {
+                currentPage.setItem(slot, itemStacks[currentItem])
                 currentItem++
             }
             currentSlot++

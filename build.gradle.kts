@@ -21,6 +21,7 @@ dependencies {
     implementation("com.github.Jsinco:AbstractJavaFileLib:1.4")
     implementation(kotlin("stdlib-jdk8"))
 }
+
 kotlin {
     jvmToolchain(17)
 }
@@ -38,6 +39,7 @@ tasks {
     shadowJar {
         dependencies {
             include(dependency("com.github.Jsinco:AbstractJavaFileLib"))
+            include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
         }
         //archiveClassifier.set("")
     }

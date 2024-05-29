@@ -3,15 +3,15 @@ package dev.jsinco.simplequests;
 import dev.jsinco.abstractjavafilelib.ConfigurationSection;
 import dev.jsinco.abstractjavafilelib.schemas.SnakeYamlConfig;
 import dev.jsinco.simplequests.enums.QuestAction;
-import dev.jsinco.simplequests.enums.RewardType;
-import dev.jsinco.simplequests.objects.ActiveQuest;
 import dev.jsinco.simplequests.objects.Quest;
 import dev.jsinco.simplequests.objects.QuestPlayer;
 import dev.jsinco.simplequests.storage.DataManager;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -19,6 +19,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public final class QuestManager {
 
     private static final ConcurrentLinkedQueue<Quest> quests = new ConcurrentLinkedQueue<>();
+    private static final ConcurrentHashMap<String, List<Quest>> mappedQuests = new ConcurrentHashMap<>();
     private static final ConcurrentHashMap<UUID, QuestPlayer> questPlayersCache = new ConcurrentHashMap<>();
     private static final DataManager dataManager = SimpleQuests.getDataManager();
 
@@ -47,7 +48,7 @@ public final class QuestManager {
                 final ConfigurationSection questSection = categorySection.getConfigurationSection(id);
                 final QuestAction questAction = QuestAction.valueOf(questSection.getString("action"));
 
-                quests.add(new Quest(
+                final Quest quest = new Quest(
                         category,
                         id,
                         questSection.getString("name"),
@@ -57,8 +58,14 @@ public final class QuestManager {
                         questSection.getString("reward.type"),
                         questSection.get("reward.value"),
                         questSection.getString("menu-item")
-                ));
+                );
+
+                quests.add(quest);
+                mappedQuests.computeIfAbsent(category, k -> new ArrayList<>()).add(quest);
             }
+        }
+        for (Map.Entry<String, List<Quest>> entry : mappedQuests.entrySet()) {
+            Util.debugLog("Loaded " + entry.getValue().size() + " quests for category: " + entry.getKey());
         }
         Util.debugLog("Finished loading " + quests.size() + " quests");
     }
@@ -99,5 +106,11 @@ public final class QuestManager {
 
     public static List<Quest> getQuests() {
         return List.copyOf(quests);
+    }
+
+    @Nullable
+    public static List<Quest> getQuests(String category) {
+        if (!mappedQuests.containsKey(category)) return null;
+        return List.copyOf(mappedQuests.get(category));
     }
 }

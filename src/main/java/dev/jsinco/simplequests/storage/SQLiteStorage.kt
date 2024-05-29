@@ -119,7 +119,7 @@ class SQLiteStorage : DataManager {
         try {
             connection.prepareStatement("INSERT OR REPLACE INTO questPlayers (uuid, completedQuestIds, activeQuests) VALUES (?, ?, ?);").use { statement ->
                 statement.setString(1, questPlayer.uuid.toString())
-                statement.setString(2, gson.toJson(questPlayer.completedQuestIds))
+                statement.setString(2, gson.toJson(questPlayer.completedQuests))
                 statement.setString(3, gson.toJson(StorableQuest.serializeToStorableQuests(questPlayer.activeQuests)))
                 statement.executeUpdate()
                 statement.close()

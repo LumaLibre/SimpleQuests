@@ -2,7 +2,7 @@ package dev.jsinco.simplequests.listeners
 
 import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.enums.QuestAction
-import dev.jsinco.simplequests.gui.AbstractGui
+import dev.jsinco.simplequests.gui.tools.AbstractGui
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
@@ -17,13 +17,13 @@ class Events : Listener {
 
     @EventHandler
     fun onInventoryClick(event: InventoryClickEvent) {
-        if (event.inventory.getHolder(false) !is AbstractGui) return
-        (event.inventory.holder as AbstractGui).onInventoryClick(event)
+        val holder: AbstractGui = event.inventory.getHolder(false) as? AbstractGui ?: return
+        holder.onInventoryClick(event)
     }
     @EventHandler
     fun onInventoryClose(event: InventoryCloseEvent) {
-        if (event.inventory.getHolder(false) !is AbstractGui) return
-        (event.inventory.holder as AbstractGui).onInventoryClose(event)
+        val holder: AbstractGui = event.inventory.getHolder(false) as? AbstractGui ?: return
+        holder.onInventoryClose(event)
     }
 
 

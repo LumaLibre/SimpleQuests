@@ -22,7 +22,7 @@ class QuestProgressionCommand : SubCommand {
         for (activeQuest in questPlayer.activeQuests) {
             strBuilder.append(Util.colorText("&6${activeQuest.id}: ${createProgressBar(activeQuest)}\n"))
         }
-        sender.sendMessage(Util.colorText("Completed Quests:\n ${questPlayer.completedQuestIds.joinToString("&f, ") { "&a$it" }}"))
+        sender.sendMessage(Util.colorText("Completed Quests:\n ${questPlayer.completedQuests.joinToString("&f, ") { "&a$it" }}"))
         sender.sendMessage(Util.colorText("&rActive Quests:\n $strBuilder"))
     }
 

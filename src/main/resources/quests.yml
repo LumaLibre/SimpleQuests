@@ -1,27 +1,330 @@
-farming:
-  farming_potatoes_1:
+farming: # Category
+  potatoes_1: # Unique ID
     name: 'Farm Potatoes'
     action: BREAK
     type: POTATOES
     amount: 500
+    menu-item: POTATO
     reward:
       type: MONEY
       value: 100
-  farming_potatoes_2:
-    name: 'Farm Potatoes'
+  potatoes_2:
+    name: 'Farm Potatoes 2'
     action: BREAK
     type: POTATOES
-    amount: 1000
+    amount: 50000
     menu-item: POTATO
+  potatoes_3:
+    name: 'Farm Potatoes 3'
+    action: BREAK
+    type: POTATOES
+    amount: 500000
+    menu-item: POTATO
+  carrots_1:
+    name: 'Farm Carrots'
+    action: BREAK
+    type: CARROTS
+    amount: 500
+    menu-item: CARROT
+  carrots_2:
+    name: 'Farm Carrots 2'
+    action: BREAK
+    type: CARROTS
+    amount: 50000
+    menu-item: CARROT
+  carrots_3:
+    name: 'Farm Carrots 3'
+    action: BREAK
+    type: CARROTS
+    amount: 500000
+    menu-item: CARROT
+  wheat_1:
+    name: 'Farm Wheat'
+    action: BREAK
+    type: WHEAT
+    amount: 500
+    menu-item: WHEAT
+  wheat_2:
+    name: 'Farm Wheat 2'
+    action: BREAK
+    type: WHEAT
+    amount: 50000
+    menu-item: WHEAT
+  wheat_3:
+    name: 'Farm Wheat 3'
+    action: BREAK
+    type: WHEAT
+    amount: 500000
+    menu-item: WHEAT
+  farming_pumpkins_1:
+    name: 'Harvest 500 Pumpkins'
+    action: BREAK
+    type: PUMPKINS
+    amount: 500
 
-anothercategory:
-  place_diamonds_1:
-    name: 'Place Diamond Blocks'
+  farming_pumpkins_2:
+    name: 'Harvest 50,000 Pumpkins'
+    action: BREAK
+    type: PUMPKINS
+    amount: 50000
+
+  farming_pumpkins_3:
+    name: 'Harvest 500,000 Pumpkins'
+    action: BREAK
+    type: PUMPKINS
+    amount: 500000
+
+  farming_melons_1:
+    name: 'Harvest 500 Melons'
+    action: BREAK
+    type: MELONS
+    amount: 500
+
+  farming_melons_2:
+    name: 'Harvest 50,000 Melons'
+    action: BREAK
+    type: MELONS
+    amount: 50000
+
+  farming_melons_3:
+    name: 'Harvest 500,000 Melons'
+    action: BREAK
+    type: MELONS
+    amount: 500000
+
+
+  farming_apples_1:
+    name: 'Harvest 50 Apples'
+    action: BREAK
+    type: APPLES
+    amount: 50
+
+  farming_apples_2:
+    name: 'Harvest 500 Apples'
+    action: BREAK
+    type: APPLES
+    amount: 500
+
+  farming_apples_3:
+    name: 'Harvest 5,000 Apples'
+    action: BREAK
+    type: APPLES
+    amount: 5000
+
+
+  farming_chorus_fruits_1:
+    name: 'Harvest 50 Chorus Fruits'
+    action: BREAK
+    type: CHORUS_FRUITS
+    amount: 50
+
+  farming_chorus_fruits_2:
+    name: 'Harvest 500 Chorus Fruits'
+    action: BREAK
+    type: CHORUS_FRUITS
+    amount: 500
+
+  farming_chorus_fruits_3:
+    name: 'Harvest 5,000 Chorus Fruits'
+    action: BREAK
+    type: CHORUS_FRUITS
+    amount: 5000
+
+
+  farming_sweet_berries_1:
+    name: 'Harvest 50 Sweet Berries'
+    action: BREAK
+    type: SWEET_BERRIES
+    amount: 50
+
+  farming_sweet_berries_2:
+    name: 'Harvest 500 Sweet Berries'
+    action: BREAK
+    type: SWEET_BERRIES
+    amount: 500
+
+  farming_sweet_berries_3:
+    name: 'Harvest 5,000 Sweet Berries'
+    action: BREAK
+    type: SWEET_BERRIES
+    amount: 5000
+
+  farming_beetroot_1:
+    name: 'Harvest 500 Beetroot'
+    action: BREAK
+    type: BEETROOT
+    amount: 500
+
+  farming_beetroot_2:
+    name: 'Harvest 50,000 Beetroot'
+    action: BREAK
+    type: BEETROOT
+    amount: 50000
+
+  farming_beetroot_3:
+    name: 'Harvest 500,000 Beetroot'
+    action: BREAK
+    type: BEETROOT
+    amount: 500000
+
+  farming_kelp_1:
+    name: 'Harvest 500 Kelp'
+    action: BREAK
+    type: KELP
+    amount: 500
+
+  farming_kelp_2:
+    name: 'Harvest 50,000 Kelp'
+    action: BREAK
+    type: KELP
+    amount: 50000
+
+  farming_kelp_3:
+    name: 'Harvest 500,000 Kelp'
+    action: BREAK
+    type: KELP
+    amount: 500000
+
+
+  farming_sugar_cane_1:
+    name: 'Harvest 500 Sugar Cane'
+    action: BREAK
+    type: SUGAR_CANE
+    amount: 500
+
+  farming_sugar_cane_2:
+    name: 'Harvest 50,000 Sugar Cane'
+    action: BREAK
+    type: SUGAR_CANE
+    amount: 50000
+
+  farming_sugar_cane_3:
+    name: 'Harvest 500,000 Sugar Cane'
+    action: BREAK
+    type: SUGAR_CANE
+    amount: 500000
+
+
+  farming_mushrooms_1:
+    name: 'Harvest 500 Mushrooms'
+    action: BREAK
+    type: MUSHROOMS
+    amount: 500
+
+  farming_mushrooms_2:
+    name: 'Harvest 50,000 Mushrooms'
+    action: BREAK
+    type: MUSHROOMS
+    amount: 50000
+
+  farming_mushrooms_3:
+    name: 'Harvest 500,000 Mushrooms'
+    action: BREAK
+    type: MUSHROOMS
+    amount: 500000
+
+  farming_cocoa_beans_1:
+    name: 'Harvest 500 Cocoa Beans'
+    action: BREAK
+    type: COCOA_BEANS
+    amount: 500
+
+  farming_cocoa_beans_2:
+    name: 'Harvest 5,000 Cocoa Beans'
+    action: BREAK
+    type: COCOA_BEANS
+    amount: 5000
+
+  farming_cocoa_beans_3:
+    name: 'Harvest 50,000 Cocoa Beans'
+    action: BREAK
+    type: COCOA_BEANS
+    amount: 50000
+
+
+  farming_nether_wart_1:
+    name: 'Harvest 500 Nether Wart'
+    action: BREAK
+    type: NETHER_WART
+    amount: 500
+
+  farming_nether_wart_2:
+    name: 'Harvest 50,000 Nether Wart'
+    action: BREAK
+    type: NETHER_WART
+    amount: 50000
+
+  farming_nether_wart_3:
+    name: 'Harvest 500,000 Nether Wart'
+    action: BREAK
+    type: NETHER_WART
+    amount: 500000
+
+
+  farming_cactus_1:
+    name: 'Harvest 50 Cactus'
+    action: BREAK
+    type: CACTUS
+    amount: 50
+
+  farming_cactus_2:
+    name: 'Harvest 500 Cactus'
+    action: BREAK
+    type: CACTUS
+    amount: 500
+
+  farming_cactus_3:
+    name: 'Harvest 5,000 Cactus'
+    action: BREAK
+    type: CACTUS
+    amount: 5000
+
+
+building:
+  bricks_1:
+    name: 'Place Bricks'
     action: PLACE
-    type: DIAMOND_BLOCK
-    amount: 10
-  place_diamonds_2:
-    name: 'Another Category Quest'
+    type: BRICKS
+    amount: 100
+    menu-item: BRICK
+  bricks_2:
+    name: 'Place Bricks 2'
     action: PLACE
-    type: DIAMOND_BLOCK
-    amount: 20
+    type: BRICKS
+    amount: 1000
+    menu-item: BRICK
+  bricks_3:
+    name: 'Place Bricks 3'
+    action: PLACE
+    type: BRICKS
+    amount: 10000
+    menu-item: BRICK
+
+hunter:
+  pig_1:
+    name: 'Hunt Pigs'
+    action: KILL
+    type: PIG
+    amount: 100
+    menu-item: COOKED_PORKCHOP
+    reward:
+      type: COMMAND
+      value: 'say pig_1'
+  pig_2:
+    name: 'Hunt Pigs 2'
+    action: KILL
+    type: PIG
+    amount: 1000
+    menu-item: COOKED_PORKCHOP
+    reward:
+      type: COMMAND
+      value: 'say pig_2'
+  pig_3:
+    name: 'Hunt Pigs 3'
+    action: KILL
+    type: PIG
+    amount: 10000
+    menu-item: COOKED_PORKCHOP
+    reward:
+      type: COMMAND
+      value: 'say pig_3'

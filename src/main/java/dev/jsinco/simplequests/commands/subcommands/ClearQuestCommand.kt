@@ -19,7 +19,7 @@ class ClearQuestCommand : SubCommand {
         val player = Bukkit.getOfflinePlayer(args[1])
         val questPlayer: QuestPlayer = QuestManager.getQuestPlayer(player.uniqueId)
 
-        var bool: Boolean = questPlayer.completedQuestIds.remove(args[2])
+        var bool: Boolean = questPlayer.completedQuests.remove(args[2])
         if (!bool) bool = questPlayer.activeQuests.removeIf { it.id == args[2] }
 
         if (bool) {
@@ -34,7 +34,7 @@ class ClearQuestCommand : SubCommand {
             return null
         } else if (args.size == 3) {
             val questPlayer: QuestPlayer = QuestManager.getQuestPlayer(Bukkit.getOfflinePlayer(args[1]).uniqueId)
-            return questPlayer.completedQuestIds.also { it ->
+            return questPlayer.completedQuests.also { it ->
                 it.addAll(questPlayer.activeQuests.map { it.id })
             }
         }

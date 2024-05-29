@@ -1,4 +1,4 @@
-package dev.jsinco.simplequests.gui
+package dev.jsinco.simplequests.gui.tools
 
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent

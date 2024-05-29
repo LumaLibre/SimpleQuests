@@ -94,4 +94,8 @@ public class Quest {
             case COMMAND -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), rewardValue.toString().replace("%player%", player.getName()));
         }
     }
+
+    public String simpleIdentifier() {
+        return category + "-" + id;
+    }
 }

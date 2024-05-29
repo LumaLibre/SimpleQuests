@@ -2,6 +2,7 @@ package dev.jsinco.simplequests.commands
 
 import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.commands.subcommands.ClearQuestCommand
+import dev.jsinco.simplequests.commands.subcommands.DebugCommand
 import dev.jsinco.simplequests.commands.subcommands.QuestProgressionCommand
 import dev.jsinco.simplequests.commands.subcommands.ReloadCommand
 import dev.jsinco.simplequests.commands.subcommands.SaveCommand
@@ -21,6 +22,7 @@ class CommandManager(private val plugin: SimpleQuests) : TabExecutor {
         commands["progression"] = QuestProgressionCommand()
         commands["reload"] = ReloadCommand()
         commands["clear"] = ClearQuestCommand()
+        commands["debug"] = DebugCommand()
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {

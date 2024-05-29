@@ -19,13 +19,13 @@ public class QuestPlayer {
     @Nullable
     private Player player = null;
     private final UUID uuid;
-    private final List<String> completedQuestIds;
+    private final List<String> completedQuests;
     private final ConcurrentLinkedQueue<ActiveQuest> activeQuests;
     private final int maxActiveQuests;
 
-    public QuestPlayer(UUID uuid, List<String> completedQuestIds, List<ActiveQuest> activeQuests) {
+    public QuestPlayer(UUID uuid, List<String> completedQuests, List<ActiveQuest> activeQuests) {
         this.uuid = uuid;
-        this.completedQuestIds = new ArrayList<>(completedQuestIds);
+        this.completedQuests = new ArrayList<>(completedQuests);
         this.activeQuests = new ConcurrentLinkedQueue<>(activeQuests);
         this.maxActiveQuests = Objects.requireNonNull(getPlayer()).getEffectivePermissions().stream()
                     .filter(permission -> permission.getPermission().startsWith("simplequests.maxquests."))
@@ -49,8 +49,8 @@ public class QuestPlayer {
         return uuid;
     }
 
-    public List<String> getCompletedQuestIds() {
-        return completedQuestIds;
+    public List<String> getCompletedQuests() {
+        return completedQuests;
     }
 
     public List<ActiveQuest> getActiveQuests() {
@@ -68,7 +68,8 @@ public class QuestPlayer {
 
             if (activeQuest.getAmount() <= activeQuest.getProgress()) {
                 activeQuests.remove(activeQuest);
-                completedQuestIds.add(activeQuest.getId());
+                completedQuests.add(activeQuest.simpleIdentifier());
+
                 activeQuest.executeReward(getPlayer());
                 Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have completed the quest: &a\"" + activeQuest.getName() + "\"&r!"));
                 Util.debugLog(uuid + " completed quest: " + activeQuest.getId());
@@ -84,12 +85,12 @@ public class QuestPlayer {
         final ActiveQuest activeQuest = new ActiveQuest(quest);
 
         for (ActiveQuest aQ : activeQuests) {
-            if (aQ.getId().equals(quest.getId())) {
+            if (aQ.simpleIdentifier().equals(quest.simpleIdentifier())) {
                 return false;
             }
         }
 
-        if (completedQuestIds.contains(quest.getId())) {
+        if (completedQuests.contains(quest.simpleIdentifier())) {
             return false;
         }
 
@@ -98,11 +99,25 @@ public class QuestPlayer {
         return true;
     }
 
+    public boolean hasCompletedQuest(Quest quest) {
+        return completedQuests.contains(quest.simpleIdentifier());
+    }
+
+    @Nullable
+    public ActiveQuest getInProgressQuest(Quest quest) {
+        for (ActiveQuest activeQuest : activeQuests) {
+            if (activeQuest.simpleIdentifier().equals(quest.simpleIdentifier())) {
+                return activeQuest;
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return "QuestPlayer{" +
                 "uuid=" + uuid +
-                ", completedQuestIds=" + completedQuestIds +
+                ", completedQuestIds=" + completedQuests +
                 ", activeQuests=" + activeQuests +
                 '}';
     }
