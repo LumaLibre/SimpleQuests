@@ -22,7 +22,9 @@ object Util {
 
     @JvmStatic
     fun debugLog(msg: String) {
-        Bukkit.getConsoleSender().sendMessage(colorText("[SimpleQuests] &6DEBUG: $msg"))
+        if (SimpleQuests.getConfigFile().getBoolean("debug")) { // TODO
+            Bukkit.getConsoleSender().sendMessage(colorText("[SimpleQuests] &6DEBUG: $msg"))
+        }
     }
 
     @JvmStatic
@@ -132,4 +134,5 @@ object Util {
         val remaining = "&7|".repeat(totalBars - completedBars)
         return completed + remaining
     }
+
 }

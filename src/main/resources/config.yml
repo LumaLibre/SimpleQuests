@@ -6,3 +6,16 @@ category-icons: # TODO
   farming: 'DIAMOND_HOE'
   building: 'BRICK'
   hunter: 'IRON_SWORD'
+
+
+# new
+categories:
+  farming:
+    icon: 'DIAMOND_HOE'
+    default-max-quests: 1
+  building:
+    icon: 'BRICK'
+    default-max-quests: 1
+  hunter:
+    icon: 'IRON_SWORD'
+    default-max-quests: 1

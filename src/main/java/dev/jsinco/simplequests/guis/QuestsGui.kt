@@ -12,12 +12,11 @@ import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
-import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 
-class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGui {
+class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGui() {
 
     companion object {
         val initItems = mapOf(
@@ -125,8 +124,6 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
             else -> {}
         }
     }
-
-    override fun onInventoryClose(event: InventoryCloseEvent) {}
 
     override fun getInventory(): Inventory {
         return generatedPages.last()

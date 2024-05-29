@@ -21,17 +21,11 @@ public class QuestPlayer {
     private final UUID uuid;
     private final List<String> completedQuests;
     private final ConcurrentLinkedQueue<ActiveQuest> activeQuests;
-    private final int maxActiveQuests;
 
     public QuestPlayer(UUID uuid, List<String> completedQuests, List<ActiveQuest> activeQuests) {
         this.uuid = uuid;
         this.completedQuests = new ArrayList<>(completedQuests);
         this.activeQuests = new ConcurrentLinkedQueue<>(activeQuests);
-        this.maxActiveQuests = Objects.requireNonNull(getPlayer()).getEffectivePermissions().stream()
-                    .filter(permission -> permission.getPermission().startsWith("simplequests.maxquests."))
-                    .map(permission -> Integer.parseInt(permission.getPermission().replace("simplequests.maxquests.", "")))
-                    .max(Integer::compareTo)
-                    .orElse(SimpleQuests.getConfigFile().getInt("max-default-quests"));
     }
 
     @Nullable
@@ -57,10 +51,6 @@ public class QuestPlayer {
         return List.copyOf(activeQuests);
     }
 
-    public int getMaxActiveQuests() {
-        return maxActiveQuests;
-    }
-
     public void updateQuests(String type, QuestAction action, int amount) {
         for (ActiveQuest activeQuest : activeQuests) {
             if (!activeQuest.getType().equals(type) || activeQuest.getQuestAction() != action) continue;
@@ -78,8 +68,8 @@ public class QuestPlayer {
     }
 
     public boolean startQuest(Quest quest) {
-        if (activeQuests.size() >= maxActiveQuests) {
-            Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have too many active quests!"));
+        if (getNumOfQuestsMatchingCategory(quest.getCategory()) >= getMaxQuests(quest.getCategory())) {
+            Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have too many active quests in this category!"));
             return false;
         }
 
@@ -117,6 +107,16 @@ public class QuestPlayer {
         return completedQuests.contains(quest.simpleIdentifier());
     }
 
+    public int getMaxQuests(String category) {
+        final String permStr = "simplequests.maxquests." + category + ".";
+
+        return Objects.requireNonNull(getPlayer()).getEffectivePermissions().stream()
+                .filter(permission -> permission.getPermission().startsWith(permStr))
+                .map(permission -> Integer.parseInt(permission.getPermission().replace(permStr, "")))
+                .max(Integer::compareTo)
+                .orElse(SimpleQuests.getConfigFile().getInt("categories." + category + ".default-max-quests"));
+    }
+
     @Nullable
     public ActiveQuest getInProgressQuest(Quest quest) {
         for (ActiveQuest activeQuest : activeQuests) {
@@ -143,5 +143,9 @@ public class QuestPlayer {
         if (obj == null || getClass() != obj.getClass()) return false;
         QuestPlayer that = (QuestPlayer) obj;
         return uuid.equals(that.uuid);
+    }
+
+    private int getNumOfQuestsMatchingCategory(String category) {
+        return (int) activeQuests.stream().filter(activeQuest -> activeQuest.getCategory().equals(category)).count();
     }
 }

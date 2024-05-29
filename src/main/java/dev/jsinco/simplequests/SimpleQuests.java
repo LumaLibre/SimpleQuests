@@ -4,6 +4,7 @@ import dev.jsinco.abstractjavafilelib.FileLibSettings;
 import dev.jsinco.abstractjavafilelib.schemas.SnakeYamlConfig;
 import dev.jsinco.simplequests.commands.CommandManager;
 import dev.jsinco.simplequests.enums.StorageMethod;
+import dev.jsinco.simplequests.hooks.papi.PapiManager;
 import dev.jsinco.simplequests.listeners.Events;
 import dev.jsinco.simplequests.objects.QuestPlayer;
 import dev.jsinco.simplequests.storage.DataManager;
@@ -20,10 +21,17 @@ public final class SimpleQuests extends JavaPlugin {
     // - PlaceholderAPI support
     // - Stats command + stats in categories gui
 
+
+    // Load all quests from quests.yml
+    // While player is online, load all quests that have been started, their progression, and all completed quests
+    // When an action is performed, check if the player has any active quests that match the action and update the progression
+    // When a quest is completed, remove it from the active quests and add it to the completed quests
+
     private static SnakeYamlConfig questsFile;
     private static SnakeYamlConfig configFile;
     private static DataManager dataManager;
     private static SimpleQuests instance;
+    private static PapiManager papiManager;
 
     @Override
     public void onEnable() {
@@ -41,6 +49,11 @@ public final class SimpleQuests extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new Events(), this);
         getCommand("simplequests").setExecutor(new CommandManager(this));
+
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            papiManager = new PapiManager(this);
+            papiManager.register();
+        }
     }
 
 
@@ -51,6 +64,9 @@ public final class SimpleQuests extends JavaPlugin {
         }
         if (dataManager != null && dataManager.getStorageMethod() == StorageMethod.SQLITE) {
             ((SQLiteStorage) dataManager).closeConnection();
+        }
+        if (papiManager != null) {
+            papiManager.unregister();
         }
     }
 
@@ -84,8 +100,4 @@ public final class SimpleQuests extends JavaPlugin {
         return instance;
     }
 
-    // Load all quests from quests.yml
-    // While player is online, load all quests that have been started, their progression, and all completed quests
-    // When an action is performed, check if the player has any active quests that match the action and update the progression
-    // When a quest is completed, remove it from the active quests and add it to the completed quests
 }

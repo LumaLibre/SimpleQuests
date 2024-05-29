@@ -12,7 +12,7 @@ class ClearQuestCommand : SubCommand {
 
     override fun execute(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>) {
         if (args.size < 2) {
-            sender.sendMessage("§cUsage: /simplequests clear <player> <questId>")
+            sender.sendMessage("Usage: /simplequests clear <player> <questId>")
             return
         }
 
