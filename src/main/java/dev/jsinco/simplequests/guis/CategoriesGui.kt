@@ -42,10 +42,10 @@ class CategoriesGui : AbstractGui() {
         }
 
         val categoryItems: MutableList<ItemStack> = mutableListOf()
-        val configSection: ConfigurationSection = SimpleQuests.getConfigFile().getConfigurationSection("category-icons") // TODO
+        val configSection: ConfigurationSection = SimpleQuests.getConfigFile().getConfigurationSection("categories") // TODO
 
         for (cat in SimpleQuests.getQuestsFile().keys) {
-            val itemStack = ItemStack(Material.getMaterial(configSection.getString(cat) ?: "WHITE_STAINED_GLASS_PANE") ?: Material.WHITE_STAINED_GLASS_PANE)
+            val itemStack = ItemStack(Material.getMaterial(configSection.getString("$cat.icon") ?: "WHITE_STAINED_GLASS_PANE") ?: Material.WHITE_STAINED_GLASS_PANE)
             val meta = itemStack.itemMeta
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ITEM_SPECIFICS, ItemFlag.HIDE_ATTRIBUTES)
             meta.addEnchant(Enchantment.LUCK, 1, true)

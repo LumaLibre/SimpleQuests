@@ -11,7 +11,7 @@ import java.util.UUID
 
 class FlatFileStorage : DataManager {
 
-    private val savesFile = JsonSavingSchema("saves.json")
+    private val savesFile = JsonSavingSchema("data.json")
 
     override fun getCompletedQuestIds(uuid: UUID): List<String> {
         return savesFile.get("$uuid.completedQuests") as? List<String> ?: emptyList()

@@ -23,7 +23,7 @@ class SQLiteStorage : DataManager {
     private lateinit var connection: Connection
 
     init {
-        val file = File(plugin.dataFolder, "saves.db")
+        val file = File(plugin.dataFolder, "data.db")
         if (!file.exists()) {
             try {
                 file.createNewFile()

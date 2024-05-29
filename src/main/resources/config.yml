@@ -1,14 +1,6 @@
 storage-method: 'FlatFile' # SQLite, FlatFile
 prefix: '&7[&6SimpleQuests&7]&r '
 debug: true
-max-default-quests: 3
-category-icons: # TODO
-  farming: 'DIAMOND_HOE'
-  building: 'BRICK'
-  hunter: 'IRON_SWORD'
-
-
-# new
 categories:
   farming:
     icon: 'DIAMOND_HOE'
