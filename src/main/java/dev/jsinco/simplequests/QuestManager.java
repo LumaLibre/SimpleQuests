@@ -27,11 +27,11 @@ public final class QuestManager {
         return new BukkitRunnable() {
             @Override
             public void run() {
-                for (QuestPlayer questPlayer : questPlayersCache.values()) {
+                for (final QuestPlayer questPlayer : questPlayersCache.values()) {
                     dataManager.saveQuestPlayer(questPlayer);
                     if (questPlayer.getActiveQuests().isEmpty() || questPlayer.getPlayer() == null || !questPlayer.getPlayer().isOnline()) {
                         questPlayersCache.remove(questPlayer.getUuid());
-                        Util.debugLog("Decaching QuestPlayer: " + questPlayer.getUuid());
+                        Util.debugLog("Uncaching QuestPlayer: " + questPlayer.getUuid());
                     }
                 }
             }
@@ -43,9 +43,9 @@ public final class QuestManager {
         mappedQuests.clear();
         final SnakeYamlConfig questsFile = SimpleQuests.getQuestsFile();
 
-        for (String category : questsFile.getKeys()) {
+        for (final String category : questsFile.getKeys()) {
             final ConfigurationSection categorySection = questsFile.getConfigurationSection(category);
-            for (String id : categorySection.getKeys()) {
+            for (final String id : categorySection.getKeys()) {
                 final ConfigurationSection questSection = categorySection.getConfigurationSection(id);
                 final QuestAction questAction = QuestAction.valueOf(questSection.getString("action"));
                 final List<String> description = questSection.get("description") != null ? (List<String>) questSection.get("description") : null;
@@ -92,6 +92,16 @@ public final class QuestManager {
             cacheQuestPlayer(questPlayer);
         }
         return questPlayer;
+    }
+
+    @Nullable
+    public static QuestPlayer questPlayerFromCache(UUID uuid) {
+        return questPlayersCache.get(uuid);
+    }
+
+    public static void uncacheQuestPlayer(UUID uuid) {
+        questPlayersCache.remove(uuid);
+        Util.debugLog("Uncached QuestPlayer: " + uuid);
     }
 
     public static void cacheQuestPlayer(QuestPlayer questPlayer) {

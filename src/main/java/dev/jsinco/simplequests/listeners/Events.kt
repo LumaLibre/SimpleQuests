@@ -1,6 +1,7 @@
 package dev.jsinco.simplequests.listeners
 
 import dev.jsinco.simplequests.QuestManager
+import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.enums.QuestAction
 import dev.jsinco.simplequests.guis.tools.AbstractGui
 import org.bukkit.event.EventHandler
@@ -12,6 +13,7 @@ import org.bukkit.event.entity.EntityDeathEvent
 import org.bukkit.event.inventory.CraftItemEvent
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
+import org.bukkit.event.player.PlayerQuitEvent
 
 class Events : Listener {
 
@@ -24,6 +26,12 @@ class Events : Listener {
     fun onInventoryClose(event: InventoryCloseEvent) {
         val holder: AbstractGui = event.inventory.getHolder(false) as? AbstractGui ?: return
         holder.onInventoryClose(event)
+    }
+    @EventHandler
+    fun onPlayerDisconnect(event: PlayerQuitEvent) {
+        val questPlayer = QuestManager.questPlayerFromCache(event.player.uniqueId) ?: return
+        SimpleQuests.getDataManager().saveQuestPlayer(questPlayer)
+        QuestManager.uncacheQuestPlayer(event.player.uniqueId)
     }
 
 

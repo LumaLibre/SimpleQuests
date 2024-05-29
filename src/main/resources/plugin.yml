@@ -4,6 +4,8 @@ main: dev.jsinco.simplequests.SimpleQuests
 api-version: '1.20'
 softdepend:
   - Vault
+  - PlayerPoints
+  - PlaceholderAPI
 commands:
   simplequests:
     description: Main command for SimpleQuests
@@ -13,5 +15,5 @@ commands:
       - sq
 permissions:
   simplequests.command:
-    description: Main permission for SimpleQuests
+    description: Command permission for SimpleQuests
     default: op

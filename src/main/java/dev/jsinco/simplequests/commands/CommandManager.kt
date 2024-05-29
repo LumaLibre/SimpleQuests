@@ -2,7 +2,6 @@ package dev.jsinco.simplequests.commands
 
 import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.commands.subcommands.ClearQuestCommand
-import dev.jsinco.simplequests.commands.subcommands.DebugCommand
 import dev.jsinco.simplequests.commands.subcommands.DropQuestCommand
 import dev.jsinco.simplequests.commands.subcommands.PluginInfoCommand
 import dev.jsinco.simplequests.commands.subcommands.QuestProgressionCommand
@@ -25,7 +24,6 @@ class CommandManager(private val plugin: SimpleQuests) : TabExecutor {
         commands["progression"] = QuestProgressionCommand()
         commands["reload"] = ReloadCommand()
         commands["clear"] = ClearQuestCommand()
-        commands["debug"] = DebugCommand()
         commands["drop"] = DropQuestCommand()
         commands["plugininfo"] = PluginInfoCommand()
     }
