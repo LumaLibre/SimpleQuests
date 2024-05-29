@@ -2,7 +2,7 @@ package dev.jsinco.simplequests.listeners
 
 import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.enums.QuestAction
-import dev.jsinco.simplequests.gui.tools.AbstractGui
+import dev.jsinco.simplequests.guis.tools.AbstractGui
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener

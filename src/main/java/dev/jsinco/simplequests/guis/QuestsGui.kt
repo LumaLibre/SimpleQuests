@@ -1,10 +1,10 @@
-package dev.jsinco.simplequests.gui
+package dev.jsinco.simplequests.guis
 
 import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.enums.GuiItemType
-import dev.jsinco.simplequests.gui.tools.AbstractGui
-import dev.jsinco.simplequests.gui.tools.GuiCreator
+import dev.jsinco.simplequests.guis.tools.AbstractGui
+import dev.jsinco.simplequests.guis.tools.GuiCreator
 import dev.jsinco.simplequests.objects.Quest
 import dev.jsinco.simplequests.objects.QuestPlayer
 import org.bukkit.Bukkit
@@ -68,7 +68,7 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
             }
 
             val quest = quests[lastQueriedQuestIndex]
-            val item = Util.basicItem(quest.menuItem ?: Material.WHITE_STAINED_GLASS).also { Util.setGuiItemData(it, GuiItemType.QUEST, quest.id) }
+            val item = Util.basicItem(quest.menuItem ?: Material.WHITE_STAINED_GLASS_PANE).also { Util.setGuiItemData(it, GuiItemType.QUEST, quest.id) }
             updateQuestGuiItem(quest, item)
 
             items.add(item)
@@ -106,8 +106,7 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
                         }
                         player.openInventory(generatedPages[generatedPages.indexOf(generatedPages.last()) - 1])
                     }
-                    "next" -> { // TODO: redo this
-
+                    "next" -> {
                         if (generatedPages.indexOf(event.inventory) == generatedPages.size - 1) {
                             if (generatePage()) {
                                 player.openInventory(generatedPages.last())

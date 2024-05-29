@@ -1,4 +1,4 @@
-package dev.jsinco.simplequests.gui.tools
+package dev.jsinco.simplequests.guis.tools
 
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
@@ -13,7 +13,7 @@ class GuiCreator (
 
 
     init {
-        if (inventoryMap != null && inventoryMap.size != inv.size) throw InvalidInventoryMapException()
+        if (inventoryMap != null && inventoryMap.size != inv.size) throw IllegalArgumentException("Invalid inventory map. List size must be equal to total inventory size.")
 
         var currentItem = 0
         var currentSlot = startEndSlots.first

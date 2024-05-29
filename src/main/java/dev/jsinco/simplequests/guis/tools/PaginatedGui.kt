@@ -1,4 +1,4 @@
-package dev.jsinco.simplequests.gui.tools
+package dev.jsinco.simplequests.guis.tools
 
 import dev.jsinco.simplequests.Util
 import org.bukkit.Bukkit
@@ -21,7 +21,7 @@ class PaginatedGui (
 
 
     init {
-        if (inventoryMap != null && inventoryMap.size != base.size) throw InvalidInventoryMapException()
+        if (inventoryMap != null && inventoryMap.size != base.size) throw IllegalArgumentException("Invalid inventory map. List size must be equal to total inventory size.")
 
         var currentPage = newPage()
         var currentItem = 0

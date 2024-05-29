@@ -1,18 +1,13 @@
 package dev.jsinco.simplequests.commands.subcommands
 
-import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.SimpleQuests
+import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.commands.SubCommand
-import dev.jsinco.simplequests.guis.QuestsGui
 import org.bukkit.command.CommandSender
-import org.bukkit.entity.Player
 
-class DebugCommand : SubCommand {
+class PluginInfoCommand : SubCommand {
     override fun execute(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>) {
-        sender as Player
-        val catGui = QuestsGui(QuestManager.getQuestPlayer(sender.uniqueId), "farming")
-        catGui.generatePage()
-        sender.openInventory(catGui.inventory)
+        sender.sendMessage(Util.colorText("${Util.prefix}Running &6SimpleQuests &av${plugin.description.version} &rby &dJsinco"))
     }
 
     override fun tabComplete(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>): List<String>? {
@@ -24,6 +19,6 @@ class DebugCommand : SubCommand {
     }
 
     override fun playerOnly(): Boolean {
-        return true
+        return false
     }
 }

@@ -1,12 +1,12 @@
-package dev.jsinco.simplequests.gui
+package dev.jsinco.simplequests.guis
 
 import dev.jsinco.abstractjavafilelib.ConfigurationSection
 import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.enums.GuiItemType
-import dev.jsinco.simplequests.gui.tools.AbstractGui
-import dev.jsinco.simplequests.gui.tools.PaginatedGui
+import dev.jsinco.simplequests.guis.tools.AbstractGui
+import dev.jsinco.simplequests.guis.tools.PaginatedGui
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment

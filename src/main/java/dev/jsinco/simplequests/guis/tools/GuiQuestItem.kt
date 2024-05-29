@@ -1,4 +1,4 @@
-package dev.jsinco.simplequests.gui.tools
+package dev.jsinco.simplequests.guis.tools
 
 import dev.jsinco.simplequests.objects.Quest
 import org.bukkit.Material
