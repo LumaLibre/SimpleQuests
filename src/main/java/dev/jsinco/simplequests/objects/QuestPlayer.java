@@ -16,8 +16,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class QuestPlayer {
 
-    @Nullable
-    private Player player = null;
+    @Nullable private Player player = null;
     private final UUID uuid;
     private final List<String> completedQuests;
     private final ConcurrentLinkedQueue<ActiveQuest> activeQuests;
@@ -133,7 +132,6 @@ public class QuestPlayer {
                 "uuid=" + uuid +
                 ", completedQuests=" + completedQuests +
                 ", activeQuests=" + activeQuests +
-                ", maxActiveQuests=" + maxActiveQuests +
                 '}';
     }
 
