@@ -20,6 +20,7 @@ public final class SimpleQuests extends JavaPlugin {
     // - Debug log -> config.yml
     // - PlaceholderAPI support
     // - Stats command + stats in categories gui
+    // TODO: Quest player caching/events
 
 
     // Load all quests from quests.yml
@@ -44,7 +45,7 @@ public final class SimpleQuests extends JavaPlugin {
         loadData();
 
 
-        QuestManager.asyncCacheManager().runTaskTimerAsynchronously(this, 0L, 1200L);
+        QuestManager.asyncCacheManager().runTaskTimerAsynchronously(this, 0L, 2400L);
         getServer().getScheduler().runTaskAsynchronously(this, QuestManager::loadQuests);
 
         getServer().getPluginManager().registerEvents(new Events(), this);

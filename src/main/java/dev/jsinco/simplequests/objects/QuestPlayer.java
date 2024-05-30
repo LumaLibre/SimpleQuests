@@ -81,11 +81,13 @@ public class QuestPlayer {
 
         for (ActiveQuest aQ : activeQuests) {
             if (aQ.fullIdentifier().equals(quest.fullIdentifier())) {
+                Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have already started this quest!"));
                 return false;
             }
         }
 
         if (completedQuests.contains(quest.fullIdentifier())) {
+            Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have already completed this quest!"));
             return false;
         }
 

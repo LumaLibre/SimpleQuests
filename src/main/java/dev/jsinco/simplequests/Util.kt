@@ -110,7 +110,7 @@ object Util {
         val value = quest.rewardValue
         val rewardDesc = when (quest.rewardType) {
             RewardType.MONEY -> {
-                "$${value.toString().format("%,.2f")}"
+                String.format("%,.2f", value)
             }
             RewardType.COMMAND -> {
                 "/$value will be executed"
@@ -124,7 +124,7 @@ object Util {
         }
 
         return listOf(
-            "&f${format(quest.questAction.name)} ${quest.amount.toString().format("%,d")} &6${format(quest.type)}",
+            "&f${format(quest.questAction.name)} ${String.format("%,d", quest.amount)} &6${format(quest.type)}",
             "&fto receive &a$rewardDesc",
         )
     }

@@ -35,8 +35,14 @@ class DropQuestCommand : SubCommand {
 }
 
     override fun tabComplete(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>): List<String>? {
-        if (args.size == 2) return null
-        else if (args.size == 3)  return QuestManager.getQuests().map { "${it.category}:${it.id}" }
+        if (args.size == 2) {
+            return null
+        } else if (args.size == 3) {
+            val questPlayer: QuestPlayer = QuestManager.getQuestPlayer(Bukkit.getOfflinePlayer(args[1]).uniqueId)
+            return questPlayer.completedQuests.also { it ->
+                it.addAll(questPlayer.activeQuests.map { "${it.category}:${it.id}" })
+            }
+        }
         return null
     }
 
