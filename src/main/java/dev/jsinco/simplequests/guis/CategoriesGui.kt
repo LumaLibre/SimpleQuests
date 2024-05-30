@@ -1,12 +1,12 @@
 package dev.jsinco.simplequests.guis
 
 import dev.jsinco.abstractjavafilelib.ConfigurationSection
-import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.enums.GuiItemType
 import dev.jsinco.simplequests.guis.tools.AbstractGui
 import dev.jsinco.simplequests.guis.tools.PaginatedGui
+import dev.jsinco.simplequests.objects.QuestPlayer
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
@@ -16,7 +16,7 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 
-class CategoriesGui : AbstractGui() {
+class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
 
     companion object {
         val initItems = mapOf(
@@ -24,7 +24,7 @@ class CategoriesGui : AbstractGui() {
             Util.basicItem(Material.SHORT_GRASS) to listOf(1, 7, 46, 52),
             Util.basicItem(Material.FERN) to listOf(2, 6, 47, 51),
             Util.basicItem(Material.PINK_TULIP) to listOf(3, 5),
-            Util.basicItem(Material.LILY_PAD) to listOf(4, 49),
+            Util.basicItem(Material.LILY_PAD) to listOf(4),
             Util.basicItem(Material.PAPER, "&#C08EFA&lPrevious",10000).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "previous") } to listOf(48),
             Util.basicItem(Material.PAPER, "&#C08EFA&lNext", 10001).also { Util.setGuiItemData(it, GuiItemType.PAGE_SWITCHER, "next") } to listOf(50)
         )
@@ -40,6 +40,7 @@ class CategoriesGui : AbstractGui() {
                 inv.setItem(slot, item.key)
             }
         }
+        inv.setItem(49, Util.getPlayerStatsIcon(questPlayer))
 
         val categoryItems: MutableList<ItemStack> = mutableListOf()
         val configSection: ConfigurationSection = SimpleQuests.getConfigFile().getConfigurationSection("categories") // TODO
@@ -57,7 +58,7 @@ class CategoriesGui : AbstractGui() {
             categoryItems.add(itemStack)
         }
 
-        paginatedGui = PaginatedGui(Util.colorText("&#f498f6&lQuest Categories"), inv, categoryItems, Pair(20, 34), listOf(26, 27, 28), null)
+        paginatedGui = PaginatedGui(Util.colorText("&#f498f6&lQuest Categories"), inv, categoryItems, Pair(20, 34), listOf(25, 26, 27, 28), null)
     }
 
     override fun onInventoryClick(event: InventoryClickEvent) {
@@ -70,7 +71,7 @@ class CategoriesGui : AbstractGui() {
 
         when (itemData.first) {
             GuiItemType.CATEGORY -> {
-                val questsGui = QuestsGui(QuestManager.getQuestPlayer(player.uniqueId), itemData.second)
+                val questsGui = QuestsGui(questPlayer, itemData.second)
                 questsGui.generatePage()
                 player.openInventory(questsGui.inventory)
             }

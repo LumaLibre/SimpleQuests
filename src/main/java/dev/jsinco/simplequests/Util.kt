@@ -4,6 +4,7 @@ import dev.jsinco.simplequests.enums.GuiItemType
 import dev.jsinco.simplequests.enums.RewardType
 import dev.jsinco.simplequests.objects.ActiveQuest
 import dev.jsinco.simplequests.objects.Quest
+import dev.jsinco.simplequests.objects.QuestPlayer
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Material
@@ -12,6 +13,7 @@ import org.bukkit.enchantments.Enchantment
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
+import org.bukkit.inventory.meta.SkullMeta
 import org.bukkit.persistence.PersistentDataType
 
 object Util {
@@ -127,6 +129,22 @@ object Util {
         )
     }
 
+    fun getPlayerStatsIcon(questPlayer: QuestPlayer): ItemStack {
+        val item = ItemStack(Material.PLAYER_HEAD)
+        val player = Bukkit.getOfflinePlayer(questPlayer.uuid)
+
+        val meta = item.itemMeta as SkullMeta
+        meta.owningPlayer = player
+        meta.setDisplayName(colorText("&#f498f6&l${player.name}'s Stats"))
+        meta.lore = listOf(
+            "",
+            "&#F7FFC9Quests Completed: &f${questPlayer.completedQuests.size}/${QuestManager.getQuests().size}",
+            "&#F7FFC9Quests In Progress: &f${questPlayer.activeQuests.size}",
+            ""
+        ).map { colorText(it) }
+        item.itemMeta = meta
+        return item
+    }
 
     fun createProgressBar(quest: ActiveQuest, totalBars: Int = 25): String {
         val completedBars = (quest.progress.toDouble() / quest.amount * totalBars).toInt()

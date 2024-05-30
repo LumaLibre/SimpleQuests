@@ -22,7 +22,7 @@ dependencies {
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly("org.black_ixx:playerpoints:3.2.5")
     compileOnly("me.clip:placeholderapi:2.11.3")
-    implementation("com.github.Jsinco:AbstractJavaFileLib:1.4")
+    implementation("com.github.Jsinco:AbstractJavaFileLib:1.6")
     implementation(kotlin("stdlib-jdk8"))
 }
 

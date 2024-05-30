@@ -14,7 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SimpleQuests extends JavaPlugin {
 
-    // TODO: When I come back from afk
+    // TODO:
     // - Max quests per category + permission node to adjust
     // - Configurability for categories to make my life easier
     // - Debug log -> config.yml

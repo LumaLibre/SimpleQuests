@@ -84,6 +84,7 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
         val item = event.currentItem ?: return
         val itemData = Util.getGuiItemData(item.itemMeta) ?: return
         val player = event.whoClicked as Player
+        val inv = event.inventory
 
 
         when (itemData.first) {
@@ -100,25 +101,25 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
             GuiItemType.PAGE_SWITCHER -> {
                 when (itemData.second) {
                     "previous" -> {
-                        if (generatedPages.indexOf(generatedPages.last()) == 0) {
+                        if (generatedPages.indexOf(inv) == 0) {
                             return
                         }
-                        player.openInventory(generatedPages[generatedPages.indexOf(generatedPages.last()) - 1])
+                        player.openInventory(generatedPages[generatedPages.indexOf(inv) - 1])
                     }
                     "next" -> {
-                        if (generatedPages.indexOf(event.inventory) == generatedPages.size - 1) {
+                        if (generatedPages.indexOf(inv) == generatedPages.size - 1) {
                             if (generatePage()) {
                                 player.openInventory(generatedPages.last())
                             }
                         } else {
-                            player.openInventory(generatedPages[generatedPages.indexOf(event.inventory) + 1])
+                            player.openInventory(generatedPages[generatedPages.indexOf(inv) + 1])
                         }
                     }
                 }
             }
 
             GuiItemType.RETURN -> {
-                player.openInventory(CategoriesGui().inventory)
+                player.openInventory(CategoriesGui(questPlayer).inventory)
             }
 
             else -> {}

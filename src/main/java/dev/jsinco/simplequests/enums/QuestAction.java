@@ -4,5 +4,7 @@ public enum QuestAction {
     BREAK,
     PLACE,
     CRAFT,
-    KILL
+    KILL,
+    FISH,
+    COOK
 }

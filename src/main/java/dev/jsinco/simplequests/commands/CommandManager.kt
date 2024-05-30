@@ -1,5 +1,6 @@
 package dev.jsinco.simplequests.commands
 
+import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.commands.subcommands.ClearQuestCommand
 import dev.jsinco.simplequests.commands.subcommands.DropQuestCommand
@@ -31,7 +32,7 @@ class CommandManager(private val plugin: SimpleQuests) : TabExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         if (args.isEmpty()) {
             if (sender is Player) {
-                sender.openInventory(CategoriesGui().inventory)
+                sender.openInventory(CategoriesGui(QuestManager.getQuestPlayer(sender.uniqueId)).inventory)
             }
             return true
         }
