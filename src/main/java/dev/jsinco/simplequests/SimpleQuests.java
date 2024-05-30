@@ -10,6 +10,7 @@ import dev.jsinco.simplequests.objects.QuestPlayer;
 import dev.jsinco.simplequests.storage.DataManager;
 import dev.jsinco.simplequests.storage.FlatFileStorage;
 import dev.jsinco.simplequests.storage.SQLiteStorage;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SimpleQuests extends JavaPlugin {
@@ -45,7 +46,7 @@ public final class SimpleQuests extends JavaPlugin {
         loadData();
 
 
-        QuestManager.asyncCacheManager().runTaskTimerAsynchronously(this, 0L, 2400L);
+        QuestManager.asyncCacheManager().runTaskTimerAsynchronously(this, 0L, 6000L); // 5 minutes
         getServer().getScheduler().runTaskAsynchronously(this, QuestManager::loadQuests);
 
         getServer().getPluginManager().registerEvents(new Events(), this);
@@ -54,6 +55,14 @@ public final class SimpleQuests extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
             papiManager = new PapiManager(this);
             papiManager.register();
+        }
+
+        // Cache players in case of reload
+        for (final Player player : getServer().getOnlinePlayers()) {
+            final QuestPlayer questPlayer = QuestManager.getQuestPlayer(player.getUniqueId());
+            if (!questPlayer.getActiveQuests().isEmpty()) {
+                QuestManager.cacheQuestPlayer(questPlayer);
+            }
         }
     }
 

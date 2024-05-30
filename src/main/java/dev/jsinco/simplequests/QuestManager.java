@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.logging.Level;
 
 public final class QuestManager {
 
@@ -22,6 +23,7 @@ public final class QuestManager {
     private static final ConcurrentHashMap<String, List<Quest>> mappedQuests = new ConcurrentHashMap<>();
     private static final ConcurrentHashMap<UUID, QuestPlayer> questPlayersCache = new ConcurrentHashMap<>();
     private static final DataManager dataManager = SimpleQuests.getDataManager();
+    private static final SimpleQuests instance = SimpleQuests.getInstance();
 
     public static BukkitRunnable asyncCacheManager() {
         return new BukkitRunnable() {
@@ -45,29 +47,36 @@ public final class QuestManager {
 
         for (final String category : questsFile.getKeys()) {
             final ConfigurationSection categorySection = questsFile.getConfigurationSection(category);
+
             for (final String id : categorySection.getKeys()) {
-                final ConfigurationSection questSection = categorySection.getConfigurationSection(id);
-                final QuestAction questAction = QuestAction.valueOf(questSection.getString("action"));
-                final List<String> description = questSection.get("description") != null ? (List<String>) questSection.get("description") : null;
+                try {
+                    final ConfigurationSection questSection = categorySection.getConfigurationSection(id);
+                    final QuestAction questAction = QuestAction.valueOf(questSection.getString("action"));
+                    final List<String> description = questSection.get("description") != null ? (List<String>) questSection.get("description") : null;
 
-                final Quest quest = new Quest(
-                        category,
-                        id,
-                        questSection.getString("name"),
-                        questSection.getString("type").toUpperCase(),
-                        questAction,
-                        questSection.getInt("amount"),
-                        description,
-                        questSection.getString("reward.type"),
-                        questSection.get("reward.value"),
-                        questSection.getString("menu-item"),
-                        questSection.getString("required")
-                );
+                    final Quest quest = new Quest(
+                            category,
+                            id,
+                            questSection.getString("name"),
+                            questSection.getString("type").toUpperCase(),
+                            questAction,
+                            questSection.getInt("amount"),
+                            description,
+                            questSection.getString("reward.type"),
+                            questSection.get("reward.value"),
+                            questSection.getString("menu-item"),
+                            questSection.getString("required")
+                    );
 
-                quests.add(quest);
-                mappedQuests.computeIfAbsent(category, k -> new ArrayList<>()).add(quest);
+                    quests.add(quest);
+                    mappedQuests.computeIfAbsent(category, k -> new ArrayList<>()).add(quest);
+                } catch (Exception e) {
+                    instance.getLogger().log(Level.SEVERE, "Failed to load quest: " + category + ":" + id, e);
+                }
             }
+
         }
+
         for (Map.Entry<String, List<Quest>> entry : mappedQuests.entrySet()) {
             Util.debugLog("Loaded " + entry.getValue().size() + " quests for category: " + entry.getKey());
         }

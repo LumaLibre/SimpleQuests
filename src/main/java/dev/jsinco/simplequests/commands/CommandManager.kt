@@ -9,6 +9,7 @@ import dev.jsinco.simplequests.commands.subcommands.QuestProgressionCommand
 import dev.jsinco.simplequests.commands.subcommands.ReloadCommand
 import dev.jsinco.simplequests.commands.subcommands.SaveCommand
 import dev.jsinco.simplequests.commands.subcommands.StartQuestCommand
+import dev.jsinco.simplequests.commands.subcommands.WipeQuestCommand
 import dev.jsinco.simplequests.guis.CategoriesGui
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
@@ -27,6 +28,7 @@ class CommandManager(private val plugin: SimpleQuests) : TabExecutor {
         commands["clear"] = ClearQuestCommand()
         commands["drop"] = DropQuestCommand()
         commands["plugininfo"] = PluginInfoCommand()
+        commands["wipe"] = WipeQuestCommand()
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {

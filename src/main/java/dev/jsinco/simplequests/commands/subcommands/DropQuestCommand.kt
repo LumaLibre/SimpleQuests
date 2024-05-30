@@ -39,9 +39,7 @@ class DropQuestCommand : SubCommand {
             return null
         } else if (args.size == 3) {
             val questPlayer: QuestPlayer = QuestManager.getQuestPlayer(Bukkit.getOfflinePlayer(args[1]).uniqueId)
-            return questPlayer.completedQuests.also { it ->
-                it.addAll(questPlayer.activeQuests.map { "${it.category}:${it.id}" })
-            }
+            return questPlayer.activeQuests.map { "${it.category}:${it.id}" }
         }
         return null
     }
