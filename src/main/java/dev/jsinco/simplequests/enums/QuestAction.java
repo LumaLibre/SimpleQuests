@@ -6,5 +6,5 @@ public enum QuestAction {
     CRAFT,
     KILL,
     FISH,
-    COOK
+    SMELT
 }

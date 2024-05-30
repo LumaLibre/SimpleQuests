@@ -4,6 +4,7 @@ import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.enums.QuestAction
 import dev.jsinco.simplequests.guis.tools.AbstractGui
+import dev.jsinco.simplequests.objects.QuestPlayer
 import org.bukkit.entity.Item
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -12,6 +13,7 @@ import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.entity.EntityDeathEvent
 import org.bukkit.event.inventory.CraftItemEvent
+import org.bukkit.event.inventory.FurnaceSmeltEvent
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.event.player.PlayerFishEvent
@@ -31,7 +33,7 @@ class Events : Listener {
     }
     @EventHandler
     fun onPlayerDisconnect(event: PlayerQuitEvent) {
-        val questPlayer = QuestManager.questPlayerFromCache(event.player.uniqueId) ?: return
+        val questPlayer: QuestPlayer = QuestManager.questPlayerFromCache(event.player.uniqueId) ?: return
         SimpleQuests.getDataManager().saveQuestPlayer(questPlayer)
         QuestManager.uncacheQuestPlayer(event.player.uniqueId)
     }
@@ -39,38 +41,34 @@ class Events : Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onBlockBreak(event: BlockBreakEvent) {
-        val questPlayer = QuestManager.getQuestPlayer(event.player.uniqueId) ?: return
-        questPlayer.updateQuests(event.block.type.name, QuestAction.BREAK, 1)
+        QuestManager.getQuestPlayer(event.player.uniqueId)?.updateQuests(event.block.type.name, QuestAction.BREAK, 1) ?: return
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onBlockPlace(event: BlockPlaceEvent) {
-        val questPlayer = QuestManager.getQuestPlayer(event.player.uniqueId) ?: return
-        questPlayer.updateQuests(event.block.type.name, QuestAction.PLACE, 1)
+        QuestManager.getQuestPlayer(event.player.uniqueId)?.updateQuests(event.block.type.name, QuestAction.PLACE, 1) ?: return
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onCraftItem(event: CraftItemEvent) {
-        val questPlayer = QuestManager.getQuestPlayer(event.whoClicked.uniqueId) ?: return
-        questPlayer.updateQuests(event.recipe.result.type.name, QuestAction.CRAFT, 1)
+        QuestManager.getQuestPlayer(event.whoClicked.uniqueId)?.updateQuests(event.recipe.result.type.name, QuestAction.CRAFT, 1) ?: return
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onEntityDeath(event: EntityDeathEvent) {
-        val questPlayer = QuestManager.getQuestPlayer(event.entity.killer?.uniqueId ?: return) ?: return
-        questPlayer.updateQuests(event.entity.type.name, QuestAction.KILL, 1)
+        QuestManager.getQuestPlayer(event.entity.killer?.uniqueId ?: return)?.updateQuests(event.entity.type.name, QuestAction.KILL, 1) ?: return
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onPlayerFish(event: PlayerFishEvent) {
-        val caught = event.caught as? Item ?: return
-        val questPlayer = QuestManager.getQuestPlayer(event.player.uniqueId) ?: return
-        questPlayer.updateQuests(caught.itemStack.type.name, QuestAction.FISH, 1)
+        val caught: Item = event.caught as? Item ?: return
+        QuestManager.getQuestPlayer(event.player.uniqueId)?.updateQuests(caught.itemStack.type.name, QuestAction.FISH, 1) ?: return
     }
 
-
-    //fun onSmelt(event: FurnaceSmeltEvent) {
-    //    val questPlayer = QuestManager.getQuestPlayer(event.whoClicked.uniqueId) ?: return
-    //    questPlayer.updateQuests(event., QuestAction.SMELT, 1)
-    //}
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    fun onFurnaceSmelt(event: FurnaceSmeltEvent) {
+        for (player in event.block.location.getNearbyPlayers(25.0)) {
+            QuestManager.getQuestPlayer(player.uniqueId)?.updateQuests(event.recipe?.input?.type?.name ?: return, QuestAction.SMELT, 1) ?: continue
+        }
+    }
 }
