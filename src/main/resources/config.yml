@@ -1,5 +1,5 @@
 storage-method: 'FlatFile' # SQLite, FlatFile
-prefix: '&7[&6SimpleQuests&7]&r '
+prefix: '&7[&6SimpleQuests&7]&r ' # &#F498F6&lQ&#DA93F8&lu&#C08EFA&le&#A68AFB&ls&#8C85FD&lt&#7280FF&ls
 debug: true
 categories:
   farming:
@@ -10,4 +10,16 @@ categories:
     default-max-quests: 1
   hunter:
     icon: 'IRON_SWORD'
+    default-max-quests: 1
+  florist:
+    icon: 'RED_TULIP'
+    default-max-quests: 1
+  cook:
+    icon: 'CAKE'
+    default-max-quests: 1
+  fishing:
+    icon: 'SALMON'
+    default-max-quests: 1
+  crafting:
+    icon: 'CRAFTING_TABLE'
     default-max-quests: 1

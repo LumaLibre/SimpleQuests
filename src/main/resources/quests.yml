@@ -1,269 +1,436 @@
 farming: # Category
   potatoes_1: # Unique ID
-    name: 'Farm Potatoes'
+    name: '&d&lFarm 500 Potatoes'
     action: BREAK
     type: POTATOES
     amount: 500
     menu-item: POISONOUS_POTATO
     reward:
       type: MONEY
-      value: 100
+      value: 1000
   potatoes_2:
-    name: 'Farm Potatoes 2'
+    name: '&9&lFarm 50,000 Potatoes'
     action: BREAK
     type: POTATOES
     amount: 50000
     menu-item: POTATO
-    description:
-      - test
     reward:
-      type: COMMAND
-      value: "give %player% diamond"
+      type: MONEY
+      value: 10000
   potatoes_3:
-    name: 'Farm Potatoes 3'
+    name: '&5&lFarm 500,000 Potatoes'
     action: BREAK
     type: POTATOES
     amount: 500000
     menu-item: BAKED_POTATO
-    required: "farming:potatoes_2"
+    reward:
+      type: MONEY
+      value: 80000
   carrots_1:
-    name: 'Farm Carrots'
+    name: '&d&lHarvest 500 Carrots'
     action: BREAK
     type: CARROTS
     amount: 500
-    menu-item: CARRORT
+    menu-item: CARROT
+    reward:
+      type: MONEY
+      value: 1000
   carrots_2:
-    name: 'Farm Carrots 2'
+    name: '&9&lHarvest 50,000 Carrots'
     action: BREAK
     type: CARROTS
     amount: 50000
     menu-item: CARROT
+    reward:
+      type: MONEY
+      value: 10000
   carrots_3:
-    name: 'Farm Carrots 3'
+    name: '&5&lHarvest 500,000 Carrots'
     action: BREAK
     type: CARROTS
     amount: 500000
     menu-item: GOLDEN_CARROT
+    reward:
+      type: MONEY
+      value: 80000
   wheat_1:
-    name: 'Farm Wheat'
+    name: '&d&lHarvest 500 Wheat'
     action: BREAK
     type: WHEAT
     amount: 500
     menu-item: WHEAT_SEEDS
+    reward:
+      type: MONEY
+      value: 1000
   wheat_2:
-    name: 'Farm Wheat 2'
+    name: '&9&lHarvest 50,000 Wheat'
     action: BREAK
     type: WHEAT
     amount: 50000
     menu-item: WHEAT
+    reward:
+      type: MONEY
+      value: 10000
   wheat_3:
-    name: 'Farm Wheat 3'
+    name: '&5&lHarvest 500,000 Wheat'
     action: BREAK
     type: WHEAT
     amount: 500000
     menu-item: HAY_BLOCK
+    reward:
+      type: MONEY
+      value: 80000
   pumpkins_1:
-    name: 'Harvest 500 Pumpkins'
+    name: '&d&lHarvest 500 Pumpkins'
     action: BREAK
-    type: PUMPKINS
+    type: PUMPKIN
     amount: 500
     menu-item: PUMPKIN_SEEDS
+    reward:
+      type: MONEY
+      value: 1000
   pumpkins_2:
-    name: 'Harvest 50,000 Pumpkins'
+    name: '&9&lHarvest 50,000 Pumpkins'
     action: BREAK
-    type: PUMPKINS
+    type: PUMPKIN
     amount: 50000
     menu-item: PUMPKIN
+    reward:
+      type: MONEY
+      value: 10000
   pumpkins_3:
-    name: 'Harvest 500,000 Pumpkins'
+    name: '&5&lHarvest 500,000 Pumpkins'
     action: BREAK
-    type: PUMPKINS
+    type: PUMPKIN
     amount: 500000
     menu-item: CARVED_PUMPKIN
+    reward:
+      type: MONEY
+      value: 80000
   melons_1:
-    name: 'Harvest 500 Melons'
+    name: '&d&lHarvest 500 Melons'
     action: BREAK
     type: MELON
     amount: 500
     menu-item: MELON_SEEDS
+    reward:
+      type: MONEY
+      value: 1000
   melons_2:
-    name: 'Harvest 50,000 Melons'
+    name: '&9&lHarvest 50,000 Melons'
     action: BREAK
     type: MELON
     amount: 50000
     menu-item: MELON_SLICE
+    reward:
+      type: MONEY
+      value: 10000
   melons_3:
-    name: 'Harvest 500,000 Melons'
+    name: '&5&lHarvest 500,000 Melons'
     action: BREAK
     type: MELON
     amount: 500000
     menu-item: MELON
+    reward:
+      type: MONEY
+      value: 80000
   chorus_1:
-    name: 'Harvest 500 Chorus Fruits'
+    name: '&d&lHarvest 50 Chorus Fruits'
     action: BREAK
     type: CHORUS_PLANT
     amount: 500
     menu-item: CHORUS_PLANT
+    reward:
+      type: MONEY
+      value: 1000
   chorus_2:
-    name: 'Harvest 50 Chorus Fruits'
+    name: '&9&lHarvest 500 Chorus Fruits'
     action: BREAK
     type: CHORUS_FLOWER
     amount: 500
     menu-item: POPPED_CHORUS_FRUIT
+    reward:
+      type: MONEY
+      value: 2500
   chorus_3:
-    name: 'Harvest 500 Chorus Fruits'
+    name: '&5&lHarvest 5,000 Chorus Fruits'
     action: BREAK
     type: CHORUS_FLOWER
     amount: 5000
     menu-item: CHORUS_FLOWER
+    reward:
+      type: MONEY
+      value: 10000
   sweet_berries_1:
-    name: 'Harvest 50 Sweet Berries'
+    menu-item: NETHER_WART
+    name: '&d&lHarvest 50 Sweet Berries'
     action: BREAK
     type: SWEET_BERRIES
     amount: 50
-
+    reward:
+      type: MONEY
+      value: 1000
   sweet_berries_2:
-    name: 'Harvest 500 Sweet Berries'
+    menu-item: FERN
+    name: '&9&lHarvest 500 Sweet Berries'
     action: BREAK
     type: SWEET_BERRIES
     amount: 500
-
+    reward:
+      type: MONEY
+      value: 2500
   sweet_berries_3:
-    name: 'Harvest 5,000 Sweet Berries'
+    menu-item: SWEET_BERRIES
+    name: '&5&lHarvest 5,000 Sweet Berries'
     action: BREAK
     type: SWEET_BERRIES
     amount: 5000
-
+    reward:
+      type: MONEY
+      value: 10000
   beetroot_1:
-    name: 'Harvest 500 Beetroot'
+    menu-item: BEETROOT_SEEDS
+    name: '&d&lHarvest 500 Beetroot'
     action: BREAK
     type: BEETROOT
     amount: 500
-
+    reward:
+      type: MONEY
+      value: 1000
   beetroot_2:
-    name: 'Harvest 50,000 Beetroot'
+    menu-item: BEETROOT_SOUP
+    name: '&9&lHarvest 50,000 Beetroot'
     action: BREAK
     type: BEETROOT
     amount: 50000
-
+    reward:
+      type: MONEY
+      value: 10000
   beetroot_3:
-    name: 'Harvest 500,000 Beetroot'
+    menu-item: BEETROOT
+    name: '&5&lHarvest 500,000 Beetroot'
     action: BREAK
     type: BEETROOT
     amount: 500000
-
+    reward:
+      type: MONEY
+      value: 80000
   kelp_1:
-    name: 'Harvest 500 Kelp'
+    menu-item: KELP
+    name: '&d&lHarvest 500 Kelp'
     action: BREAK
     type: KELP
     amount: 500
-
+    reward:
+      type: MONEY
+      value: 1000
   kelp_2:
-    name: 'Harvest 50,000 Kelp'
+    menu-item: DRIED_KELP
+    name: '&9&lHarvest 50,000 Kelp'
     action: BREAK
     type: KELP
     amount: 50000
-
+    reward:
+      type: MONEY
+      value: 10000
   kelp_3:
-    name: 'Harvest 500,000 Kelp'
+    menu-item: DRIED_KELP_BLOCK
+    name: '&5&lHarvest 500,000 Kelp'
     action: BREAK
     type: KELP
     amount: 500000
-
-
+    reward:
+      type: MONEY
+      value: 80000
   sugar_cane_1:
-    name: 'Harvest 500 Sugar Cane'
+    menu-item: WHEAT_SEEDS
+    name: '&d&lHarvest 500 Sugar Cane'
     action: BREAK
     type: SUGAR_CANE
     amount: 500
-
+    reward:
+      type: MONEY
+      value: 1000
   sugar_cane_2:
-    name: 'Harvest 50,000 Sugar Cane'
+    menu-item: SUGAR_CANE
+    name: '&9&lHarvest 50,000 Sugar Cane'
     action: BREAK
     type: SUGAR_CANE
     amount: 50000
-
+    reward:
+      type: MONEY
+      value: 10000
   sugar_cane_3:
-    name: 'Harvest 500,000 Sugar Cane'
+    menu-item: SUGAR
+    name: '&5&lHarvest 500,000 Sugar Cane'
     action: BREAK
     type: SUGAR_CANE
     amount: 500000
-
-
+    reward:
+      type: MONEY
+      value: 80000
   mushrooms_1:
-    name: 'Harvest 500 Mushrooms'
+    menu-item: BROWN_MUSHROOM
+    name: '&d&lHarvest 500 Mushrooms'
     action: BREAK
     type: MUSHROOMS
     amount: 500
-
+    reward:
+      type: MONEY
+      value: 2500
   mushrooms_2:
-    name: 'Harvest 50,000 Mushrooms'
+    menu-item: MUSHROOM_STEW
+    name: '&9&lHarvest 5000 Mushrooms'
+    action: BREAK
+    type: MUSHROOMS
+    amount: 5000
+    reward:
+      type: MONEY
+      value: 25000
+  mushrooms_3:
+    menu-item: RED_MUSHROOM_BLOCK
+    name: '&5&lHarvest 50,000 Mushrooms'
     action: BREAK
     type: MUSHROOMS
     amount: 50000
-
-  mushrooms_3:
-    name: 'Harvest 500,000 Mushrooms'
-    action: BREAK
-    type: MUSHROOMS
-    amount: 500000
-
+    reward:
+      type: MONEY
+      value: 80000
   cocoa_beans_1:
-    name: 'Harvest 500 Cocoa Beans'
+    menu-item: COCOA_BEANS
+    name: '&d&lHarvest 500 Cocoa Beans'
     action: BREAK
     type: COCOA_BEANS
     amount: 500
-
+    reward:
+      type: MONEY
+      value: 1000
   cocoa_beans_2:
-    name: 'Harvest 5,000 Cocoa Beans'
+    menu-item: COOKIE
+    name: '&9&lHarvest 5,000 Cocoa Beans'
     action: BREAK
     type: COCOA_BEANS
     amount: 5000
-
+    reward:
+      type: MONEY
+      value: 10000
   cocoa_beans_3:
-    name: 'Harvest 50,000 Cocoa Beans'
+    menu-item: SPRUCE_WOOD
+    name: '&5&lHarvest 50,000 Cocoa Beans'
     action: BREAK
     type: COCOA_BEANS
     amount: 50000
-
-
+    reward:
+      type: MONEY
+      value: 80000
   nether_wart_1:
-    name: 'Harvest 500 Nether Wart'
+    menu-item: NETHER_WART
+    name: '&d&lHarvest 500 Nether Wart'
     action: BREAK
     type: NETHER_WART
     amount: 500
-
+    reward:
+      type: MONEY
+      value: 1000
   nether_wart_2:
-    name: 'Harvest 50,000 Nether Wart'
+    menu-item: RED_DYE
+    name: '&9&lHarvest 50,000 Nether Wart'
     action: BREAK
     type: NETHER_WART
     amount: 50000
-
+    reward:
+      type: MONEY
+      value: 10000
   nether_wart_3:
-    name: 'Harvest 500,000 Nether Wart'
+    menu-item: NETHER_WART_BLOCK
+    name: '&5&lHarvest 500,000 Nether Wart'
     action: BREAK
     type: NETHER_WART
     amount: 500000
-
-
+    reward:
+      type: MONEY
+      value: 80000
   cactus_1:
-    name: 'Harvest 50 Cactus'
+    menu-item: WHEAT_SEEDS
+    name: '&d&lHarvest 50 Cactus'
     action: BREAK
     type: CACTUS
     amount: 50
-
+    reward:
+      type: MONEY
+      value: 1000
   cactus_2:
-    name: 'Harvest 500 Cactus'
+    menu-item: GREEN_DYE
+    name: '&9&lHarvest 500 Cactus'
     action: BREAK
     type: CACTUS
     amount: 500
-
+    reward:
+      type: MONEY
+      value: 5000
   cactus_3:
-    name: 'Harvest 5,000 Cactus'
+    menu-item: CACTUS
+    name: '&5&lHarvest 5,000 Cactus'
     action: BREAK
     type: CACTUS
     amount: 5000
-
+    reward:
+      type: MONEY
+      value: 50000
+  bamboo_1:
+    menu-item: BAMBOO
+    name: '&d&lHarvest 500 Bamboo'
+    action: BREAK
+    type: BAMBOO
+    amount: 500
+    reward:
+      type: MONEY
+      value: 1000
+  bamboo_2:
+    menu-item: LIME_DYE
+    name: '&9&lHarvest 50,000 Bamboo'
+    action: BREAK
+    type: BAMBOO
+    amount: 50000
+    reward:
+      type: MONEY
+      value: 10000
+  bamboo_3:
+    menu-item: BAMBOO_BLOCK
+    name: '&5&lHarvest 500,000 Bamboo'
+    action: BREAK
+    type: BAMBOO
+    amount: 500000
+    reward:
+      type: MONEY
+      value: 80000
+  vines_1:
+    menu-item: SEAGRASS
+    name: '&d&lHarvest 500 Vines'
+    action: BREAK
+    type: VINES
+    amount: 500
+    reward:
+      type: MONEY
+      value: 1000
+  vines_2:
+    menu-item: FERN
+    name: '&9&lHarvest 50,000 Vines'
+    action: BREAK
+    type: VINES
+    amount: 50000
+    reward:
+      type: MONEY
+      value: 10000
+  vines_3:
+    menu-item: VINE
+    name: '&5&lHarvest 500,000 Vines'
+    action: BREAK
+    type: VINES
+    amount: 500000
+    reward:
+      type: MONEY
+      value: 80000
 
 building:
   bricks_1:
@@ -285,31 +452,2643 @@ building:
     amount: 10000
     menu-item: BRICK
 
-hunter:
-  pig_1:
-    name: 'Hunt Pigs'
-    action: KILL
-    type: PIG
-    amount: 100
-    menu-item: COOKED_PORKCHOP
+florist: # Category
+  break_dandelions_1:
+    name: '&d&lBreak 500 Dandelions'
+    action: BREAK
+    type: DANDELIONS
+    amount: 500
+    menu-item: DANDELION
     reward:
-      type: COMMAND
-      value: 'say pig_1'
-  pig_2:
-    name: 'Hunt Pigs 2'
-    action: KILL
-    type: PIG
+      type: MONEY
+      value: 1000
+  break_dandelions_2:
+    name: '&9&lBreak 1,000 Dandelions'
+    action: BREAK
+    type: DANDELIONS
     amount: 1000
-    menu-item: COOKED_PORKCHOP
+    menu-item: DANDELION
     reward:
-      type: COMMAND
-      value: 'say pig_2'
-  pig_3:
-    name: 'Hunt Pigs 3'
+      type: MONEY
+      value: 5000
+  break_dandelions_3:
+    name: '&5&lBreak 5,000 Dandelions'
+    action: BREAK
+    type: DANDELIONS
+    amount: 5000
+    menu-item: DANDELION
+    reward:
+      type: MONEY
+      value: 10000
+  break_poppies_1:
+    name: '&d&lBreak 500 Poppies'
+    action: BREAK
+    type: POPPIES
+    amount: 500
+    menu-item: POPPY
+    reward:
+      type: MONEY
+      value: 1000
+  break_poppies_2:
+    name: '&9&lBreak 1,000 Poppies'
+    action: BREAK
+    type: POPPIES
+    amount: 1000
+    menu-item: POPPY
+    reward:
+      type: MONEY
+      value: 5000
+  break_poppies_3:
+    name: '&5&lBreak 5,000 Poppies'
+    action: BREAK
+    type: POPPIES
+    amount: 5000
+    menu-item: POPPY
+    reward:
+      type: MONEY
+      value: 10000
+  break_blue_orchids_1:
+    name: '&d&lBreak 500 Blue Orchids'
+    action: BREAK
+    type: BLUE_ORCHIDS
+    amount: 500
+    menu-item: BLUE_ORCHID
+    reward:
+      type: MONEY
+      value: 1000
+  break_blue_orchids_2:
+    name: '&9&lBreak 1,000 Blue Orchids'
+    action: BREAK
+    type: BLUE_ORCHIDS
+    amount: 1000
+    menu-item: BLUE_ORCHID
+    reward:
+      type: MONEY
+      value: 5000
+  break_blue_orchids_3:
+    name: '&5&lBreak 5,000 Blue Orchids'
+    action: BREAK
+    type: BLUE_ORCHIDS
+    amount: 5000
+    menu-item: BLUE_ORCHID
+    reward:
+      type: MONEY
+      value: 10000
+  break_alliums_1:
+    name: '&d&lBreak 500 Alliums'
+    action: BREAK
+    type: ALLIUMS
+    amount: 500
+    menu-item: ALLIUM
+    reward:
+      type: MONEY
+      value: 1000
+  break_alliums_2:
+    name: '&9&lBreak 1,000 Alliums'
+    action: BREAK
+    type: ALLIUMS
+    amount: 1000
+    menu-item: ALLIUM
+    reward:
+      type: MONEY
+      value: 5000
+  break_alliums_3:
+    name: '&5&lBreak 5,000 Alliums'
+    action: BREAK
+    type: ALLIUMS
+    amount: 5000
+    menu-item: ALLIUM
+    reward:
+      type: MONEY
+      value: 10000
+  break_azure_bluets_1:
+    name: '&d&lBreak 500 Azure Bluets'
+    action: BREAK
+    type: AZURE_BLUETS
+    amount: 500
+    menu-item: AZURE_BLUET
+    reward:
+      type: MONEY
+      value: 1000
+  break_azure_bluets_2:
+    name: '&9&lBreak 1,000 Azure Bluets'
+    action: BREAK
+    type: AZURE_BLUETS
+    amount: 1000
+    menu-item: AZURE_BLUET
+    reward:
+      type: MONEY
+      value: 5000
+  break_azure_bluets_3:
+    name: '&5&lBreak 5,000 Azure Bluets'
+    action: BREAK
+    type: AZURE_BLUETS
+    amount: 5000
+    menu-item: AZURE_BLUET
+    reward:
+      type: MONEY
+      value: 10000
+  break_red_tulips_1:
+    name: '&d&lBreak 500 Red Tulips'
+    action: BREAK
+    type: RED_TULIPS
+    amount: 500
+    menu-item: RED_TULIP
+    reward:
+      type: MONEY
+      value: 1000
+  break_red_tulips_2:
+    name: '&9&lBreak 1,000 Red Tulips'
+    action: BREAK
+    type: RED_TULIPS
+    amount: 1000
+    menu-item: RED_TULIP
+    reward:
+      type: MONEY
+      value: 5000
+  break_red_tulips_3:
+    name: '&5&lBreak 5,000 Red Tulips'
+    action: BREAK
+    type: RED_TULIPS
+    amount: 5000
+    menu-item: RED_TULIP
+    reward:
+      type: MONEY
+      value: 10000
+  break_orange_tulips_1:
+    name: '&d&lBreak 500 Orange Tulips'
+    action: BREAK
+    type: ORANGE_TULIPS
+    amount: 500
+    menu-item: ORANGE_TULIP
+    reward:
+      type: MONEY
+      value: 1000
+  break_orange_tulips_2:
+    name: '&9&lBreak 1,000 Orange Tulips'
+    action: BREAK
+    type: ORANGE_TULIPS
+    amount: 1000
+    menu-item: ORANGE_TULIP
+    reward:
+      type: MONEY
+      value: 5000
+  break_orange_tulips_3:
+    name: '&5&lBreak 5,000 Orange Tulips'
+    action: BREAK
+    type: ORANGE_TULIPS
+    amount: 5000
+    menu-item: ORANGE_TULIP
+    reward:
+      type: MONEY
+      value: 10000
+  break_white_tulips_1:
+    name: '&d&lBreak 500 White Tulips'
+    action: BREAK
+    type: WHITE_TULIPS
+    amount: 500
+    menu-item: WHITE_TULIP
+    reward:
+      type: MONEY
+      value: 1000
+  break_white_tulips_2:
+    name: '&9&lBreak 1,000 White Tulips'
+    action: BREAK
+    type: WHITE_TULIPS
+    amount: 1000
+    menu-item: WHITE_TULIP
+    reward:
+      type: MONEY
+      value: 5000
+  break_white_tulips_3:
+    name: '&5&lBreak 5,000 White Tulips'
+    action: BREAK
+    type: WHITE_TULIPS
+    amount: 5000
+    menu-item: WHITE_TULIP
+    reward:
+      type: MONEY
+      value: 10000
+  break_pink_tulips_1:
+    name: '&d&lBreak 500 Pink Tulips'
+    action: BREAK
+    type: PINK_TULIPS
+    amount: 500
+    menu-item: PINK_TULIP
+    reward:
+      type: MONEY
+      value: 1000
+  break_pink_tulips_2:
+    name: '&9&lBreak 1,000 Pink Tulips'
+    action: BREAK
+    type: PINK_TULIPS
+    amount: 1000
+    menu-item: PINK_TULIP
+    reward:
+      type: MONEY
+      value: 5000
+  break_pink_tulips_3:
+    name: '&5&lBreak 5,000 Pink Tulips'
+    action: BREAK
+    type: PINK_TULIPS
+    amount: 5000
+    menu-item: PINK_TULIP
+    reward:
+      type: MONEY
+      value: 10000
+  break_oxeye_daisies_1:
+    name: '&d&lBreak 500 Oxeye Daisies'
+    action: BREAK
+    type: OXEYE_DAISIES
+    amount: 500
+    menu-item: OXEYE_DAISY
+    reward:
+      type: MONEY
+      value: 1000
+  break_oxeye_daisies_2:
+    name: '&9&lBreak 1,000 Oxeye Daisies'
+    action: BREAK
+    type: OXEYE_DAISIES
+    amount: 1000
+    menu-item: OXEYE_DAISY
+    reward:
+      type: MONEY
+      value: 5000
+  break_oxeye_daisies_3:
+    name: '&5&lBreak 5,000 Oxeye Daisies'
+    action: BREAK
+    type: OXEYE_DAISIES
+    amount: 5000
+    menu-item: OXEYE_DAISY
+    reward:
+      type: MONEY
+      value: 10000
+  break_cornflowers_1:
+    name: '&d&lBreak 500 Cornflowers'
+    action: BREAK
+    type: CORNFLOWERS
+    amount: 500
+    menu-item: CORNFLOWER
+    reward:
+      type: MONEY
+      value: 1000
+  break_cornflowers_2:
+    name: '&9&lBreak 1,000 Cornflowers'
+    action: BREAK
+    type: CORNFLOWERS
+    amount: 1000
+    menu-item: CORNFLOWER
+    reward:
+      type: MONEY
+      value: 5000
+  break_cornflowers_3:
+    name: '&5&lBreak 5,000 Cornflowers'
+    action: BREAK
+    type: CORNFLOWERS
+    amount: 5000
+    menu-item: CORNFLOWER
+    reward:
+      type: MONEY
+      value: 10000
+  break_lilies_of_the_valley_1:
+    name: '&d&lBreak 500 Lilies of the Valley'
+    action: BREAK
+    type: LILIES_OF_THE_VALLEY
+    amount: 500
+    menu-item: LILY_OF_THE_VALLEY
+    reward:
+      type: MONEY
+      value: 1000
+  break_lilies_of_the_valley_2:
+    name: '&9&lBreak 1,000 Lilies of the Valley'
+    action: BREAK
+    type: LILIES_OF_THE_VALLEY
+    amount: 1000
+    menu-item: LILY_OF_THE_VALLEY
+    reward:
+      type: MONEY
+      value: 5000
+  break_lilies_of_the_valley_3:
+    name: '&5&lBreak 5,000 Lilies of the Valley'
+    action: BREAK
+    type: LILIES_OF_THE_VALLEY
+    amount: 5000
+    menu-item: LILY_OF_THE_VALLEY
+    reward:
+      type: MONEY
+      value: 10000
+  break_wither_roses_1:
+    name: '&d&lBreak 500 Wither Roses'
+    action: BREAK
+    type: WITHER_ROSES
+    amount: 500
+    menu-item: WITHER_ROSE
+    reward:
+      type: MONEY
+      value: 1000
+  break_wither_roses_2:
+    name: '&9&lBreak 1,000 Wither Roses'
+    action: BREAK
+    type: WITHER_ROSES
+    amount: 1000
+    menu-item: WITHER_ROSE
+    reward:
+      type: MONEY
+      value: 5000
+  break_wither_roses_3:
+    name: '&5&lBreak 5,000 Wither Roses'
+    action: BREAK
+    type: WITHER_ROSES
+    amount: 5000
+    menu-item: WITHER_ROSE
+    reward:
+      type: MONEY
+      value: 10000
+  break_sunflowers_1:
+    name: '&d&lBreak 500 Sunflowers'
+    action: BREAK
+    type: SUNFLOWERS
+    amount: 500
+    menu-item: SUNFLOWER
+    reward:
+      type: MONEY
+      value: 1000
+  break_sunflowers_2:
+    name: '&9&lBreak 1,000 Sunflowers'
+    action: BREAK
+    type: SUNFLOWERS
+    amount: 1000
+    menu-item: SUNFLOWER
+    reward:
+      type: MONEY
+      value: 5000
+  break_sunflowers_3:
+    name: '&5&lBreak 5,000 Sunflowers'
+    action: BREAK
+    type: SUNFLOWERS
+    amount: 5000
+    menu-item: SUNFLOWER
+    reward:
+      type: MONEY
+      value: 10000
+  break_lilacs_1:
+    name: '&d&lBreak 500 Lilacs'
+    action: BREAK
+    type: LILACS
+    amount: 500
+    menu-item: LILAC
+    reward:
+      type: MONEY
+      value: 1000
+  break_lilacs_2:
+    name: '&9&lBreak 1,000 Lilacs'
+    action: BREAK
+    type: LILACS
+    amount: 1000
+    menu-item: LILAC
+    reward:
+      type: MONEY
+      value: 5000
+  break_lilacs_3:
+    name: '&5&lBreak 5,000 Lilacs'
+    action: BREAK
+    type: LILACS
+    amount: 5000
+    menu-item: LILAC
+    reward:
+      type: MONEY
+      value: 10000
+  break_rose_bushes_1:
+    name: '&d&lBreak 500 Rose Bushes'
+    action: BREAK
+    type: ROSE_BUSHES
+    amount: 500
+    menu-item: ROSE_BUSH
+    reward:
+      type: MONEY
+      value: 1000
+  break_rose_bushes_2:
+    name: '&9&lBreak 1,000 Rose Bushes'
+    action: BREAK
+    type: ROSE_BUSHES
+    amount: 1000
+    menu-item: ROSE_BUSH
+    reward:
+      type: MONEY
+      value: 5000
+  break_rose_bushes_3:
+    name: '&5&lBreak 5,000 Rose Bushes'
+    action: BREAK
+    type: ROSE_BUSHES
+    amount: 5000
+    menu-item: ROSE_BUSH
+    reward:
+      type: MONEY
+      value: 10000
+  break_peonies_1:
+    name: '&d&lBreak 500 Peonies'
+    action: BREAK
+    type: PEONIES
+    amount: 500
+    menu-item: PEONY
+    reward:
+      type: MONEY
+      value: 1000
+  break_peonies_2:
+    name: '&9&lBreak 1,000 Peonies'
+    action: BREAK
+    type: PEONIES
+    amount: 1000
+    menu-item: PEONY
+    reward:
+      type: MONEY
+      value: 5000
+  break_peonies_3:
+    name: '&5&lBreak 5,000 Peonies'
+    action: BREAK
+    type: PEONIES
+    amount: 5000
+    menu-item: PEONY
+    reward:
+      type: MONEY
+      value: 10000
+  break_pink_petals_1:
+    name: '&d&lBreak 500 Pink Petals'
+    action: BREAK
+    type: PINK_PETALS
+    amount: 500
+    menu-item: PINK_PETALS
+    reward:
+      type: MONEY
+      value: 1000
+  break_pink_petals_2:
+    name: '&9&lBreak 1,000 Pink Petals'
+    action: BREAK
+    type: PINK_PETALS
+    amount: 1000
+    menu-item: PINK_PETALS
+    reward:
+      type: MONEY
+      value: 5000
+  break_pink_petals_3:
+    name: '&5&lBreak 5,000 Pink Petals'
+    action: BREAK
+    type: PINK_PETALS
+    amount: 5000
+    menu-item: PINK_PETALS
+    reward:
+      type: MONEY
+      value: 10000
+
+hunter: # Category
+  kill_chickens_1:
+    name: '&d&lKill 250 Chickens'
     action: KILL
-    type: PIG
+    type: CHICKENS
+    amount: 250
+    menu-item: FEATHER
+    reward:
+      type: MONEY
+      value: 5000
+  kill_chickens_2:
+    name: '&9&lKill 5,000 Chickens'
+    action: KILL
+    type: CHICKENS
+    amount: 5000
+    menu-item: EGG
+    reward:
+      type: MONEY
+      value: 30000
+  kill_chickens_3:
+    name: '&5&lKill 50,000 Chickens'
+    action: KILL
+    type: CHICKENS
+    amount: 50000
+    menu-item: CHICKEN_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 100000
+  kill_cows_1:
+    name: '&d&lKill 250 Cows'
+    action: KILL
+    type: COWS
+    amount: 250
+    menu-item: BEEF
+    reward:
+      type: MONEY
+      value: 7000
+  kill_cows_2:
+    name: '&9&lKill 5,000 Cows'
+    action: KILL
+    type: COWS
+    amount: 5000
+    menu-item: LEATHER
+    reward:
+      type: MONEY
+      value: 35000
+  kill_cows_3:
+    name: '&5&lKill 50,000 Cows'
+    action: KILL
+    type: COWS
+    amount: 50000
+    menu-item: COW_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 120000
+  kill_frogs_1:
+    name: '&d&lKill 10 Frogs'
+    action: KILL
+    type: FROGS
+    amount: 10
+    menu-item: FROGSPAWN
+    reward:
+      type: MONEY
+      value: 2000
+  kill_frogs_2:
+    name: '&9&lKill 100 Frogs'
+    action: KILL
+    type: FROGS
+    amount: 100
+    menu-item: OCHRE_FROGLIGHT
+    reward:
+      type: MONEY
+      value: 15000
+  kill_frogs_3:
+    name: '&5&lKill 1,000 Frogs'
+    action: KILL
+    type: FROGS
+    amount: 1000
+    menu-item: FROG_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 50000
+  kill_glow_squids_1:
+    name: '&d&lKill 10 Glow Squids'
+    action: KILL
+    type: GLOW_SQUIDS
+    amount: 10
+    menu-item: GLOW_INK_SAC
+    reward:
+      type: MONEY
+      value: 2000
+  kill_glow_squids_2:
+    name: '&9&lKill 100 Glow Squids'
+    action: KILL
+    type: GLOW_SQUIDS
+    amount: 100
+    menu-item: GLOW_LICHEN
+    reward:
+      type: MONEY
+      value: 15000
+  kill_glow_squids_3:
+    name: '&5&lKill 1,000 Glow Squids'
+    action: KILL
+    type: GLOW_SQUIDS
+    amount: 1000
+    menu-item: GLOW_SQUID_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 50000
+  kill_horses_1:
+    name: '&d&lKill 10 Horses'
+    action: KILL
+    type: HORSES
+    amount: 10
+    menu-item: LEAD
+    reward:
+      type: MONEY
+      value: 3000
+  kill_horses_2:
+    name: '&9&lKill 100 Horses'
+    action: KILL
+    type: HORSES
+    amount: 100
+    menu-item: LEATHER_HORSE_ARMOR
+    reward:
+      type: MONEY
+      value: 25000
+  kill_horses_3:
+    name: '&5&lKill 250 Horses'
+    action: KILL
+    type: HORSES
+    amount: 250
+    menu-item: HORSE_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 60000
+  kill_mooshrooms_1:
+    name: '&d&lKill 250 Mooshrooms'
+    action: KILL
+    type: MOOSHROOMS
+    amount: 250
+    menu-item: RED_MUSHROOM
+    reward:
+      type: MONEY
+      value: 10000
+  kill_mooshrooms_2:
+    name: '&9&lKill 5,000 Mooshrooms'
+    action: KILL
+    type: MOOSHROOMS
+    amount: 5000
+    menu-item: RED_MUSHROOM_BLOCK
+    reward:
+      type: MONEY
+      value: 35000
+  kill_mooshrooms_3:
+    name: '&5&lKill 50,000 Mooshrooms'
+    action: KILL
+    type: MOOSHROOMS
+    amount: 50000
+    menu-item: MOOSHROOM_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 120000
+  kill_pigs_1:
+    name: '&d&lKill 250 Pigs'
+    action: KILL
+    type: PIGS
+    amount: 250
+    menu-item: PINK_DYE
+    reward:
+      type: MONEY
+      value: 5000
+  kill_pigs_2:
+    name: '&9&lKill 5,000 Pigs'
+    action: KILL
+    type: PIGS
+    amount: 5000
+    menu-item: PORKCHOP
+    reward:
+      type: MONEY
+      value: 30000
+  kill_pigs_3:
+    name: '&5&lKill 50,000 Pigs'
+    action: KILL
+    type: PIGS
+    amount: 50000
+    menu-item: PIG_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 100000
+  kill_rabbits_1:
+    name: '&d&lKill 250 Rabbits'
+    action: KILL
+    type: RABBITS
+    amount: 250
+    menu-item: RABBIT_FOOT
+    reward:
+      type: MONEY
+      value: 5000
+  kill_rabbits_2:
+    name: '&9&lKill 5,000 Rabbits'
+    action: KILL
+    type: RABBITS
+    amount: 5000
+    menu-item: RABBIT_HIDE
+    reward:
+      type: MONEY
+      value: 30000
+  kill_rabbits_3:
+    name: '&5&lKill 50,000 Rabbits'
+    action: KILL
+    type: RABBITS
+    amount: 50000
+    menu-item: RABBIT_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 100000
+  kill_sheep_1:
+    name: '&d&lKill 250 Sheep'
+    action: KILL
+    type: SHEEP
+    amount: 250
+    menu-item: MUTTON
+    reward:
+      type: MONEY
+      value: 5000
+  kill_sheep_2:
+    name: '&9&lKill 5,000 Sheep'
+    action: KILL
+    type: SHEEP
+    amount: 5000
+    menu-item: WHITE_WOOL
+    reward:
+      type: MONEY
+      value: 30000
+  kill_sheep_3:
+    name: '&5&lKill 50,000 Sheep'
+    action: KILL
+    type: SHEEP
+    amount: 50000
+    menu-item: SHEEP_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 100000
+  kill_squids_1:
+    name: '&d&lKill 250 Squids'
+    action: KILL
+    type: SQUIDS
+    amount: 250
+    menu-item: INK_SAC
+    reward:
+      type: MONEY
+      value: 7000
+  kill_squids_2:
+    name: '&9&lKill 5,000 Squids'
+    action: KILL
+    type: SQUIDS
+    amount: 5000
+    menu-item: BLACK_DYE
+    reward:
+      type: MONEY
+      value: 35000
+  kill_squids_3:
+    name: '&5&lKill 50,000 Squids'
+    action: KILL
+    type: SQUIDS
+    amount: 50000
+    menu-item: SQUID_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 120000
+  kill_bees_1:
+    name: '&d&lKill 10 Bees'
+    action: KILL
+    type: BEES
+    amount: 10
+    menu-item: BEEHIVE
+    reward:
+      type: MONEY
+      value: 2000
+  kill_bees_2:
+    name: '&9&lKill 100 Bees'
+    action: KILL
+    type: BEES
+    amount: 100
+    menu-item: BEE_NEST
+    reward:
+      type: MONEY
+      value: 15000
+  kill_bees_3:
+    name: '&5&lKill 1,000 Bees'
+    action: KILL
+    type: BEES
+    amount: 1000
+    menu-item: BEE_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 50000
+  kill_endermen_1:
+    name: '&d&lKill 250 Endermen'
+    action: KILL
+    type: ENDERMEN
+    amount: 250
+    menu-item: ENDER_EYE
+    reward:
+      type: MONEY
+      value: 12000
+  kill_endermen_2:
+    name: '&9&lKill 5,000 Endermen'
+    action: KILL
+    type: ENDERMEN
+    amount: 5000
+    menu-item: END_PORTAL_FRAME
+    reward:
+      type: MONEY
+      value: 40000
+  kill_endermen_3:
+    name: '&5&lKill 50,000 Endermen'
+    action: KILL
+    type: ENDERMEN
+    amount: 50000
+    menu-item: ENDERMAN_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 150000
+  kill_iron_golems_1:
+    name: '&d&lKill 10 Iron Golems'
+    action: KILL
+    type: IRON_GOLEMS
+    amount: 10
+    menu-item: POPPY
+    reward:
+      type: MONEY
+      value: 5000
+  kill_iron_golems_2:
+    name: '&9&lKill 100 Iron Golems'
+    action: KILL
+    type: IRON_GOLEMS
+    amount: 100
+    menu-item: IRON_INGOT
+    reward:
+      type: MONEY
+      value: 30000
+  kill_iron_golems_3:
+    name: '&5&lKill 1,000 Iron Golems'
+    action: KILL
+    type: IRON_GOLEMS
+    amount: 1000
+    menu-item: IRON_GOLEM_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 120000
+  kill_piglins_1:
+    name: '&d&lKill 250 Piglins'
+    action: KILL
+    type: PIGLINS
+    amount: 250
+    menu-item: GOLD_NUGGET
+    reward:
+      type: MONEY
+      value: 8000
+  kill_piglins_2:
+    name: '&9&lKill 5,000 Piglins'
+    action: KILL
+    type: PIGLINS
+    amount: 5000
+    menu-item: PIGLIN_HEAD
+    reward:
+      type: MONEY
+      value: 35000
+  kill_piglins_3:
+    name: '&5&lKill 50,000 Piglins'
+    action: KILL
+    type: PIGLINS
+    amount: 50000
+    menu-item: PIGLIN_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 120000
+  kill_spiders_1:
+    name: '&d&lKill 250 Spiders'
+    action: KILL
+    type: SPIDERS
+    amount: 250
+    menu-item: SPIDER_EYE
+    reward:
+      type: MONEY
+      value: 6000
+  kill_spiders_2:
+    name: '&9&lKill 5,000 Spiders'
+    action: KILL
+    type: SPIDERS
+    amount: 5000
+    menu-item: FERMENTED_SPIDER_EYE
+    reward:
+      type: MONEY
+      value: 30000
+  kill_spiders_3:
+    name: '&5&lKill 50,000 Spiders'
+    action: KILL
+    type: SPIDERS
+    amount: 50000
+    menu-item: SPIDER_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 100000
+  kill_wolves_1:
+    name: '&d&lKill 10 Wolves'
+    action: KILL
+    type: WOLVES
+    amount: 10
+    menu-item: BEEF
+    reward:
+      type: MONEY
+      value: 3000
+  kill_wolves_2:
+    name: '&9&lKill 100 Wolves'
+    action: KILL
+    type: WOLVES
+    amount: 100
+    menu-item: BONE
+    reward:
+      type: MONEY
+      value: 20000
+  kill_wolves_3:
+    name: '&5&lKill 250 Wolves'
+    action: KILL
+    type: WOLVES
+    amount: 250
+    menu-item: WOLF_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 60000
+  kill_blazes_1:
+    name: '&d&lKill 250 Blazes'
+    action: KILL
+    type: BLAZES
+    amount: 250
+    menu-item: BLAZE_ROD
+    reward:
+      type: MONEY
+      value: 10000
+  kill_blazes_2:
+    name: '&9&lKill 5,000 Blazes'
+    action: KILL
+    type: BLAZES
+    amount: 5000
+    menu-item: BLAZE_POWDER
+    reward:
+      type: MONEY
+      value: 35000
+  kill_blazes_3:
+    name: '&5&lKill 50,000 Blazes'
+    action: KILL
+    type: BLAZES
+    amount: 50000
+    menu-item: BLAZE_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 120000
+  kill_creepers_1:
+    name: '&d&lKill 250 Creepers'
+    action: KILL
+    type: CREEPERS
+    amount: 250
+    menu-item: GUNPOWDER
+    reward:
+      type: MONEY
+      value: 8000
+  kill_creepers_2:
+    name: '&9&lKill 5,000 Creepers'
+    action: KILL
+    type: CREEPERS
+    amount: 5000
+    menu-item: CREEPER_HEAD
+    reward:
+      type: MONEY
+      value: 35000
+  kill_creepers_3:
+    name: '&5&lKill 50,000 Creepers'
+    action: KILL
+    type: CREEPERS
+    amount: 50000
+    menu-item: CREEPER_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 120000
+  kill_ghasts_1:
+    name: '&d&lKill 1 Ghast'
+    action: KILL
+    type: GHASTS
+    amount: 1
+    menu-item: GHAST_TEAR
+    reward:
+      type: MONEY
+      value: 2000
+  kill_ghasts_2:
+    name: '&9&lKill 5 Ghasts'
+    action: KILL
+    type: GHASTS
+    amount: 5
+    menu-item: FIRE_CHARGE
+    reward:
+      type: MONEY
+      value: 10000
+  kill_ghasts_3:
+    name: '&5&lKill 10 Ghasts'
+    action: KILL
+    type: GHASTS
+    amount: 10
+    menu-item: GHAST_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 20000
+  kill_magma_cubes_1:
+    name: '&d&lKill 250 Magma Cubes'
+    action: KILL
+    type: MAGMA_CUBES
+    amount: 250
+    menu-item: MAGMA_CREAM
+    reward:
+      type: MONEY
+      value: 7000
+  kill_magma_cubes_2:
+    name: '&9&lKill 5,000 Magma Cubes'
+    action: KILL
+    type: MAGMA_CUBES
+    amount: 5000
+    menu-item: MAGMA_BLOCK
+    reward:
+      type: MONEY
+      value: 30000
+  kill_magma_cubes_3:
+    name: '&5&lKill 50,000 Magma Cubes'
+    action: KILL
+    type: MAGMA_CUBES
+    amount: 50000
+    menu-item: MAGMA_CUBE_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 100000
+  kill_skeletons_1:
+    name: '&d&lKill 250 Skeletons'
+    action: KILL
+    type: SKELETONS
+    amount: 250
+    menu-item: BONE
+    reward:
+      type: MONEY
+      value: 6000
+  kill_skeletons_2:
+    name: '&9&lKill 5,000 Skeletons'
+    action: KILL
+    type: SKELETONS
+    amount: 5000
+    menu-item: SKELETON_SKULL
+    reward:
+      type: MONEY
+      value: 30000
+  kill_skeletons_3:
+    name: '&5&lKill 50,000 Skeletons'
+    action: KILL
+    type: SKELETONS
+    amount: 50000
+    menu-item: SKELETON_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 100000
+  kill_slimes_1:
+    name: '&d&lKill 250 Slimes'
+    action: KILL
+    type: SLIMES
+    amount: 250
+    menu-item: SLIME_BALL
+    reward:
+      type: MONEY
+      value: 5000
+  kill_slimes_2:
+    name: '&9&lKill 5,000 Slimes'
+    action: KILL
+    type: SLIMES
+    amount: 5000
+    menu-item: SLIME_BLOCK
+    reward:
+      type: MONEY
+      value: 30000
+  kill_slimes_3:
+    name: '&5&lKill 50,000 Slimes'
+    action: KILL
+    type: SLIMES
+    amount: 50000
+    menu-item: SLIME_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 100000
+  kill_wither_skeletons_1:
+    name: '&d&lKill 100 Wither Skeletons'
+    action: KILL
+    type: WITHER_SKELETONS
+    amount: 100
+    menu-item: WITHER_ROSE
+    reward:
+      type: MONEY
+      value: 20000
+  kill_wither_skeletons_2:
+    name: '&9&lKill 1,000 Wither Skeletons'
+    action: KILL
+    type: WITHER_SKELETONS
+    amount: 1000
+    menu-item: WITHER_SKELETON_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 80000
+  kill_wither_skeletons_3:
+    name: '&5&lKill 10,000 Wither Skeletons'
+    action: KILL
+    type: WITHER_SKELETONS
     amount: 10000
+    menu-item: WITHER_SKELETON_SKULL
+    reward:
+      type: MONEY
+      value: 150000
+  kill_zombies_1:
+    name: '&d&lKill 250 Zombies'
+    action: KILL
+    type: ZOMBIES
+    amount: 250
+    menu-item: CARROT
+    reward:
+      type: MONEY
+      value: 5000
+  kill_zombies_2:
+    name: '&9&lKill 5,000 Zombies'
+    action: KILL
+    type: ZOMBIES
+    amount: 5000
+    menu-item: ZOMBIE_SPAWN_EGG
+    reward:
+      type: MONEY
+      value: 30000
+  kill_zombies_3:
+    name: '&5&lKill 50,000 Zombies'
+    action: KILL
+    type: ZOMBIES
+    amount: 50000
+    menu-item: ZOMBIE_HEAD
+    reward:
+      type: MONEY
+      value: 100000
+  kill_drowned_1:
+    name: '&d&lKill 250 Drowned'
+    action: KILL
+    type: DROWNED
+    amount: 250
+    menu-item: TRIDENT
+    reward:
+      type: MONEY
+      value: 8000
+    kill_drowned_2:
+      name: '&9&lKill 5,000 Drowned'
+      action: KILL
+      type: DROWNED
+      amount: 5000
+      menu-item: NAUTILUS_SHELL
+      reward:
+        type: MONEY
+        value: 35000
+    kill_drowned_3:
+      name: '&5&lKill 50,000 Drowned'
+      action: KILL
+      type: DROWNED
+      amount: 50000
+      menu-item: DROWNED_SPAWN_EGG
+      reward:
+        type: MONEY
+        value: 90000
+    kill_pillagers_1:
+      name: '&d&lKill 10 Pillagers'
+      action: KILL
+      type: PILLAGERS
+      amount: 10
+      menu-item: CROSSBOW
+      reward:
+        type: MONEY
+        value: 5000
+    kill_pillagers_2:
+      name: '&9&lKill 100 Pillagers'
+      action: KILL
+      type: PILLAGERS
+      amount: 100
+      menu-item: ARROW
+      reward:
+        type: MONEY
+        value: 25000
+    kill_pillagers_3:
+      name: '&5&lKill 1,000 Pillagers'
+      action: KILL
+      type: PILLAGERS
+      amount: 1000
+      menu-item: PILLAGER_SPAWN_EGG
+      reward:
+        type: MONEY
+        value: 100000
+
+    kill_vindicators_1:
+      name: '&d&lKill 10 Vindicators'
+      action: KILL
+      type: VINDICATORS
+      amount: 10
+      menu-item: IRON_AXE
+      reward:
+        type: MONEY
+        value: 6000
+    kill_vindicators_2:
+      name: '&9&lKill 100 Vindicators'
+      action: KILL
+      type: VINDICATORS
+      amount: 100
+      menu-item: EMERALD
+      reward:
+        type: MONEY
+        value: 30000
+    kill_vindicators_3:
+      name: '&5&lKill 1,000 Vindicators'
+      action: KILL
+      type: VINDICATORS
+      amount: 1000
+      menu-item: VINDICATOR_SPAWN_EGG
+      reward:
+        type: MONEY
+        value: 80000
+
+fishing: # Category
+  catch_cod_1:
+    name: '&d&lCatch 100 Cod'
+    action: FISH
+    type: COD
+    amount: 100
+    menu-item: COD
+    reward:
+      type: MONEY
+      value: 3000
+  catch_cod_2:
+    name: '&9&lCatch 1,000 Cod'
+    action: FISH
+    type: COD
+    amount: 1000
+    menu-item: COD
+    reward:
+      type: MONEY
+      value: 15000
+  catch_cod_3:
+    name: '&5&lCatch 5,000 Cod'
+    action: FISH
+    type: COD
+    amount: 5000
+    menu-item: COD
+    reward:
+      type: MONEY
+      value: 40000
+  catch_salmon_1:
+    name: '&d&lCatch 100 Salmon'
+    action: FISH
+    type: SALMON
+    amount: 100
+    menu-item: SALMON
+    reward:
+      type: MONEY
+      value: 3000
+  catch_salmon_2:
+    name: '&9&lCatch 1,000 Salmon'
+    action: FISH
+    type: SALMON
+    amount: 1000
+    menu-item: SALMON
+    reward:
+      type: MONEY
+      value: 15000
+  catch_salmon_3:
+    name: '&5&lCatch 5,000 Salmon'
+    action: FISH
+    type: SALMON
+    amount: 5000
+    menu-item: SALMON
+    reward:
+      type: MONEY
+      value: 40000
+  catch_tropical_fish_1:
+    name: '&d&lCatch 100 Tropical Fish'
+    action: FISH
+    type: TROPICAL_FISH
+    amount: 100
+    menu-item: TROPICAL_FISH
+    reward:
+      type: MONEY
+      value: 3000
+  catch_tropical_fish_2:
+    name: '&9&lCatch 1,000 Tropical Fish'
+    action: FISH
+    type: TROPICAL_FISH
+    amount: 1000
+    menu-item: TROPICAL_FISH
+    reward:
+      type: MONEY
+      value: 15000
+  catch_tropical_fish_3:
+    name: '&5&lCatch 5,000 Tropical Fish'
+    action: FISH
+    type: TROPICAL_FISH
+    amount: 5000
+    menu-item: TROPICAL_FISH
+    reward:
+      type: MONEY
+      value: 40000
+  catch_pufferfish_1:
+    name: '&d&lCatch 100 Pufferfish'
+    action: FISH
+    type: PUFFERFISH
+    amount: 100
+    menu-item: PUFFERFISH
+    reward:
+      type: MONEY
+      value: 3000
+  catch_pufferfish_2:
+    name: '&9&lCatch 1,000 Pufferfish'
+    action: FISH
+    type: PUFFERFISH
+    amount: 1000
+    menu-item: PUFFERFISH
+    reward:
+      type: MONEY
+      value: 15000
+  catch_pufferfish_3:
+    name: '&5&lCatch 5,000 Pufferfish'
+    action: FISH
+    type: PUFFERFISH
+    amount: 5000
+    menu-item: PUFFERFISH
+    reward:
+      type: MONEY
+      value: 40000
+
+mining: # Category
+  mine_coal_1:
+    name: '&d&lMine 500 Coal Ore'
+    action: BREAK
+    type: COAL
+    amount: 500
+    menu-item: COAL
+    reward:
+      type: MONEY
+      value: 5000
+  mine_coal_2:
+    name: '&9&lMine 5,000 Coal Ore'
+    action: BREAK
+    type: COAL
+    amount: 5000
+    menu-item: COAL
+    reward:
+      type: MONEY
+      value: 25000
+  mine_coal_3:
+    name: '&5&lMine 10,000 Coal Ore'
+    action: BREAK
+    type: COAL
+    amount: 10000
+    menu-item: COAL
+    reward:
+      type: MONEY
+      value: 50000
+  mine_iron_1:
+    name: '&d&lMine 500 Iron Ore'
+    action: BREAK
+    type: IRON
+    amount: 500
+    menu-item: IRON
+    reward:
+      type: MONEY
+      value: 6000
+  mine_iron_2:
+    name: '&9&lMine 5,000 Iron Ore'
+    action: BREAK
+    type: IRON
+    amount: 5000
+    menu-item: IRON
+    reward:
+      type: MONEY
+      value: 30000
+  mine_iron_3:
+    name: '&5&lMine 10,000 Iron Ore'
+    action: BREAK
+    type: IRON
+    amount: 10000
+    menu-item: IRON
+    reward:
+      type: MONEY
+      value: 60000
+  mine_copper_1:
+    name: '&d&lMine 500 Copper Ore'
+    action: BREAK
+    type: COPPER
+    amount: 500
+    menu-item: COPPER
+    reward:
+      type: MONEY
+      value: 5000
+  mine_copper_2:
+    name: '&9&lMine 5,000 Copper Ore'
+    action: BREAK
+    type: COPPER
+    amount: 5000
+    menu-item: COPPER
+    reward:
+      type: MONEY
+      value: 25000
+  mine_copper_3:
+    name: '&5&lMine 10,000 Copper Ore'
+    action: BREAK
+    type: COPPER
+    amount: 10000
+    menu-item: COPPER
+    reward:
+      type: MONEY
+      value: 50000
+  mine_cobblestone_1:
+    name: '&d&lMine 1,000 Cobblestone'
+    action: BREAK
+    type: COBBLESTONE
+    amount: 1000
+    menu-item: COBBLESTONE
+    reward:
+      type: MONEY
+      value: 3000
+  mine_cobblestone_2:
+    name: '&9&lMine 50,000 Cobblestone'
+    action: BREAK
+    type: COBBLESTONE
+    amount: 50000
+    menu-item: COBBLESTONE
+    reward:
+      type: MONEY
+      value: 15000
+  mine_cobblestone_3:
+    name: '&5&lMine 100,000 Cobblestone'
+    action: BREAK
+    type: COBBLESTONE
+    amount: 100000
+    menu-item: COBBLESTONE
+    reward:
+      type: MONEY
+      value: 25000
+  mine_stone_1:
+    name: '&d&lMine 1,000 Stone'
+    action: BREAK
+    type: STONE
+    amount: 1000
+    menu-item: STONE
+    reward:
+      type: MONEY
+      value: 3000
+  mine_stone_2:
+    name: '&9&lMine 50,000 Stone'
+    action: BREAK
+    type: STONE
+    amount: 50000
+    menu-item: STONE
+    reward:
+      type: MONEY
+      value: 15000
+  mine_stone_3:
+    name: '&5&lMine 100,000 Stone'
+    action: BREAK
+    type: STONE
+    amount: 100000
+    menu-item: STONE
+    reward:
+      type: MONEY
+      value: 25000
+  mine_granite_1:
+    name: '&d&lMine 500 Granite'
+    action: BREAK
+    type: GRANITE
+    amount: 500
+    menu-item: GRANITE
+    reward:
+      type: MONEY
+      value: 5000
+  mine_granite_2:
+    name: '&9&lMine 5,000 Granite'
+    action: BREAK
+    type: GRANITE
+    amount: 5000
+    menu-item: GRANITE
+    reward:
+      type: MONEY
+      value: 20000
+  mine_granite_3:
+    name: '&5&lMine 10,000 Granite'
+    action: BREAK
+    type: GRANITE
+    amount: 10000
+    menu-item: GRANITE
+    reward:
+      type: MONEY
+      value: 25000
+  mine_diorite_1:
+    name: '&d&lMine 500 Diorite'
+    action: BREAK
+    type: DIORITE
+    amount: 500
+    menu-item: DIORITE
+    reward:
+      type: MONEY
+      value: 5000
+  mine_diorite_2:
+    name: '&9&lMine 5,000 Diorite'
+    action: BREAK
+    type: DIORITE
+    amount: 5000
+    menu-item: DIORITE
+    reward:
+      type: MONEY
+      value: 20000
+  mine_diorite_3:
+    name: '&5&lMine 10,000 Diorite'
+    action: BREAK
+    type: DIORITE
+    amount: 10000
+    menu-item: DIORITE
+    reward:
+      type: MONEY
+      value: 25000
+  mine_andesite_1:
+    name: '&d&lMine 500 Andesite'
+    action: BREAK
+    type: ANDESITE
+    amount: 500
+    menu-item: ANDESITE
+    reward:
+      type: MONEY
+      value: 5000
+  mine_andesite_2:
+    name: '&9&lMine 5,000 Andesite'
+    action: BREAK
+    type: ANDESITE
+    amount: 5000
+    menu-item: ANDESITE
+    reward:
+      type: MONEY
+      value: 20000
+  mine_andesite_3:
+    name: '&5&lMine 10,000 Andesite'
+    action: BREAK
+    type: ANDESITE
+    amount: 10000
+    menu-item: ANDESITE
+    reward:
+      type: MONEY
+      value: 25000
+  mine_netherrack_1:
+    name: '&d&lMine 500 Netherrack'
+    action: BREAK
+    type: NETHERRACK
+    amount: 500
+    menu-item: NETHERRACK
+    reward:
+      type: MONEY
+      value: 4000
+  mine_netherrack_2:
+    name: '&9&lMine 5,000 Netherrack'
+    action: BREAK
+    type: NETHERRACK
+    amount: 5000
+    menu-item: NETHERRACK
+    reward:
+      type: MONEY
+      value: 15000
+  mine_netherrack_3:
+    name: '&5&lMine 10,000 Netherrack'
+    action: BREAK
+    type: NETHERRACK
+    amount: 10000
+    menu-item: NETHERRACK
+    reward:
+      type: MONEY
+      value: 25000
+  mine_gold_1:
+    name: '&d&lMine 250 Gold Ore'
+    action: BREAK
+    type: GOLD
+    amount: 250
+    menu-item: GOLD_INGOT
+    reward:
+      type: MONEY
+      value: 5000
+  mine_gold_2:
+    name: '&9&lMine 2,500 Gold Ore'
+    action: BREAK
+    type: GOLD
+    amount: 2500
+    menu-item: GOLD_INGOT
+    reward:
+      type: MONEY
+      value: 25000
+  mine_gold_3:
+    name: '&5&lMine 5,000 Gold Ore'
+    action: BREAK
+    type: GOLD
+    amount: 5000
+    menu-item: GOLD_INGOT
+    reward:
+      type: MONEY
+      value: 50000
+  mine_redstone_1:
+    name: 'Mine 250 Redstone Ore'
+    action: BREAK
+    type: REDSTONE
+    amount: 250
+    reward:
+      type: MONEY
+      value: 5000
+      menu-item: REDSTONE
+  mine_redstone_2:
+    name: 'Mine 2,500 Redstone Ore'
+    action: BREAK
+    type: REDSTONE
+    amount: 2500
+    reward:
+      type: MONEY
+      value: 25000
+      menu-item: REDSTONE
+  mine_redstone_3:
+    name: 'Mine 5,000 Redstone Ore'
+    action: BREAK
+    type: REDSTONE
+    amount: 5000
+    reward:
+      type: MONEY
+      value: 50000
+      menu-item: REDSTONE
+  mine_lapis_1:
+    name: 'Mine 250 Lapis Lazuli Ore'
+    action: BREAK
+    type: LAPIS_LAZULI
+    amount: 250
+    reward:
+      type: MONEY
+      value: 5000
+      menu-item: LAPIS_LAZULI
+  mine_lapis_2:
+    name: 'Mine 2,500 Lapis Lazuli Ore'
+    action: BREAK
+    type: LAPIS_LAZULI
+    amount: 2500
+    reward:
+      type: MONEY
+      value: 25000
+      menu-item: LAPIS_LAZULI
+  mine_lapis_3:
+    name: 'Mine 5,000 Lapis Lazuli Ore'
+    action: BREAK
+    type: LAPIS_LAZULI
+    amount: 5000
+    reward:
+      type: MONEY
+      value: 50000
+      menu-item: LAPIS_LAZULI
+  mine_nether_quartz_1:
+    name: 'Mine 250 Nether Quartz Ore'
+    action: BREAK
+    type: NETHER_QUARTZ
+    amount: 250
+    reward:
+      type: MONEY
+      value: 5000
+      menu-item: NETHER_QUARTZ
+  mine_nether_quartz_2:
+    name: 'Mine 2,500 Nether Quartz Ore'
+    action: BREAK
+    type: NETHER_QUARTZ
+    amount: 2500
+    reward:
+      type: MONEY
+      value: 25000
+      menu-item: NETHER_QUARTZ
+  mine_nether_quartz_3:
+    name: 'Mine 5,000 Nether Quartz Ore'
+    action: BREAK
+    type: NETHER_QUARTZ
+    amount: 5000
+    reward:
+      type: MONEY
+      value: 50000
+      menu-item: NETHER_QUARTZ
+  mine_nether_gold_1:
+    name: 'Mine 250 Nether Gold Ore'
+    action: BREAK
+    type: NETHER_GOLD
+    amount: 250
+    reward:
+      type: MONEY
+      value: 5000
+      menu-item: NETHER_GOLD
+  mine_nether_gold_2:
+    name: 'Mine 2,500 Nether Gold Ore'
+    action: BREAK
+    type: NETHER_GOLD
+    amount: 2500
+    reward:
+      type: MONEY
+      value: 25000
+      menu-item: NETHER_GOLD
+  mine_nether_gold_3:
+    name: 'Mine 5,000 Nether Gold Ore'
+    action: BREAK
+    type: NETHER_GOLD
+    amount: 5000
+    reward:
+      type: MONEY
+      value: 50000
+      menu-item: NETHER_GOLD
+  mine_blackstone_1:
+    name: 'Mine 250 Blackstone'
+    action: BREAK
+    type: BLACKSTONE
+    amount: 250
+    reward:
+      type: MONEY
+      value: 5000
+      menu-item: BLACKSTONE
+  mine_blackstone_2:
+    name: 'Mine 2,500 Blackstone'
+    action: BREAK
+    type: BLACKSTONE
+    amount: 2500
+    reward:
+      type: MONEY
+      value: 25000
+      menu-item: BLACKSTONE
+  mine_blackstone_3:
+    name: 'Mine 5,000 Blackstone'
+    action: BREAK
+    type: BLACKSTONE
+    amount: 5000
+    reward:
+      type: MONEY
+      value: 50000
+      menu-item: BLACKSTONE
+  mine_basalt_1:
+    name: 'Mine 250 Basalt'
+    action: BREAK
+    type: BASALT
+    amount: 250
+    reward:
+      type: MONEY
+      value: 5000
+      menu-item: BASALT
+  mine_basalt_2:
+    name: 'Mine 2,500 Basalt'
+    action: BREAK
+    type: BASALT
+    amount: 2500
+    reward:
+      type: MONEY
+      value: 25000
+      menu-item: BASALT
+  mine_basalt_3:
+    name: 'Mine 5,000 Basalt'
+    action: BREAK
+    type: BASALT
+    amount: 5000
+    reward:
+      type: MONEY
+      value: 50000
+      menu-item: BASALT
+  mine_glowstone_1:
+    name: 'Mine 250 Glowstone'
+    action: BREAK
+    type: GLOWSTONE
+    amount: 250
+    reward:
+      type: MONEY
+      value: 4000
+      menu-item: GLOWSTONE
+  mine_glowstone_2:
+    name: 'Mine 2,500 Glowstone'
+    action: BREAK
+    type: GLOWSTONE
+    amount: 2500
+    reward:
+      type: MONEY
+      value: 20000
+      menu-item: GLOWSTONE
+  mine_glowstone_3:
+    name: 'Mine 5,000 Glowstone'
+    action: BREAK
+    type: GLOWSTONE
+    amount: 5000
+    reward:
+      type: MONEY
+      value: 40000
+      menu-item: GLOWSTONE
+  mine_diamond_1:
+    name: 'Mine 10 Diamond Ore'
+    action: BREAK
+    type: DIAMOND
+    amount: 10
+    reward:
+      type: MONEY
+      value: 5000
+      menu-item: DIAMOND
+  mine_diamond_2:
+    name: 'Mine 100 Diamond Ore'
+    action: BREAK
+    type: DIAMOND
+    amount: 100
+    reward:
+      type: MONEY
+      value: 30000
+      menu-item: DIAMOND
+  mine_diamond_3:
+    name: 'Mine 500 Diamond Ore'
+    action: BREAK
+    type: DIAMOND
+    amount: 500
+    reward:
+      type: MONEY
+      value: 60000
+      menu-item: DIAMOND
+  mine_emerald_1:
+    name: '&a&lMine 10 Emerald Ore'
+    action: BREAK
+    type: EMERALD
+    amount: 10
+    menu-item: EMERALD
+    reward:
+      type: MONEY
+      value: 5000
+  mine_emerald_2:
+    name: '&b&lMine 100 Emerald Ore'
+    action: BREAK
+    type: EMERALD
+    amount: 100
+    menu-item: EMERALD
+    reward:
+      type: MONEY
+      value: 30000
+  mine_emerald_3:
+    name: '&c&lMine 500 Emerald Ore'
+    action: BREAK
+    type: EMERALD
+    amount: 500
+    menu-item: EMERALD
+    reward:
+      type: MONEY
+      value: 60000
+  mine_ancient_debris_1:
+    name: '&d&lMine 10 Ancient Debris'
+    action: BREAK
+    type: ANCIENT_DEBRIS
+    amount: 10
+    menu-item: ANCIENT_DEBRIS
+    reward:
+      type: MONEY
+      value: 8000
+  mine_ancient_debris_2:
+    name: '&e&lMine 100 Ancient Debris'
+    action: BREAK
+    type: ANCIENT_DEBRIS
+    amount: 100
+    menu-item: ANCIENT_DEBRIS
+    reward:
+      type: MONEY
+      value: 40000
+  mine_ancient_debris_3:
+    name: '&6&lMine 250 Ancient Debris'
+    action: BREAK
+    type: ANCIENT_DEBRIS
+    amount: 250
+    menu-item: ANCIENT_DEBRIS
+    reward:
+      type: MONEY
+      value: 80000
+  mine_obsidian_1:
+    name: '&7&lMine 10 Obsidian'
+    action: BREAK
+    type: OBSIDIAN
+    amount: 10
+    menu-item: OBSIDIAN
+    reward:
+      type: MONEY
+      value: 6000
+  mine_obsidian_2:
+    name: '&8&lMine 100 Obsidian'
+    action: BREAK
+    type: OBSIDIAN
+    amount: 100
+    menu-item: OBSIDIAN
+    reward:
+      type: MONEY
+      value: 30000
+  mine_obsidian_3:
+    name: '&9&lMine 500 Obsidian'
+    action: BREAK
+    type: OBSIDIAN
+    amount: 500
+    menu-item: OBSIDIAN
+    reward:
+      type: MONEY
+      value: 60000
+
+crafting:
+  craft_crafting_table:
+    name: '&a&lCraft a Crafting Table'
+    action: CRAFT
+    type: CRAFTING_TABLE
+    amount: 1
+    menu-item: CRAFTING_TABLE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_furnace:
+    name: '&b&lCraft a Furnace'
+    action: CRAFT
+    type: FURNACE
+    amount: 1
+    menu-item: FURNACE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_brewing_stand:
+    name: '&c&lCraft a Brewing Stand'
+    action: CRAFT
+    type: BREWING_STAND
+    amount: 1
+    menu-item: BREWING_STAND
+    reward:
+      type: MONEY
+      value: 1000
+  craft_anvil:
+    name: '&d&lCraft an Anvil'
+    action: CRAFT
+    type: ANVIL
+    amount: 1
+    menu-item: ANVIL
+    reward:
+      type: MONEY
+      value: 1000
+  craft_smithing_table:
+    name: '&e&lCraft a Smithing Table'
+    action: CRAFT
+    type: SMITHING_TABLE
+    amount: 1
+    menu-item: SMITHING_TABLE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_cartography_table:
+    name: '&6&lCraft a Cartography Table'
+    action: CRAFT
+    type: CARTOGRAPHY_TABLE
+    amount: 1
+    menu-item: CARTOGRAPHY_TABLE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_lectern:
+    name: '&7&lCraft a Lectern'
+    action: CRAFT
+    type: LECTERN
+    amount: 1
+    menu-item: LECTERN
+    reward:
+      type: MONEY
+      value: 1000
+  craft_grindstone:
+    name: '&8&lCraft a Grindstone'
+    action: CRAFT
+    type: GRINDSTONE
+    amount: 1
+    menu-item: GRINDSTONE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_stonecutter:
+    name: '&9&lCraft a Stonecutter'
+    action: CRAFT
+    type: STONECUTTER
+    amount: 1
+    menu-item: STONECUTTER
+    reward:
+      type: MONEY
+      value: 1000
+  craft_loom:
+    name: '&a&lCraft a Loom'
+    action: CRAFT
+    type: LOOM
+    amount: 1
+    menu-item: LOOM
+    reward:
+      type: MONEY
+      value: 1000
+  craft_blast_furnace:
+    name: '&b&lCraft a Blast Furnace'
+    action: CRAFT
+    type: BLAST_FURNACE
+    amount: 1
+    menu-item: BLAST_FURNACE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_smoker:
+    name: '&c&lCraft a Smoker'
+    action: CRAFT
+    type: SMOKER
+    amount: 1
+    menu-item: SMOKER
+    reward:
+      type: MONEY
+      value: 1000
+  craft_campfire:
+    name: '&d&lCraft a Campfire'
+    action: CRAFT
+    type: CAMPFIRE
+    amount: 1
+    menu-item: CAMPFIRE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_bell:
+    name: '&e&lCraft a Bell'
+    action: CRAFT
+    type: BELL
+    amount: 1
+    menu-item: BELL
+    reward:
+      type: MONEY
+      value: 1000
+  craft_honey_block:
+    name: '&6&lCraft a Honey Block'
+    action: CRAFT
+    type: HONEY_BLOCK
+    amount: 1
+    menu-item: HONEY_BLOCK
+    reward:
+      type: MONEY
+      value: 1000
+  craft_composter:
+    name: '&a&lCraft a Composter'
+    action: CRAFT
+    type: COMPOSTER
+    amount: 1
+    menu-item: COMPOSTER
+    reward:
+      type: MONEY
+      value: 1000
+  craft_barrel:
+    name: '&b&lCraft a Barrel'
+    action: CRAFT
+    type: BARREL
+    amount: 1
+    menu-item: BARREL
+    reward:
+      type: MONEY
+      value: 1000
+  craft_fletching_table:
+    name: '&c&lCraft a Fletching Table'
+    action: CRAFT
+    type: FLETCHING_TABLE
+    amount: 1
+    menu-item: FLETCHING_TABLE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_lantern:
+    name: '&d&lCraft a Lantern'
+    action: CRAFT
+    type: LANTERN
+    amount: 1
+    menu-item: LANTERN
+    reward:
+      type: MONEY
+      value: 1000
+  craft_loom:
+    name: '&e&lCraft a Loom'
+    action: CRAFT
+    type: LOOM
+    amount: 1
+    menu-item: LOOM
+    reward:
+      type: MONEY
+      value: 1000
+  craft_observer:
+    name: '&6&lCraft an Observer'
+    action: CRAFT
+    type: OBSERVER
+    amount: 1
+    menu-item: OBSERVER
+    reward:
+      type: MONEY
+      value: 1000
+  craft_redstone_lamp:
+    name: '&7&lCraft a Redstone Lamp'
+    action: CRAFT
+    type: REDSTONE_LAMP
+    amount: 1
+    menu-item: REDSTONE_LAMP
+    reward:
+      type: MONEY
+      value: 1000
+  craft_soul_campfire:
+    name: '&8&lCraft a Soul Campfire'
+    action: CRAFT
+    type: SOUL_CAMPFIRE
+    amount: 1
+    menu-item: SOUL_CAMPFIRE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_shulker_box:
+    name: '&9&lCraft a Shulker Box'
+    action: CRAFT
+    type: SHULKER_BOX
+    amount: 1
+    menu-item: SHULKER_BOX
+    reward:
+      type: MONEY
+      value: 1000
+  craft_tnt:
+    name: '&a&lCraft TNT'
+    action: CRAFT
+    type: TNT
+    amount: 1
+    menu-item: TNT
+    reward:
+      type: MONEY
+      value: 1000
+  craft_tripwire_hook:
+    name: '&b&lCraft a Tripwire Hook'
+    action: CRAFT
+    type: TRIPWIRE_HOOK
+    amount: 1
+    menu-item: TRIPWIRE_HOOK
+    reward:
+      type: MONEY
+      value: 1000
+  craft_end_crystal:
+    name: '&c&lCraft an End Crystal'
+    action: CRAFT
+    type: END_CRYSTAL
+    amount: 1
+    menu-item: END_CRYSTAL
+    reward:
+      type: MONEY
+      value: 1000
+  craft_enchanting_table:
+    name: '&d&lCraft an Enchanting Table'
+    action: CRAFT
+    type: ENCHANTING_TABLE
+    amount: 1
+    menu-item: ENCHANTING_TABLE
+    reward:
+      type: MONEY
+      value: 1000
+
+cook: # Category
+  craft_bread_1:
+    name: '&d&lCraft 1,000 Bread'
+    action: CRAFT
+    type: BREAD
+    amount: 1000
+    menu-item: BREAD
+    reward:
+      type: MONEY
+      value: 5000
+  craft_bread_2:
+    name: '&9&lCraft 10,000 Bread'
+    action: CRAFT
+    type: BREAD
+    amount: 10000
+    menu-item: BREAD
+    reward:
+      type: MONEY
+      value: 15000
+  craft_bread_3:
+    name: '&5&lCraft 100,000 Bread'
+    action: CRAFT
+    type: BREAD
+    amount: 100000
+    menu-item: BREAD
+    reward:
+      type: MONEY
+      value: 50000
+  smelt_beef_1:
+    name: '&d&lSmelt 500 Beef (Steak)'
+    action: SMELT
+    type: BEEF
+    amount: 500
+    menu-item: COOKED_BEEF
+    reward:
+      type: MONEY
+      value: 3000
+  smelt_beef_2:
+    name: '&9&lSmelt 5,000 Beef (Steak)'
+    action: SMELT
+    type: BEEF
+    amount: 5000
+    menu-item: COOKED_BEEF
+    reward:
+      type: MONEY
+      value: 15000
+  smelt_beef_3:
+    name: '&5&lSmelt 50,000 Beef (Steak)'
+    action: SMELT
+    type: BEEF
+    amount: 50000
+    menu-item: COOKED_BEEF
+    reward:
+      type: MONEY
+      value: 45000
+  smelt_porkchops_1:
+    name: '&d&lSmelt 500 Porkchops'
+    action: SMELT
+    type: PORKCHOPS
+    amount: 500
     menu-item: COOKED_PORKCHOP
     reward:
-      type: COMMAND
-      value: 'say pig_3'
+      type: MONEY
+      value: 3000
+  smelt_porkchops_2:
+    name: '&9&lSmelt 5,000 Porkchops'
+    action: SMELT
+    type: PORKCHOPS
+    amount: 5000
+    menu-item: COOKED_PORKCHOP
+    reward:
+      type: MONEY
+      value: 15000
+  smelt_porkchops_3:
+    name: '&5&lSmelt 50,000 Porkchops'
+    action: SMELT
+    type: PORKCHOPS
+    amount: 50000
+    menu-item: COOKED_PORKCHOP
+    reward:
+      type: MONEY
+      value: 45000
+  smelt_mutton_1:
+    name: '&d&lSmelt 500 Mutton'
+    action: SMELT
+    type: MUTTON
+    amount: 500
+    menu-item: COOKED_MUTTON
+    reward:
+      type: MONEY
+      value: 3000
+  smelt_mutton_2:
+    name: '&9&lSmelt 5,000 Mutton'
+    action: SMELT
+    type: MUTTON
+    amount: 5000
+    menu-item: COOKED_MUTTON
+    reward:
+      type: MONEY
+      value: 15000
+  smelt_mutton_3:
+    name: '&5&lSmelt 50,000 Mutton'
+    action: SMELT
+    type: MUTTON
+    amount: 50000
+    menu-item: COOKED_MUTTON
+    reward:
+      type: MONEY
+      value: 45000
+  smelt_chicken_1:
+    name: '&d&lSmelt 500 Chicken'
+    action: SMELT
+    type: CHICKEN
+    amount: 500
+    menu-item: COOKED_CHICKEN
+    reward:
+      type: MONEY
+      value: 3000
+  smelt_chicken_2:
+    name: '&9&lSmelt 5,000 Chicken'
+    action: SMELT
+    type: CHICKEN
+    amount: 5000
+    menu-item: COOKED_CHICKEN
+    reward:
+      type: MONEY
+      value: 15000
+  smelt_chicken_3:
+    name: '&5&lSmelt 50,000 Chicken'
+    action: SMELT
+    type: CHICKEN
+    amount: 50000
+    menu-item: COOKED_CHICKEN
+    reward:
+      type: MONEY
+      value: 45000
+  smelt_rabbit_1:
+    name: '&d&lSmelt 500 Rabbit'
+    action: SMELT
+    type: RABBIT
+    amount: 500
+    menu-item: COOKED_RABBIT
+    reward:
+      type: MONEY
+      value: 3000
+  smelt_rabbit_2:
+    name: '&9&lSmelt 5,000 Rabbit'
+    action: SMELT
+    type: RABBIT
+    amount: 5000
+    menu-item: COOKED_RABBIT
+    reward:
+      type: MONEY
+      value: 15000
+  smelt_rabbit_3:
+    name: '&5&lSmelt 50,000 Rabbit'
+    action: SMELT
+    type: RABBIT
+    amount: 50000
+    menu-item: COOKED_RABBIT
+    reward:
+      type: MONEY
+      value: 45000
+  smelt_cod_1:
+    name: '&d&lSmelt 100 Cod'
+    action: SMELT
+    type: COD
+    amount: 100
+    menu-item: COOKED_COD
+    reward:
+      type: MONEY
+      value: 1000
+  smelt_cod_2:
+    name: '&9&lSmelt 1,000 Cod'
+    action: SMELT
+    type: COD
+    amount: 1000
+    menu-item: COOKED_COD
+    reward:
+      type: MONEY
+      value: 5000
+  smelt_cod_3:
+    name: '&5&lSmelt 10,000 Cod'
+    action: SMELT
+    type: COD
+    amount: 10000
+    menu-item: COOKED_COD
+    reward:
+      type: MONEY
+      value: 15000
+  smelt_salmon_1:
+    name: '&d&lSmelt 100 Salmon'
+    action: SMELT
+    type: SALMON
+    amount: 100
+    menu-item: COOKED_SALMON
+    reward:
+      type: MONEY
+      value: 1000
+  smelt_salmon_2:
+    name: '&9&lSmelt 1,000 Salmon'
+    action: SMELT
+    type: SALMON
+    amount: 1000
+    menu-item: COOKED_SALMON
+    reward:
+      type: MONEY
+      value: 5000
+  smelt_salmon_3:
+    name: '&5&lSmelt 10,000 Salmon'
+    action: SMELT
+    type: SALMON
+    amount: 10000
+    menu-item: COOKED_SALMON
+    reward:
+      type: MONEY
+      value: 15000
+  bake_potatoes_1:
+    name: '&d&lBake 1,000 Potatoes'
+    action: SMELT
+    type: POTATOES
+    amount: 1000
+    menu-item: BAKED_POTATO
+    reward:
+      type: MONEY
+      value: 3000
+  bake_potatoes_2:
+    name: '&9&lBake 10,000 Potatoes'
+    action: SMELT
+    type: POTATOES
+    amount: 10000
+    menu-item: BAKED_POTATO
+    reward:
+      type: MONEY
+      value: 15000
+  bake_potatoes_3:
+    name: '&5&lBake 100,000 Potatoes'
+    action: SMELT
+    type: POTATOES
+    amount: 100000
+    menu-item: BAKED_POTATO
+    reward:
+      type: MONEY
+      value: 45000
+  craft_beetroot_soup_1:
+    name: '&d&lCraft 100 Beetroot Soup'
+    action: CRAFT
+    type: BEETROOT_SOUP
+    amount: 100
+    menu-item: BEETROOT_SOUP
+    reward:
+      type: MONEY
+      value: 1000
+  craft_beetroot_soup_2:
+    name: '&9&lCraft 1,000 Beetroot Soup'
+    action: CRAFT
+    type: BEETROOT_SOUP
+    amount: 1000
+    menu-item: BEETROOT_SOUP
+    reward:
+      type: MONEY
+      value: 10000
+  craft_beetroot_soup_3:
+    name: '&5&lCraft 5,000 Beetroot Soup'
+    action: CRAFT
+    type: BEETROOT_SOUP
+    amount: 5000
+    menu-item: BEETROOT_SOUP
+    reward:
+      type: MONEY
+      value: 20000
+  craft_rabbit_stew_1:
+    name: '&d&lCraft 50 Rabbit Stew'
+    action: CRAFT
+    type: RABBIT_STEW
+    amount: 50
+    menu-item: RABBIT_STEW
+    reward:
+      type: MONEY
+      value: 1000
+  craft_rabbit_stew_2:
+    name: '&9&lCraft 500 Rabbit Stew'
+    action: CRAFT
+    type: RABBIT_STEW
+    amount: 500
+    menu-item: RABBIT_STEW
+    reward:
+      type: MONEY
+      value: 5000
+  craft_rabbit_stew_3:
+    name: '&5&lCraft 5,000 Rabbit Stew'
+    action: CRAFT
+    type: RABBIT_STEW
+    amount: 5000
+    menu-item: RABBIT_STEW
+    reward:
+      type: MONEY
+      value: 20000
+  craft_mushroom_stew_1:
+    name: '&d&lCraft 100 Mushroom Stew'
+    action: CRAFT
+    type: MUSHROOM_STEW
+    amount: 100
+    menu-item: MUSHROOM_STEW
+    reward:
+      type: MONEY
+      value: 1000
+  craft_mushroom_stew_2:
+    name: '&9&lCraft 1,000 Mushroom Stew'
+    action: CRAFT
+    type: MUSHROOM_STEW
+    amount: 1000
+    menu-item: MUSHROOM_STEW
+    reward:
+      type: MONEY
+      value: 10000
+  craft_mushroom_stew_3:
+    name: '&5&lCraft 5,000 Mushroom Stew'
+    action: CRAFT
+    type: MUSHROOM_STEW
+    amount: 5000
+    menu-item: MUSHROOM_STEW
+    reward:
+      type: MONEY
+      value: 20000
+  craft_pumpkin_pie_1:
+    name: '&d&lCraft 100 Pumpkin Pie'
+    action: CRAFT
+    type: PUMPKIN_PIE
+    amount: 100
+    menu-item: PUMPKIN_PIE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_pumpkin_pie_2:
+    name: '&9&lCraft 1,000 Pumpkin Pie'
+    action: CRAFT
+    type: PUMPKIN_PIE
+    amount: 1000
+    menu-item: PUMPKIN_PIE
+    reward:
+      type: MONEY
+      value: 10000
+  craft_pumpkin_pie_3:
+    name: '&5&lCraft 5,000 Pumpkin Pie'
+    action: CRAFT
+    type: PUMPKIN_PIE
+    amount: 5000
+    menu-item: PUMPKIN_PIE
+    reward:
+      type: MONEY
+      value: 20000
+  craft_cakes_1:
+    name: '&d&lCraft 10 Cakes'
+    action: CRAFT
+    type: CAKES
+    amount: 10
+    menu-item: CAKE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_cakes_2:
+    name: '&9&lCraft 100 Cakes'
+    action: CRAFT
+    type: CAKES
+    amount: 100
+    menu-item: CAKE
+    reward:
+      type: MONEY
+      value: 10000
+  craft_cakes_3:
+    name: '&5&lCraft 1,000 Cakes'
+    action: CRAFT
+    type: CAKES
+    amount: 1000
+    menu-item: CAKE
+    reward:
+      type: MONEY
+      value: 20000
+  craft_cookies_1:
+    name: '&d&lCraft 500 Cookies'
+    action: CRAFT
+    type: COOKIES
+    amount: 500
+    menu-item: COOKIE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_cookies_2:
+    name: '&9&lCraft 5,000 Cookies'
+    action: CRAFT
+    type: COOKIES
+    amount: 5000
+    menu-item: COOKIE
+    reward:
+      type: MONEY
+      value: 5000
+  craft_cookies_3:
+    name: '&5&lCraft 50,000 Cookies'
+    action: CRAFT
+    type: COOKIES
+    amount: 50000
+    menu-item: COOKIE
+    reward:
+      type: MONEY
+      value: 20000
+  craft_golden_carrots_1:
+    name: '&d&lCraft 50 Golden Carrots'
+    action: CRAFT
+    type: GOLDEN_CARROTS
+    amount: 50
+    menu-item: GOLDEN_CARROT
+    reward:
+      type: MONEY
+      value: 1000
+  craft_golden_carrots_2:
+    name: '&9&lCraft 500 Golden Carrots'
+    action: CRAFT
+    type: GOLDEN_CARROTS
+    amount: 500
+    menu-item: GOLDEN_CARROT
+    reward:
+      type: MONEY
+      value: 10000
+  craft_golden_carrots_3:
+    name: '&5&lCraft 5,000 Golden Carrots'
+    action: CRAFT
+    type: GOLDEN_CARROTS
+    amount: 5000
+    menu-item: GOLDEN_CARROT
+    reward:
+      type: MONEY
+      value: 20000
+  craft_golden_apples_1:
+    name: '&d&lCraft 10 Golden Apples'
+    action: CRAFT
+    type: GOLDEN_APPLES
+    amount: 10
+    menu-item: GOLDEN_APPLE
+    reward:
+      type: MONEY
+      value: 1000
+  craft_golden_apples_2:
+    name: '&9&lCraft 100 Golden Apples'
+    action: CRAFT
+    type: GOLDEN_APPLES
+    amount: 100
+    menu-item: GOLDEN_APPLE
+    reward:
+      type: MONEY
+      value: 10000
+  craft_golden_apples_3:
+    name: '&5&lCraft 1,000 Golden Apples'
+    action: CRAFT
+    type: GOLDEN_APPLES
+    amount: 1000
+    menu-item: GOLDEN_APPLE
+    reward:
+      type: MONEY
+      value: 20000
+  smelt_kelp_1:
+    name: '&d&lSmelt 500 Kelp'
+    action: SMELT
+    type: KELP
+    amount: 500
+    menu-item: DRIED_KELP
+    reward:
+      type: MONEY
+      value: 3000
+  smelt_kelp_2:
+    name: '&9&lSmelt 5,000 Kelp'
+    action: SMELT
+    type: KELP
+    amount: 5000
+    menu-item: DRIED_KELP
+    reward:
+      type: MONEY
+      value: 15000
+  smelt_kelp_3:
+    name: '&5&lSmelt 50,000 Kelp'
+    action: SMELT
+    type: KELP
+    amount: 50000
+    menu-item: DRIED_KELP
+    reward:
+      type: MONEY
+      value: 45000
