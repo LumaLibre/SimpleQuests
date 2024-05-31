@@ -944,88 +944,94 @@ hunter: # Category
   kill_chickens_1:
     name: '&d&lKill 250 Chickens'
     action: KILL
-    type: CHICKENS
+    type: CHICKEN
     amount: 250
     menu-item: FEATHER
     reward:
       type: MONEY
       value: 5000
   kill_chickens_2:
-    name: '&9&lKill 5,000 Chickens'
+    name: '&9&lKill 750 Chickens'
     action: KILL
-    type: CHICKENS
-    amount: 5000
+    type: CHICKEN
+    amount: 750
     menu-item: EGG
+    required: hunter:kill_chickens_1
     reward:
       type: MONEY
       value: 30000
   kill_chickens_3:
-    name: '&5&lKill 50,000 Chickens'
+    name: '&5&lKill 1,500 Chickens'
     action: KILL
-    type: CHICKENS
-    amount: 50000
+    type: CHICKEN
+    amount: 1500
     menu-item: CHICKEN_SPAWN_EGG
+    required: hunter:kill_chickens_2
     reward:
       type: MONEY
-      value: 100000
+      value: 65000
   kill_cows_1:
     name: '&d&lKill 250 Cows'
     action: KILL
-    type: COWS
+    type: COW
     amount: 250
     menu-item: BEEF
     reward:
       type: MONEY
       value: 7000
   kill_cows_2:
-    name: '&9&lKill 5,000 Cows'
+    name: '&9&lKill 750 Cows'
     action: KILL
-    type: COWS
-    amount: 5000
+    type: COW
+    amount: 750
     menu-item: LEATHER
+    required: hunter:kill_cows_1
     reward:
       type: MONEY
       value: 35000
   kill_cows_3:
-    name: '&5&lKill 50,000 Cows'
+    name: '&5&lKill 1,500 Cows'
     action: KILL
-    type: COWS
-    amount: 50000
+    type: COW
+    amount: 1500
     menu-item: COW_SPAWN_EGG
+    required: hunter:kill_cows_2
     reward:
       type: MONEY
-      value: 120000
+      value: 65000
   kill_frogs_1:
-    name: '&d&lKill 10 Frogs'
+    name: '&d&lKill 30 Tadpole'
     action: KILL
-    type: FROGS
+    type: TADPOLE
     amount: 10
     menu-item: FROGSPAWN
     reward:
       type: MONEY
       value: 2000
   kill_frogs_2:
-    name: '&9&lKill 100 Frogs'
+    name: '&9&lKill 200 Frogs'
     action: KILL
-    type: FROGS
-    amount: 100
-    menu-item: OCHRE_FROGLIGHT
+    type: FROG
+    amount: 200
+    menu-item: TADPOLE_BUCKET
+    required: hunter:kill_frogs_1
     reward:
       type: MONEY
       value: 15000
   kill_frogs_3:
     name: '&5&lKill 1,000 Frogs'
     action: KILL
-    type: FROGS
+    type: FROG
     amount: 1000
     menu-item: FROG_SPAWN_EGG
+    required: hunter:kill_frogs_2
     reward:
       type: MONEY
       value: 50000
   kill_glow_squids_1:
     name: '&d&lKill 10 Glow Squids'
     action: KILL
-    type: GLOW_SQUIDS
+    type: GLOW_SQUID
     amount: 10
     menu-item: GLOW_INK_SAC
     reward:
@@ -1034,25 +1040,27 @@ hunter: # Category
   kill_glow_squids_2:
     name: '&9&lKill 100 Glow Squids'
     action: KILL
-    type: GLOW_SQUIDS
+    type: GLOW_SQUID
     amount: 100
     menu-item: GLOW_LICHEN
+    required: hunter:kill_glow_squids_1
     reward:
       type: MONEY
       value: 15000
   kill_glow_squids_3:
     name: '&5&lKill 1,000 Glow Squids'
     action: KILL
-    type: GLOW_SQUIDS
+    type: GLOW_SQUID
     amount: 1000
     menu-item: GLOW_SQUID_SPAWN_EGG
+    required: hunter:kill_glow_squids_2
     reward:
       type: MONEY
       value: 50000
   kill_horses_1:
     name: '&d&lKill 10 Horses'
     action: KILL
-    type: HORSES
+    type: HORSE
     amount: 10
     menu-item: LEAD
     reward:
@@ -1061,102 +1069,110 @@ hunter: # Category
   kill_horses_2:
     name: '&9&lKill 100 Horses'
     action: KILL
-    type: HORSES
+    type: HORSE
     amount: 100
     menu-item: LEATHER_HORSE_ARMOR
+    required: hunter:kill_horses_1
     reward:
       type: MONEY
       value: 25000
   kill_horses_3:
     name: '&5&lKill 250 Horses'
     action: KILL
-    type: HORSES
+    type: HORSE
     amount: 250
     menu-item: HORSE_SPAWN_EGG
+    required: hunter:kill_horses_2
     reward:
       type: MONEY
       value: 60000
   kill_mooshrooms_1:
     name: '&d&lKill 250 Mooshrooms'
     action: KILL
-    type: MOOSHROOMS
+    type: MOOSHROOM
     amount: 250
     menu-item: RED_MUSHROOM
     reward:
       type: MONEY
       value: 10000
   kill_mooshrooms_2:
-    name: '&9&lKill 5,000 Mooshrooms'
+    name: '&9&lKill 750 Mooshrooms'
     action: KILL
-    type: MOOSHROOMS
-    amount: 5000
+    type: MOOSHROOM
+    amount: 750
     menu-item: RED_MUSHROOM_BLOCK
+    required: hunter:kill_mooshrooms_1
     reward:
       type: MONEY
       value: 35000
   kill_mooshrooms_3:
-    name: '&5&lKill 50,000 Mooshrooms'
+    name: '&5&lKill 1,500 Mooshrooms'
     action: KILL
-    type: MOOSHROOMS
-    amount: 50000
+    type: MOOSHROOM
+    amount: 1500
     menu-item: MOOSHROOM_SPAWN_EGG
+    required: hunter:kill_mooshrooms_2
     reward:
       type: MONEY
       value: 120000
   kill_pigs_1:
     name: '&d&lKill 250 Pigs'
     action: KILL
-    type: PIGS
+    type: PIG
     amount: 250
     menu-item: PINK_DYE
     reward:
       type: MONEY
       value: 5000
   kill_pigs_2:
-    name: '&9&lKill 5,000 Pigs'
+    name: '&9&lKill 750 Pigs'
     action: KILL
-    type: PIGS
-    amount: 5000
+    type: PIG
+    amount: 750
     menu-item: PORKCHOP
+    required: hunter:kill_pigs_2
     reward:
       type: MONEY
       value: 30000
   kill_pigs_3:
-    name: '&5&lKill 50,000 Pigs'
+    name: '&5&lKill 1,500 Pigs'
     action: KILL
-    type: PIGS
-    amount: 50000
+    type: PIG
+    amount: 1500
     menu-item: PIG_SPAWN_EGG
+    required: hunter:kill_pigs_3
     reward:
       type: MONEY
-      value: 100000
+      value: 65000
   kill_rabbits_1:
     name: '&d&lKill 250 Rabbits'
     action: KILL
-    type: RABBITS
+    type: RABBIT
     amount: 250
     menu-item: RABBIT_FOOT
     reward:
       type: MONEY
       value: 5000
   kill_rabbits_2:
-    name: '&9&lKill 5,000 Rabbits'
+    name: '&9&lKill 750 Rabbits'
     action: KILL
-    type: RABBITS
-    amount: 5000
+    type: RABBIT
+    amount: 750
     menu-item: RABBIT_HIDE
+    required: hunter:kill_rabbits_1
     reward:
       type: MONEY
       value: 30000
   kill_rabbits_3:
-    name: '&5&lKill 50,000 Rabbits'
+    name: '&5&lKill 1,500 Rabbits'
     action: KILL
-    type: RABBITS
-    amount: 50000
+    type: RABBIT
+    amount: 1500
     menu-item: RABBIT_SPAWN_EGG
+    required: hunter:kill_rabbits_2
     reward:
       type: MONEY
-      value: 100000
+      value: 65000
   kill_sheep_1:
     name: '&d&lKill 250 Sheep'
     action: KILL
@@ -1167,54 +1183,58 @@ hunter: # Category
       type: MONEY
       value: 5000
   kill_sheep_2:
-    name: '&9&lKill 5,000 Sheep'
+    name: '&9&lKill 750 Sheep'
     action: KILL
     type: SHEEP
-    amount: 5000
+    amount: 750
     menu-item: WHITE_WOOL
+    required: hunter:kill_sheep_1
     reward:
       type: MONEY
       value: 30000
   kill_sheep_3:
-    name: '&5&lKill 50,000 Sheep'
+    name: '&5&lKill 1,500 Sheep'
     action: KILL
     type: SHEEP
-    amount: 50000
+    amount: 1500
     menu-item: SHEEP_SPAWN_EGG
+    required: hunter:kill_sheep_2
     reward:
       type: MONEY
-      value: 100000
+      value: 65000
   kill_squids_1:
     name: '&d&lKill 250 Squids'
     action: KILL
-    type: SQUIDS
+    type: SQUID
     amount: 250
     menu-item: INK_SAC
     reward:
       type: MONEY
       value: 7000
   kill_squids_2:
-    name: '&9&lKill 5,000 Squids'
+    name: '&9&lKill 750 Squids'
     action: KILL
-    type: SQUIDS
-    amount: 5000
+    type: SQUID
+    amount: 750
     menu-item: BLACK_DYE
+    required: hunter:kill_squids_1
     reward:
       type: MONEY
       value: 35000
   kill_squids_3:
-    name: '&5&lKill 50,000 Squids'
+    name: '&5&lKill 1,500 Squids'
     action: KILL
-    type: SQUIDS
-    amount: 50000
+    type: SQUID
+    amount: 1500
     menu-item: SQUID_SPAWN_EGG
+    required: hunter:kill_squids_2
     reward:
       type: MONEY
       value: 120000
   kill_bees_1:
     name: '&d&lKill 10 Bees'
     action: KILL
-    type: BEES
+    type: BEE
     amount: 10
     menu-item: BEEHIVE
     reward:
@@ -1223,133 +1243,146 @@ hunter: # Category
   kill_bees_2:
     name: '&9&lKill 100 Bees'
     action: KILL
-    type: BEES
+    type: BEE
     amount: 100
     menu-item: BEE_NEST
+    required: hunter:kill_bees_1
     reward:
       type: MONEY
       value: 15000
   kill_bees_3:
     name: '&5&lKill 1,000 Bees'
     action: KILL
-    type: BEES
+    type: BEE
     amount: 1000
     menu-item: BEE_SPAWN_EGG
+    required: hunter:kill_bees_2
     reward:
       type: MONEY
       value: 50000
   kill_endermen_1:
     name: '&d&lKill 250 Endermen'
     action: KILL
-    type: ENDERMEN
+    type: ENDERMAN
     amount: 250
     menu-item: ENDER_EYE
     reward:
       type: MONEY
       value: 12000
   kill_endermen_2:
-    name: '&9&lKill 5,000 Endermen'
+    name: '&9&lKill 750 Endermen'
     action: KILL
-    type: ENDERMEN
-    amount: 5000
+    type: ENDERMAN
+    amount: 750
     menu-item: END_PORTAL_FRAME
+    required: hunter:kill_endermen_1
     reward:
       type: MONEY
       value: 40000
   kill_endermen_3:
-    name: '&5&lKill 50,000 Endermen'
+    name: '&5&lKill 1,500 Endermen'
     action: KILL
-    type: ENDERMEN
-    amount: 50000
+    type: ENDERMAN
+    amount: 1500
     menu-item: ENDERMAN_SPAWN_EGG
+    required: hunter:kill_endermen_2
     reward:
       type: MONEY
       value: 150000
   kill_iron_golems_1:
-    name: '&d&lKill 10 Iron Golems'
+    name: '&d&lKill 750 Iron Golems'
     action: KILL
-    type: IRON_GOLEMS
-    amount: 10
+    type: IRON_GOLEM
+    amount: 750
     menu-item: POPPY
     reward:
       type: MONEY
-      value: 5000
+      value: 25000
   kill_iron_golems_2:
-    name: '&9&lKill 100 Iron Golems'
+    name: '&9&lKill 2,000 Iron Golems'
     action: KILL
-    type: IRON_GOLEMS
-    amount: 100
+    type: IRON_GOLEM
+    amount: 2000
     menu-item: IRON_INGOT
+    required: hunter:kill_iron_golems_1
     reward:
       type: MONEY
-      value: 30000
+      value: 90000
   kill_iron_golems_3:
-    name: '&5&lKill 1,000 Iron Golems'
+    name: '&5&lKill 4,000 Iron Golems'
     action: KILL
-    type: IRON_GOLEMS
-    amount: 1000
+    type: IRON_GOLEM
+    amount: 4000
     menu-item: IRON_GOLEM_SPAWN_EGG
+    required: hunter:kill_iron_golems_2
     reward:
-      type: MONEY
-      value: 120000
+      type: COMMAND
+      value: 'lumaitems relic %player% core astral'
+    description:
+      - '&#F7FFC9%action% %amount% &6%type%'
+      - '&#F7FFC9to receive an &#AC87FB&lAstral &#F7FFC9Core&#F7FFC9!'
   kill_piglins_1:
     name: '&d&lKill 250 Piglins'
     action: KILL
-    type: PIGLINS
+    type: PIGLIN
     amount: 250
     menu-item: GOLD_NUGGET
     reward:
       type: MONEY
       value: 8000
   kill_piglins_2:
-    name: '&9&lKill 5,000 Piglins'
+    name: '&9&lKill 750 Piglins'
     action: KILL
-    type: PIGLINS
-    amount: 5000
+    type: PIGLIN
+    amount: 750
     menu-item: PIGLIN_HEAD
+    required: hunter:kill_piglins_1
     reward:
       type: MONEY
       value: 35000
   kill_piglins_3:
-    name: '&5&lKill 50,000 Piglins'
+    name: '&5&lKill 1,500 Piglins'
     action: KILL
-    type: PIGLINS
-    amount: 50000
+    type: PIGLIN
+    amount: 1500
     menu-item: PIGLIN_SPAWN_EGG
+    required: hunter:kill_piglins_2
     reward:
       type: MONEY
       value: 120000
   kill_spiders_1:
     name: '&d&lKill 250 Spiders'
     action: KILL
-    type: SPIDERS
+    type: SPIDER
     amount: 250
     menu-item: SPIDER_EYE
     reward:
       type: MONEY
       value: 6000
   kill_spiders_2:
-    name: '&9&lKill 5,000 Spiders'
+    name: '&9&lKill 750 Spiders'
     action: KILL
-    type: SPIDERS
-    amount: 5000
+    type: SPIDER
+    amount: 750
     menu-item: FERMENTED_SPIDER_EYE
+    required: hunter:kill_spiders_1
     reward:
       type: MONEY
       value: 30000
   kill_spiders_3:
-    name: '&5&lKill 50,000 Spiders'
+    name: '&5&lKill 1,500 Spiders'
     action: KILL
-    type: SPIDERS
-    amount: 50000
+    type: SPIDER
+    amount: 1500
     menu-item: SPIDER_SPAWN_EGG
+    required: hunter:kill_spiders_2
     reward:
       type: MONEY
-      value: 100000
+      value: 65000
   kill_wolves_1:
     name: '&d&lKill 10 Wolves'
     action: KILL
-    type: WOLVES
+    type: WOLF
     amount: 10
     menu-item: BEEF
     reward:
@@ -1358,25 +1391,27 @@ hunter: # Category
   kill_wolves_2:
     name: '&9&lKill 100 Wolves'
     action: KILL
-    type: WOLVES
+    type: WOLF
     amount: 100
     menu-item: BONE
+    required: hunter:kill_wolves_1
     reward:
       type: MONEY
-      value: 20000
+      value: 10000
   kill_wolves_3:
     name: '&5&lKill 250 Wolves'
     action: KILL
-    type: WOLVES
+    type: WOLF
     amount: 250
     menu-item: WOLF_SPAWN_EGG
+    required: hunter:kill_wolves_2
     reward:
       type: MONEY
-      value: 60000
+      value: 30000
   kill_blazes_1:
     name: '&d&lKill 250 Blazes'
     action: KILL
-    type: BLAZES
+    type: BLAZE
     amount: 250
     menu-item: BLAZE_ROD
     reward:
@@ -1385,52 +1420,56 @@ hunter: # Category
   kill_blazes_2:
     name: '&9&lKill 5,000 Blazes'
     action: KILL
-    type: BLAZES
-    amount: 5000
+    type: BLAZE
+    amount: 750
     menu-item: BLAZE_POWDER
+    required: hunter:kill_blazes_1
     reward:
       type: MONEY
       value: 35000
   kill_blazes_3:
-    name: '&5&lKill 50,000 Blazes'
+    name: '&5&lKill 1,500 Blazes'
     action: KILL
-    type: BLAZES
-    amount: 50000
+    type: BLAZE
+    amount: 1500
     menu-item: BLAZE_SPAWN_EGG
+    required: hunter:kill_blazes_2
     reward:
       type: MONEY
       value: 120000
   kill_creepers_1:
     name: '&d&lKill 250 Creepers'
     action: KILL
-    type: CREEPERS
+    type: CREEPER
     amount: 250
     menu-item: GUNPOWDER
     reward:
       type: MONEY
       value: 8000
   kill_creepers_2:
-    name: '&9&lKill 5,000 Creepers'
+    name: '&9&lKill 750 Creepers'
     action: KILL
-    type: CREEPERS
-    amount: 5000
+    type: CREEPER
+    amount: 750
     menu-item: CREEPER_HEAD
+    required: hunter:kill_creepers_1
     reward:
       type: MONEY
       value: 35000
   kill_creepers_3:
-    name: '&5&lKill 50,000 Creepers'
+    name: '&5&lKill 1,500 Creepers'
     action: KILL
-    type: CREEPERS
-    amount: 50000
+    type: CREEPER
+    amount: 1500
     menu-item: CREEPER_SPAWN_EGG
+    required: hunter:kill_creepers_2
     reward:
       type: MONEY
       value: 120000
   kill_ghasts_1:
     name: '&d&lKill 1 Ghast'
     action: KILL
-    type: GHASTS
+    type: GHAST
     amount: 1
     menu-item: GHAST_TEAR
     reward:
@@ -1439,106 +1478,114 @@ hunter: # Category
   kill_ghasts_2:
     name: '&9&lKill 5 Ghasts'
     action: KILL
-    type: GHASTS
+    type: GHAST
     amount: 5
     menu-item: FIRE_CHARGE
+    required: hunter:kill_ghasts_1
     reward:
       type: MONEY
       value: 10000
   kill_ghasts_3:
     name: '&5&lKill 10 Ghasts'
     action: KILL
-    type: GHASTS
+    type: GHAST
     amount: 10
     menu-item: GHAST_SPAWN_EGG
+    required: hunter:kill_ghasts_2
     reward:
       type: MONEY
       value: 20000
   kill_magma_cubes_1:
     name: '&d&lKill 250 Magma Cubes'
     action: KILL
-    type: MAGMA_CUBES
+    type: MAGMA_CUBE
     amount: 250
     menu-item: MAGMA_CREAM
     reward:
       type: MONEY
       value: 7000
   kill_magma_cubes_2:
-    name: '&9&lKill 5,000 Magma Cubes'
+    name: '&9&lKill 750 Magma Cubes'
     action: KILL
-    type: MAGMA_CUBES
-    amount: 5000
+    type: MAGMA_CUBE
+    amount: 750
     menu-item: MAGMA_BLOCK
+    required: hunter:kill_magma_cubes_1
     reward:
       type: MONEY
       value: 30000
   kill_magma_cubes_3:
-    name: '&5&lKill 50,000 Magma Cubes'
+    name: '&5&lKill 1,500 Magma Cubes'
     action: KILL
-    type: MAGMA_CUBES
-    amount: 50000
+    type: MAGMA_CUBE
+    amount: 1500
     menu-item: MAGMA_CUBE_SPAWN_EGG
+    required: hunter:kill_magma_cubes_2
     reward:
       type: MONEY
-      value: 100000
+      value: 65000
   kill_skeletons_1:
     name: '&d&lKill 250 Skeletons'
     action: KILL
-    type: SKELETONS
+    type: SKELETON
     amount: 250
     menu-item: BONE
     reward:
       type: MONEY
       value: 6000
   kill_skeletons_2:
-    name: '&9&lKill 5,000 Skeletons'
+    name: '&9&lKill 750 Skeletons'
     action: KILL
-    type: SKELETONS
-    amount: 5000
+    type: SKELETON
+    amount: 750
     menu-item: SKELETON_SKULL
+    required: hunter:kill_skeletons_1
     reward:
       type: MONEY
       value: 30000
   kill_skeletons_3:
-    name: '&5&lKill 50,000 Skeletons'
+    name: '&5&lKill 1,500 Skeletons'
     action: KILL
-    type: SKELETONS
-    amount: 50000
+    type: SKELETON
+    amount: 1500
     menu-item: SKELETON_SPAWN_EGG
+    required: hunter:kill_skeletons_2
     reward:
       type: MONEY
-      value: 100000
+      value: 65000
   kill_slimes_1:
-    name: '&d&lKill 250 Slimes'
+    name: '&d&lKill 500 Slimes'
     action: KILL
-    type: SLIMES
-    amount: 250
+    type: SLIME
+    amount: 500
     menu-item: SLIME_BALL
     reward:
       type: MONEY
       value: 5000
   kill_slimes_2:
-    name: '&9&lKill 5,000 Slimes'
+    name: '&9&lKill 1,000 Slimes'
     action: KILL
-    type: SLIMES
-    amount: 5000
+    type: SLIME
+    amount: 1000
     menu-item: SLIME_BLOCK
+    required: hunter:kill_slimes_1
     reward:
       type: MONEY
       value: 30000
   kill_slimes_3:
-    name: '&5&lKill 50,000 Slimes'
+    name: '&5&lKill 5,000 Slimes'
     action: KILL
-    type: SLIMES
-    amount: 50000
+    type: SLIME
+    amount: 5000
     menu-item: SLIME_SPAWN_EGG
+    required: hunter:kill_slimes_2
     reward:
       type: MONEY
-      value: 100000
+      value: 65000
   kill_wither_skeletons_1:
     name: '&d&lKill 100 Wither Skeletons'
     action: KILL
-    type: WITHER_SKELETONS
+    type: WITHER_SKELETON
     amount: 100
     menu-item: WITHER_ROSE
     reward:
@@ -1547,48 +1594,52 @@ hunter: # Category
   kill_wither_skeletons_2:
     name: '&9&lKill 1,000 Wither Skeletons'
     action: KILL
-    type: WITHER_SKELETONS
+    type: WITHER_SKELETON
     amount: 1000
     menu-item: WITHER_SKELETON_SPAWN_EGG
+    required: hunter:kill_wither_skeletons_1
     reward:
       type: MONEY
-      value: 80000
+      value: 65000
   kill_wither_skeletons_3:
     name: '&5&lKill 10,000 Wither Skeletons'
     action: KILL
-    type: WITHER_SKELETONS
+    type: WITHER_SKELETON
     amount: 10000
     menu-item: WITHER_SKELETON_SKULL
+    required: hunter:kill_wither_skeletons_2
     reward:
       type: MONEY
       value: 150000
   kill_zombies_1:
     name: '&d&lKill 250 Zombies'
     action: KILL
-    type: ZOMBIES
+    type: ZOMBIE
     amount: 250
     menu-item: CARROT
     reward:
       type: MONEY
       value: 5000
   kill_zombies_2:
-    name: '&9&lKill 5,000 Zombies'
+    name: '&9&lKill 750 Zombies'
     action: KILL
-    type: ZOMBIES
-    amount: 5000
+    type: ZOMBIE
+    amount: 750
     menu-item: ZOMBIE_SPAWN_EGG
+    required: hunter:kill_zombies_1
     reward:
       type: MONEY
       value: 30000
   kill_zombies_3:
-    name: '&5&lKill 50,000 Zombies'
+    name: '&5&lKill 1,500 Zombies'
     action: KILL
-    type: ZOMBIES
-    amount: 50000
+    type: ZOMBIE
+    amount: 1500
     menu-item: ZOMBIE_HEAD
+    required: hunter:kill_zombies_2
     reward:
       type: MONEY
-      value: 100000
+      value: 65000
   kill_drowned_1:
     name: '&d&lKill 250 Drowned'
     action: KILL
@@ -1598,79 +1649,84 @@ hunter: # Category
     reward:
       type: MONEY
       value: 8000
-    kill_drowned_2:
-      name: '&9&lKill 5,000 Drowned'
-      action: KILL
-      type: DROWNED
-      amount: 5000
-      menu-item: NAUTILUS_SHELL
-      reward:
-        type: MONEY
-        value: 35000
-    kill_drowned_3:
-      name: '&5&lKill 50,000 Drowned'
-      action: KILL
-      type: DROWNED
-      amount: 50000
-      menu-item: DROWNED_SPAWN_EGG
-      reward:
-        type: MONEY
-        value: 90000
-    kill_pillagers_1:
-      name: '&d&lKill 10 Pillagers'
-      action: KILL
-      type: PILLAGERS
-      amount: 10
-      menu-item: CROSSBOW
-      reward:
-        type: MONEY
-        value: 5000
-    kill_pillagers_2:
-      name: '&9&lKill 100 Pillagers'
-      action: KILL
-      type: PILLAGERS
-      amount: 100
-      menu-item: ARROW
-      reward:
-        type: MONEY
-        value: 25000
-    kill_pillagers_3:
-      name: '&5&lKill 1,000 Pillagers'
-      action: KILL
-      type: PILLAGERS
-      amount: 1000
-      menu-item: PILLAGER_SPAWN_EGG
-      reward:
-        type: MONEY
-        value: 100000
-
-    kill_vindicators_1:
-      name: '&d&lKill 10 Vindicators'
-      action: KILL
-      type: VINDICATORS
-      amount: 10
-      menu-item: IRON_AXE
-      reward:
-        type: MONEY
-        value: 6000
-    kill_vindicators_2:
-      name: '&9&lKill 100 Vindicators'
-      action: KILL
-      type: VINDICATORS
-      amount: 100
-      menu-item: EMERALD
-      reward:
-        type: MONEY
-        value: 30000
-    kill_vindicators_3:
-      name: '&5&lKill 1,000 Vindicators'
-      action: KILL
-      type: VINDICATORS
-      amount: 1000
-      menu-item: VINDICATOR_SPAWN_EGG
-      reward:
-        type: MONEY
-        value: 80000
+  kill_drowned_2:
+    name: '&9&lKill 750 Drowned'
+    action: KILL
+    type: DROWNED
+    amount: 750
+    menu-item: NAUTILUS_SHELL
+    required: hunter:kill_drowned_1
+    reward:
+      type: MONEY
+      value: 35000
+  kill_drowned_3:
+    name: '&5&lKill 1,500 Drowned'
+    action: KILL
+    type: DROWNED
+    amount: 1500
+    menu-item: DROWNED_SPAWN_EGG
+    required: hunter:kill_drowned_2
+    reward:
+      type: MONEY
+      value: 90000
+  kill_pillagers_1:
+    name: '&d&lKill 10 Pillagers'
+    action: KILL
+    type: PILLAGER
+    amount: 10
+    menu-item: CROSSBOW
+    reward:
+      type: MONEY
+      value: 5000
+  kill_pillagers_2:
+    name: '&9&lKill 100 Pillagers'
+    action: KILL
+    type: PILLAGER
+    amount: 100
+    menu-item: ARROW
+    required: hunter:kill_pillagers_1
+    reward:
+      type: MONEY
+      value: 25000
+  kill_pillagers_3:
+    name: '&5&lKill 1,000 Pillagers'
+    action: KILL
+    type: PILLAGER
+    amount: 1000
+    menu-item: PILLAGER_SPAWN_EGG
+    required: hunter:kill_pillagers_2
+    reward:
+      type: MONEY
+      value: 65000
+  kill_vindicators_1:
+    name: '&d&lKill 10 Vindicators'
+    action: KILL
+    type: VINDICATOR
+    amount: 10
+    menu-item: IRON_AXE
+    reward:
+      type: MONEY
+      value: 6000
+  kill_vindicators_2:
+    name: '&9&lKill 100 Vindicators'
+    action: KILL
+    type: VINDICATOR
+    amount: 100
+    menu-item: EMERALD
+    required: hunter:kill_vindicators_1
+    reward:
+      type: MONEY
+      value: 30000
+  kill_vindicators_3:
+    name: '&5&lKill 1,000 Vindicators'
+    action: KILL
+    type: VINDICATOR
+    amount: 1000
+    menu-item: VINDICATOR_SPAWN_EGG
+    required: hunter:kill_vindicators_2
+    reward:
+      type: MONEY
+      value: 65000
 
 fishing: # Category
   catch_cod_1:
@@ -2430,15 +2486,6 @@ crafting:
     type: STONECUTTER
     amount: 1
     menu-item: STONECUTTER
-    reward:
-      type: MONEY
-      value: 1000
-  craft_loom:
-    name: '&a&lCraft a Loom'
-    action: CRAFT
-    type: LOOM
-    amount: 1
-    menu-item: LOOM
     reward:
       type: MONEY
       value: 1000

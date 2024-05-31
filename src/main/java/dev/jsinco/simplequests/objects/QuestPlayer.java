@@ -157,6 +157,14 @@ public class QuestPlayer {
         return null;
     }
 
+    public String getCategoryCompletion(String category) {
+        final List<Quest> quests = QuestManager.getQuests(category);
+        if (quests == null) return "0%";
+        final int totalQuests = quests.size();
+        final int completedQuests = (int) this.completedQuests.stream().filter(quest -> quest.startsWith(category)).count();
+        return String.format("%.1f", Util.fractionToDecimal(completedQuests, totalQuests)) + "%";
+    }
+
     @Override
     public String toString() {
         return "QuestPlayer{" +

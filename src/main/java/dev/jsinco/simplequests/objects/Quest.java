@@ -11,6 +11,7 @@ import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class Quest {
         this.requiredCompletedQuest = requiredCompletedQuest;
 
         // Must be done last
-        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
+        this.description = description != null ? Util.formatDescription(description, this) : Util.getDefaultQuestDescription(this);
     }
 
     public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable List<String> description, @Nullable String rewardTypeStr, @Nullable Object rewardValue, @Nullable String menuItemStr, @Nullable String requiredCompletedQuest) {
@@ -60,7 +61,7 @@ public class Quest {
         this.requiredCompletedQuest = requiredCompletedQuest;
 
         // Must be done last
-        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
+        this.description = description != null ? Util.formatDescription(description, this) : Util.getDefaultQuestDescription(this);
     }
 
     public String getCategory() {
@@ -120,15 +121,28 @@ public class Quest {
 
     public void executeReward(OfflinePlayer player) {
         if (rewardType == null || rewardValue == null) return;
+        final Player onlinePlayer = player.getPlayer();
         switch (rewardType) {
             case MONEY -> {
                 final Economy econ = VaultHook.getEconomy();
                 econ.depositPlayer(player, Double.parseDouble(rewardValue.toString()));
+
+                if (onlinePlayer != null) {
+                    onlinePlayer.sendMessage(Util.getPrefix() + Util.colorText("You have received &a$" + rewardValue + "&r!"));
+                }
             }
-            case COMMAND -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), rewardValue.toString().replace("%player%", player.getName()));
+            case COMMAND -> {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), rewardValue.toString().replace("%player%", player.getName()));
+                if (onlinePlayer != null) {
+                    onlinePlayer.sendMessage(Util.getPrefix() + Util.colorText("You have received a reward for completing a quest!"));
+                }
+            }
             case POINTS -> {
                 final PlayerPointsAPI playerPointsAPI = PlayerPointsHook.getApi();
                 playerPointsAPI.give(player.getUniqueId(), Integer.parseInt(rewardValue.toString()));
+                if (onlinePlayer != null) {
+                    onlinePlayer.sendMessage(Util.getPrefix() + Util.colorText("You have received &a" + rewardValue + "&rLumins!"));
+                }
             }
         }
     }

@@ -111,26 +111,33 @@ object Util {
         val rewardDesc = when (quest.rewardType) {
             RewardType.MONEY -> {
                 when (value) {
-                    is Int -> "$${String.format("%,d", value)}"
-                    is Double -> "$${String.format("%,.2f", value)}"
+                    is Int -> "receive &a$${String.format("%,d", value)}"
+                    is Double -> "receive &a$${String.format("%,.2f", value)}"
                     else -> "$$value"
                 }
             }
             RewardType.COMMAND -> {
-                "/$value will be executed"
+                "have &a/$value &#F7FFC9be executed"
             }
             RewardType.POINTS -> {
-                "$value Lumins"
+                "receive &a$value &#F7FFC9Lumins"
             }
             else -> {
-                "No reward :("
+                "receive &aNo reward :("
             }
         }
 
         return listOf(
-            "&f${format(quest.questAction.name)} ${String.format("%,d", quest.amount)} &6${format(quest.type)}",
-            "&fto receive &a$rewardDesc&f!",
+            "&#F7FFC9${format(quest.questAction.name)} ${String.format("%,d", quest.amount)} &6${format(quest.type)}",
+            "&#F7FFC9to $rewardDesc&#F7FFC9!",
         )
+    }
+
+    @JvmStatic
+    fun formatDescription(list: List<String>, quest: Quest): List<String> {
+        return list.map { it.replace("%action%", format(quest.questAction.name))
+            .replace("%amount%", String.format("%,d", quest.amount))
+            .replace("%type%", format(quest.type))}
     }
 
     fun getPlayerStatsIcon(questPlayer: QuestPlayer): ItemStack {
@@ -161,6 +168,14 @@ object Util {
         val completed = completedChar.repeat(completedBars)
         val remaining = remainingChar.repeat(totalBars - completedBars)
         return completed + remaining
+    }
+
+    @JvmStatic
+    fun fractionToDecimal(x: Int, y: Int): Double {
+        if (y == 0) {
+            return 0.0
+        }
+        return (x.toDouble() / y.toDouble()) * 100
     }
 
 }

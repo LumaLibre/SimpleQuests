@@ -4,6 +4,7 @@ import dev.jsinco.abstractjavafilelib.FileLibSettings;
 import dev.jsinco.abstractjavafilelib.schemas.SnakeYamlConfig;
 import dev.jsinco.simplequests.commands.CommandManager;
 import dev.jsinco.simplequests.enums.StorageMethod;
+import dev.jsinco.simplequests.guis.tools.AbstractGui;
 import dev.jsinco.simplequests.hooks.papi.PapiManager;
 import dev.jsinco.simplequests.listeners.Events;
 import dev.jsinco.simplequests.objects.QuestPlayer;
@@ -46,7 +47,7 @@ public final class SimpleQuests extends JavaPlugin {
         loadData();
 
 
-        QuestManager.asyncCacheManager().runTaskTimerAsynchronously(this, 0L, 12000L); // 10 minutes
+        QuestManager.asyncCacheManager().runTaskTimerAsynchronously(this, 0L, 36000L); // 30 minutes
         getServer().getScheduler().runTaskAsynchronously(this, () -> {
             QuestManager.loadQuests();
             getServer().getScheduler().runTask(this, () -> {
@@ -78,6 +79,13 @@ public final class SimpleQuests extends JavaPlugin {
         if (dataManager != null && dataManager.getStorageMethod() == StorageMethod.SQLITE) {
             ((SQLiteStorage) dataManager).closeConnection();
         }
+
+        for (final Player player : getServer().getOnlinePlayers()) {
+            if (player.getOpenInventory().getTopInventory().getHolder(false) instanceof AbstractGui) {
+                player.closeInventory();
+            }
+        }
+
         if (papiManager != null) {
             papiManager.unregister();
         }

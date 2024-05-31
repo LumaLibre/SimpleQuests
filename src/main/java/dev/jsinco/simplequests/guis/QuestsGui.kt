@@ -8,6 +8,7 @@ import dev.jsinco.simplequests.guis.tools.GuiCreator
 import dev.jsinco.simplequests.objects.Quest
 import dev.jsinco.simplequests.objects.QuestPlayer
 import org.bukkit.Bukkit
+import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
@@ -136,18 +137,24 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ITEM_SPECIFICS, ItemFlag.HIDE_ATTRIBUTES)
 
         if (!questPlayer.hasCompletedQuest(quest.requiredCompletedQuest)) {
-            meta.lore = listOf("", "&fYou must complete", "&a\"${quest.requiredCompletedQuestObject?.name}\"", "&fto view this quest!").map { Util.colorText(it) }
+            val name = ChatColor.stripColor(Util.colorText(quest.requiredCompletedQuestObject?.name ?: "Unknown"))
+            meta.lore = listOf("", "&#F7FFC9You must complete &6\"${name}\"", "&#F7FFC9to view or start this quest!").map { Util.colorText(it) }
+            item.itemMeta = meta; return
+        } else if (questPlayer.hasCompletedQuest(quest)) {
+            meta.lore = listOf("", Util.colorText("&dQuest completed!"))
+            item.type = Material.PAPER
+            meta.addEnchant(Enchantment.LUCK, 1, true)
             item.itemMeta = meta
-            return
+            item.itemMeta = meta; return
         }
 
 
-        val progress = questPlayer.getInProgressQuest(quest)?.let { Util.createProgressBar(it) }
+        val activeQuest = questPlayer.getInProgressQuest(quest)
         meta.lore = quest.description.toMutableList().also {
             it.add(0, "")
-            if (progress != null) {
+            if (activeQuest != null) {
                 it.add("")
-                it.add("&6Progress: $progress")
+                it.add("&6Progress&7: ${Util.createProgressBar(activeQuest)} &7(${String.format("%.1f", Util.fractionToDecimal(activeQuest.progress, activeQuest.amount))}%)")
             }
             it.addAll(listOf("",
                 "&6• &eLeft click to begin this quest",
@@ -155,16 +162,12 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
         }.map { Util.colorText(it) }
 
 
-        if (progress != null) {
+        if (activeQuest != null) {
             meta.addEnchant(Enchantment.LUCK, 1, true)
         } else {
             meta.removeEnchantments()
         }
 
-        if (questPlayer.hasCompletedQuest(quest)) {
-            item.type = Material.PAPER
-            meta.addEnchant(Enchantment.LUCK, 1, true)
-        }
         item.itemMeta = meta
     }
 }
