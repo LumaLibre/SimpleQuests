@@ -19,7 +19,7 @@ class QuestProgressionCommand : SubCommand {
         val questPlayer = QuestManager.getQuestPlayer(player.uniqueId)
 
         val strBuilder = StringBuilder()
-        for (activeQuest in questPlayer.activeQuests) {
+        for (activeQuest in questPlayer.activeQuestsQueue) {
             strBuilder.append(Util.colorText("&6${activeQuest.id}: ${createProgressBar(activeQuest)}\n"))
         }
         sender.sendMessage(Util.colorText("Completed Quests:\n ${questPlayer.completedQuests.joinToString("&f, ") { "&a$it" }}"))

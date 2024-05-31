@@ -46,8 +46,19 @@ public final class SimpleQuests extends JavaPlugin {
         loadData();
 
 
-        QuestManager.asyncCacheManager().runTaskTimerAsynchronously(this, 0L, 6000L); // 5 minutes
-        getServer().getScheduler().runTaskAsynchronously(this, QuestManager::loadQuests);
+        QuestManager.asyncCacheManager().runTaskTimerAsynchronously(this, 0L, 12000L); // 10 minutes
+        getServer().getScheduler().runTaskAsynchronously(this, () -> {
+            QuestManager.loadQuests();
+            getServer().getScheduler().runTask(this, () -> {
+                // Cache players in case of reload
+                for (final Player player : getServer().getOnlinePlayers()) {
+                    final QuestPlayer questPlayer = QuestManager.getQuestPlayer(player.getUniqueId());
+                    if (!questPlayer.getActiveQuestsQueue().isEmpty()) {
+                        QuestManager.cacheQuestPlayer(questPlayer);
+                    }
+                }
+            });
+        });
 
         getServer().getPluginManager().registerEvents(new Events(), this);
         getCommand("simplequests").setExecutor(new CommandManager(this));
@@ -55,14 +66,6 @@ public final class SimpleQuests extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
             papiManager = new PapiManager(this);
             papiManager.register();
-        }
-
-        // Cache players in case of reload
-        for (final Player player : getServer().getOnlinePlayers()) {
-            final QuestPlayer questPlayer = QuestManager.getQuestPlayer(player.getUniqueId());
-            if (!questPlayer.getActiveQuests().isEmpty()) {
-                QuestManager.cacheQuestPlayer(questPlayer);
-            }
         }
     }
 

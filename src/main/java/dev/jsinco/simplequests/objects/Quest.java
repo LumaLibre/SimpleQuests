@@ -38,11 +38,13 @@ public class Quest {
         this.type = type;
         this.questAction = questAction;
         this.amount = amount;
-        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
         this.rewardType = rewardType;
         this.rewardValue = rewardValue;
         this.menuItem = menuItem;
         this.requiredCompletedQuest = requiredCompletedQuest;
+
+        // Must be done last
+        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
     }
 
     public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable List<String> description, @Nullable String rewardTypeStr, @Nullable Object rewardValue, @Nullable String menuItemStr, @Nullable String requiredCompletedQuest) {
@@ -52,11 +54,13 @@ public class Quest {
         this.type = type;
         this.questAction = questAction;
         this.amount = amount;
-        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
         this.rewardValue = rewardValue;
         this.rewardType = rewardTypeStr != null ? RewardType.valueOf(rewardTypeStr.toUpperCase()) : null;
         this.menuItem = menuItemStr != null ? Material.getMaterial(menuItemStr.toUpperCase()) : null;
         this.requiredCompletedQuest = requiredCompletedQuest;
+
+        // Must be done last
+        this.description = description != null ? description : Util.getDefaultQuestDescription(this);
     }
 
     public String getCategory() {
@@ -119,12 +123,12 @@ public class Quest {
         switch (rewardType) {
             case MONEY -> {
                 final Economy econ = VaultHook.getEconomy();
-                econ.depositPlayer(player, (double) rewardValue);
+                econ.depositPlayer(player, Double.parseDouble(rewardValue.toString()));
             }
             case COMMAND -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), rewardValue.toString().replace("%player%", player.getName()));
             case POINTS -> {
                 final PlayerPointsAPI playerPointsAPI = PlayerPointsHook.getApi();
-                playerPointsAPI.give(player.getUniqueId(), (int) rewardValue);
+                playerPointsAPI.give(player.getUniqueId(), Integer.parseInt(rewardValue.toString()));
             }
         }
     }

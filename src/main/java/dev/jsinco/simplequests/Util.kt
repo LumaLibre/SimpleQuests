@@ -110,7 +110,11 @@ object Util {
         val value = quest.rewardValue
         val rewardDesc = when (quest.rewardType) {
             RewardType.MONEY -> {
-                String.format("%,.2f", value)
+                when (value) {
+                    is Int -> "$${String.format("%,d", value)}"
+                    is Double -> "$${String.format("%,.2f", value)}"
+                    else -> "$$value"
+                }
             }
             RewardType.COMMAND -> {
                 "/$value will be executed"
@@ -125,7 +129,7 @@ object Util {
 
         return listOf(
             "&f${format(quest.questAction.name)} ${String.format("%,d", quest.amount)} &6${format(quest.type)}",
-            "&fto receive &a$rewardDesc",
+            "&fto receive &a$rewardDesc&f!",
         )
     }
 
@@ -139,17 +143,23 @@ object Util {
         meta.lore = listOf(
             "",
             "&#F7FFC9Quests Completed: &f${questPlayer.completedQuests.size}/${QuestManager.getQuests().size}",
-            "&#F7FFC9Quests In Progress: &f${questPlayer.activeQuests.size}",
+            "&#F7FFC9Quests In Progress: &f${questPlayer.activeQuestsQueue.size}",
             ""
         ).map { colorText(it) }
         item.itemMeta = meta
         return item
     }
 
+    @JvmStatic
     fun createProgressBar(quest: ActiveQuest, totalBars: Int = 25): String {
+        return createProgressBar(quest, totalBars, "&#f498f6|", "&#F7FFC9|")
+    }
+
+    @JvmStatic
+    fun createProgressBar(quest: ActiveQuest, totalBars: Int, completedChar: String, remainingChar: String): String {
         val completedBars = (quest.progress.toDouble() / quest.amount * totalBars).toInt()
-        val completed = "&a|".repeat(completedBars)
-        val remaining = "&7|".repeat(totalBars - completedBars)
+        val completed = completedChar.repeat(completedBars)
+        val remaining = remainingChar.repeat(totalBars - completedBars)
         return completed + remaining
     }
 

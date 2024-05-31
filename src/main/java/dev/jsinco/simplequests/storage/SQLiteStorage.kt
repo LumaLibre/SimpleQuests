@@ -1,7 +1,6 @@
 package dev.jsinco.simplequests.storage
 
 import com.google.gson.Gson
-import com.google.gson.internal.LinkedTreeMap
 import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.enums.StorageMethod
@@ -14,6 +13,7 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
 import java.util.UUID
+import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.logging.Level
 
 class SQLiteStorage : DataManager {
@@ -39,7 +39,7 @@ class SQLiteStorage : DataManager {
         }
 
         try {
-            connection.prepareStatement("CREATE TABLE IF NOT EXISTS questPlayers (uuid VARCHAR(36) PRIMARY KEY, completedQuestIds TEXT, activeQuests TEXT);")
+            connection.prepareStatement("CREATE TABLE IF NOT EXISTS questPlayers (uuid VARCHAR(36) PRIMARY KEY, completedQuestIds TEXT, activeQuests TEXT, showActionBarProgress BOOLEAN);")
                 .use { statement -> statement.executeUpdate(); statement.close() }
         } catch (e: SQLException) {
             e.printStackTrace()
@@ -74,31 +74,25 @@ class SQLiteStorage : DataManager {
         }
     }
 
-    @Suppress("UNCHECKED_CAST", "DuplicatedCode")
-    override fun getActiveQuests(uuid: UUID): List<ActiveQuest> {
+    @Suppress("DuplicatedCode")
+    override fun getActiveQuests(uuid: UUID): ConcurrentLinkedQueue<ActiveQuest> {
         try {
-            val activeQuests: MutableList<ActiveQuest> = mutableListOf()
 
             connection.prepareStatement("SELECT * FROM questPlayers WHERE uuid=?;").use { statement ->
                 statement.setString(1, uuid.toString())
                 val jsonStringList = statement.executeQuery().getString("activeQuests")
                 statement.close()
 
-                val list: List<LinkedTreeMap<*, *>> = gson.fromJson(jsonStringList, List::class.java) as? List<LinkedTreeMap<*, *>> ?: emptyList()
-
-                for (linkedTreeMap in list) {
-                    activeQuests.add(ActiveQuest(linkedTreeMap["category"] as String, linkedTreeMap["id"] as String, (linkedTreeMap["progress"] as Double).toInt()))
-                }
-
-                return activeQuests
+                val list = gson.fromJson(jsonStringList, List::class.java)
+                return DataUtil.getActiveQuestsList(list, uuid)
             }
         } catch (e: SQLException) {
             e.printStackTrace()
         }
-        return emptyList()
+        return ConcurrentLinkedQueue()
     }
 
-    override fun setActiveQuests(uuid: UUID, activeQuests: List<ActiveQuest>) {
+    override fun setActiveQuests(uuid: UUID, activeQuests: ConcurrentLinkedQueue<ActiveQuest>) {
         try {
             connection.prepareStatement("INSERT OR REPLACE INTO questPlayers (uuid, activeQuests) VALUES (?, ?);").use { statement ->
                 statement.setString(1, uuid.toString())
@@ -111,9 +105,50 @@ class SQLiteStorage : DataManager {
         }
     }
 
+    override fun showActionBarProgress(uuid: UUID): Boolean {
+        try {
+            connection.prepareStatement("SELECT * FROM questPlayers WHERE uuid=?;").use { statement ->
+                statement.setString(1, uuid.toString())
+                val showActionBarProgress = statement.executeQuery().getBoolean("showActionBarProgress")
+                statement.close()
+
+                return showActionBarProgress
+            }
+        } catch (e: SQLException) {
+            e.printStackTrace()
+        }
+        return false
+    }
+
+    override fun setShowActionBarProgress(uuid: UUID, showActionBarProgress: Boolean) {
+        try {
+            connection.prepareStatement("INSERT OR REPLACE INTO questPlayers (uuid, showActionBarProgress) VALUES (?, ?);").use { statement ->
+                statement.setString(1, uuid.toString())
+                statement.setBoolean(2, showActionBarProgress)
+                statement.executeUpdate()
+                statement.close()
+            }
+        } catch (e: SQLException) {
+            e.printStackTrace()
+        }
+    }
+
     override fun loadQuestPlayer(uuid: UUID): QuestPlayer {
         Util.debugLog("Loading QuestPlayer: $uuid")
-        return QuestPlayer(uuid, this.getCompletedQuestIds(uuid), this.getActiveQuests(uuid))
+        try {
+            connection.prepareStatement("SELECT * FROM questPlayers WHERE uuid=?;").use { statement ->
+                statement.setString(1, uuid.toString())
+                val completedQuestIds: List<String> = gson.fromJson(statement.executeQuery().getString("completedQuestIds"), List::class.java) as? List<String> ?: emptyList()
+                val activeQuests: ConcurrentLinkedQueue<ActiveQuest> = DataUtil.getActiveQuestsList(gson.fromJson(statement.executeQuery().getString("activeQuests"), List::class.java), uuid)
+                val showActionBarProgress: Boolean = statement.executeQuery().getBoolean("showActionBarProgress")
+                statement.close()
+
+                return QuestPlayer(uuid, completedQuestIds, activeQuests, showActionBarProgress)
+            }
+        } catch (e: SQLException) {
+            e.printStackTrace()
+        }
+        return QuestPlayer(uuid, emptyList(), ConcurrentLinkedQueue(), false)
     }
 
     override fun saveQuestPlayer(questPlayer: QuestPlayer) {
@@ -121,7 +156,7 @@ class SQLiteStorage : DataManager {
             connection.prepareStatement("INSERT OR REPLACE INTO questPlayers (uuid, completedQuestIds, activeQuests) VALUES (?, ?, ?);").use { statement ->
                 statement.setString(1, questPlayer.uuid.toString())
                 statement.setString(2, gson.toJson(questPlayer.completedQuests))
-                statement.setString(3, gson.toJson(StorableQuest.serializeToStorableQuests(questPlayer.activeQuests)))
+                statement.setString(3, gson.toJson(StorableQuest.serializeToStorableQuests(questPlayer.activeQuestsQueue)))
                 statement.executeUpdate()
                 statement.close()
             }

@@ -5,6 +5,7 @@ import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.enums.QuestAction
 import dev.jsinco.simplequests.guis.tools.AbstractGui
 import dev.jsinco.simplequests.objects.QuestPlayer
+import org.bukkit.Material
 import org.bukkit.entity.Item
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -19,6 +20,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.event.player.PlayerFishEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerQuitEvent
+import org.bukkit.inventory.ItemStack
 
 class Events : Listener {
 
@@ -36,7 +38,7 @@ class Events : Listener {
     @EventHandler
     fun onPlayerJoin(event: PlayerJoinEvent) {
         val questPlayer: QuestPlayer = QuestManager.getQuestPlayer(event.player.uniqueId) ?: return
-        if (questPlayer.activeQuests.isNotEmpty()) {
+        if (questPlayer.activeQuestsQueue.isNotEmpty()) {
             QuestManager.cacheQuestPlayer(questPlayer)
         }
     }
@@ -61,7 +63,12 @@ class Events : Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onCraftItem(event: CraftItemEvent) {
-        QuestManager.questPlayerFromCache(event.whoClicked.uniqueId)?.updateQuests(event.recipe.result.type.name, QuestAction.CRAFT, 1) ?: return
+        // TODO: Won't count crafting if player shift clicks into inv while not holding proper material type/material type is at max
+        val resultMaterial: Material = event.recipe.result.type
+        val cursor: ItemStack = event.cursor
+        if ((cursor.type == resultMaterial && cursor.amount < cursor.maxStackSize) || cursor.isEmpty) {
+            QuestManager.questPlayerFromCache(event.whoClicked.uniqueId)?.updateQuests(resultMaterial.name, QuestAction.CRAFT, 1) ?: return
+        }
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

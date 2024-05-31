@@ -4,6 +4,7 @@ import dev.jsinco.simplequests.QuestManager;
 import dev.jsinco.simplequests.SimpleQuests;
 import dev.jsinco.simplequests.Util;
 import dev.jsinco.simplequests.enums.QuestAction;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
@@ -20,11 +21,13 @@ public class QuestPlayer {
     private final UUID uuid;
     private final List<String> completedQuests;
     private final ConcurrentLinkedQueue<ActiveQuest> activeQuests;
+    private boolean showActionBarProgress;
 
-    public QuestPlayer(UUID uuid, List<String> completedQuests, List<ActiveQuest> activeQuests) {
+    public QuestPlayer(UUID uuid, List<String> completedQuests, ConcurrentLinkedQueue<ActiveQuest> activeQuests, boolean showActionBarProgress) {
         this.uuid = uuid;
         this.completedQuests = new ArrayList<>(completedQuests);
         this.activeQuests = new ConcurrentLinkedQueue<>(activeQuests);
+        this.showActionBarProgress = showActionBarProgress;
     }
 
     @Nullable
@@ -46,14 +49,29 @@ public class QuestPlayer {
         return completedQuests;
     }
 
-    public List<ActiveQuest> getActiveQuests() {
-        return List.copyOf(activeQuests);
+    public ConcurrentLinkedQueue<ActiveQuest> getActiveQuestsQueue() {
+        return activeQuests;
+    }
+
+    public boolean isShowActionBarProgress() {
+        return showActionBarProgress;
+    }
+
+    public void setShowActionBarProgress(boolean showActionBarProgress) {
+        this.showActionBarProgress = showActionBarProgress;
     }
 
     public void updateQuests(String type, QuestAction action, int amount) {
         for (ActiveQuest activeQuest : activeQuests) {
             if (!activeQuest.getType().equals(type) || activeQuest.getQuestAction() != action) continue;
+
             activeQuest.setProgress(activeQuest.getProgress() + amount);
+
+            if (showActionBarProgress) {
+                getPlayer().sendActionBar(
+                        MiniMessage.miniMessage().deserialize("<gold>Quest Progress<gray>: " + Util.createProgressBar(activeQuest, 25, "<#f498f6>|", "<#F7FFC9>|"))
+                );
+            }
 
             if (activeQuest.getAmount() <= activeQuest.getProgress()) {
                 activeQuests.remove(activeQuest);

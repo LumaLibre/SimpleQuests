@@ -31,7 +31,7 @@ public final class QuestManager {
             public void run() {
                 for (final QuestPlayer questPlayer : questPlayersCache.values()) {
                     dataManager.saveQuestPlayer(questPlayer);
-                    if (questPlayer.getActiveQuests().isEmpty() || questPlayer.getPlayer() == null || !questPlayer.getPlayer().isOnline()) {
+                    if (questPlayer.getActiveQuestsQueue().isEmpty() || questPlayer.getPlayer() == null || !questPlayer.getPlayer().isOnline()) {
                         questPlayersCache.remove(questPlayer.getUuid());
                         Util.debugLog("Uncaching QuestPlayer: " + questPlayer.getUuid());
                     }
@@ -98,7 +98,7 @@ public final class QuestManager {
         }
 
         final QuestPlayer questPlayer = dataManager.loadQuestPlayer(uuid);
-        if (!questPlayer.getActiveQuests().isEmpty()) {
+        if (!questPlayer.getActiveQuestsQueue().isEmpty()) {
             cacheQuestPlayer(questPlayer);
         }
         return questPlayer;
