@@ -20,7 +20,7 @@ class WipePlayerCommand : SubCommand {
 
         val player = plugin.server.getOfflinePlayer(args[1])
         val questPlayer = QuestManager.getQuestPlayer(player.uniqueId)
-        questPlayer.activeQuestsQueue.clear()
+        questPlayer.activeQuests.clear()
         questPlayer.completedQuests.clear()
         questPlayer.isShowActionBarProgress = false
 

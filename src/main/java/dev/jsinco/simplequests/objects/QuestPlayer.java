@@ -49,7 +49,7 @@ public class QuestPlayer {
         return completedQuests;
     }
 
-    public ConcurrentLinkedQueue<ActiveQuest> getActiveQuestsQueue() {
+    public ConcurrentLinkedQueue<ActiveQuest> getActiveQuests() {
         return activeQuests;
     }
 

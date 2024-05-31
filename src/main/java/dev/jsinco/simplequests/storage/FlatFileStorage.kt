@@ -53,7 +53,7 @@ class FlatFileStorage : DataManager {
     }
 
     override fun saveQuestPlayer(questPlayer: QuestPlayer) {
-        if (questPlayer.activeQuestsQueue.isEmpty() && questPlayer.completedQuests.isEmpty() && savesFile.contains(questPlayer.uuid.toString())) {
+        if (questPlayer.activeQuests.isEmpty() && questPlayer.completedQuests.isEmpty() && savesFile.contains(questPlayer.uuid.toString())) {
             savesFile.remove(questPlayer.uuid.toString())
             savesFile.save()
             Util.debugLog("Removed QuestPlayer: ${questPlayer.uuid}")
@@ -61,7 +61,7 @@ class FlatFileStorage : DataManager {
         }
 
         savesFile.set("${questPlayer.uuid}.completedQuests", questPlayer.completedQuests)
-        savesFile.set("${questPlayer.uuid}.activeQuests", StorableQuest.serializeToStorableQuests(questPlayer.activeQuestsQueue))
+        savesFile.set("${questPlayer.uuid}.activeQuests", StorableQuest.serializeToStorableQuests(questPlayer.activeQuests))
         savesFile.set("${questPlayer.uuid}.showActionBarProgress", questPlayer.isShowActionBarProgress)
         savesFile.save()
         Util.debugLog("Saved QuestPlayer: ${questPlayer.uuid}")

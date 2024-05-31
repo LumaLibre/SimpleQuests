@@ -38,7 +38,7 @@ class Events : Listener {
     @EventHandler
     fun onPlayerJoin(event: PlayerJoinEvent) {
         val questPlayer: QuestPlayer = QuestManager.getQuestPlayer(event.player.uniqueId) ?: return
-        if (questPlayer.activeQuestsQueue.isNotEmpty()) {
+        if (questPlayer.activeQuests.isNotEmpty()) {
             QuestManager.cacheQuestPlayer(questPlayer)
         }
     }

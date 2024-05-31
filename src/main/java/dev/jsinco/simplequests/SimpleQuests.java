@@ -54,7 +54,7 @@ public final class SimpleQuests extends JavaPlugin {
                 // Cache players in case of reload
                 for (final Player player : getServer().getOnlinePlayers()) {
                     final QuestPlayer questPlayer = QuestManager.getQuestPlayer(player.getUniqueId());
-                    if (!questPlayer.getActiveQuestsQueue().isEmpty()) {
+                    if (!questPlayer.getActiveQuests().isEmpty()) {
                         QuestManager.cacheQuestPlayer(questPlayer);
                     }
                 }

@@ -150,7 +150,7 @@ object Util {
         meta.lore = listOf(
             "",
             "&#F7FFC9Quests Completed: &f${questPlayer.completedQuests.size}/${QuestManager.getQuests().size}",
-            "&#F7FFC9Quests In Progress: &f${questPlayer.activeQuestsQueue.size}",
+            "&#F7FFC9Quests In Progress: &f${questPlayer.activeQuests.size}",
             ""
         ).map { colorText(it) }
         item.itemMeta = meta

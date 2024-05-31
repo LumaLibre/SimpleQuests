@@ -7,6 +7,8 @@ import dev.jsinco.simplequests.objects.Quest;
 import dev.jsinco.simplequests.objects.QuestPlayer;
 import dev.jsinco.simplequests.storage.DataManager;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -25,13 +27,14 @@ public final class QuestManager {
     private static final DataManager dataManager = SimpleQuests.getDataManager();
     private static final SimpleQuests instance = SimpleQuests.getInstance();
 
-    public static BukkitRunnable asyncCacheManager() {
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull BukkitRunnable asyncCacheManager() {
         return new BukkitRunnable() {
             @Override
             public void run() {
                 for (final QuestPlayer questPlayer : questPlayersCache.values()) {
                     dataManager.saveQuestPlayer(questPlayer);
-                    if (questPlayer.getActiveQuestsQueue().isEmpty() || questPlayer.getPlayer() == null || !questPlayer.getPlayer().isOnline()) {
+                    if (questPlayer.getActiveQuests().isEmpty() || questPlayer.getPlayer() == null || !questPlayer.getPlayer().isOnline()) {
                         questPlayersCache.remove(questPlayer.getUuid());
                         Util.debugLog("Uncaching QuestPlayer: " + questPlayer.getUuid());
                     }
@@ -58,7 +61,7 @@ public final class QuestManager {
                             category,
                             id,
                             questSection.getString("name"),
-                            questSection.getString("type").toUpperCase(),
+                            questSection.getString("type"),
                             questAction,
                             questSection.getInt("amount"),
                             description,
@@ -98,7 +101,7 @@ public final class QuestManager {
         }
 
         final QuestPlayer questPlayer = dataManager.loadQuestPlayer(uuid);
-        if (!questPlayer.getActiveQuestsQueue().isEmpty()) {
+        if (!questPlayer.getActiveQuests().isEmpty()) {
             cacheQuestPlayer(questPlayer);
         }
         return questPlayer;
