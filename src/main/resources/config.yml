@@ -1,4 +1,4 @@
-storage-method: 'FlatFile' # SQLite, FlatFile
+storage-method: 'SQLite' # SQLite, FlatFile
 prefix: '&7[&6SimpleQuests&7]&r ' # &#F498F6&lQ&#DA93F8&lu&#C08EFA&le&#A68AFB&ls&#8C85FD&lt&#7280FF&ls
 debug: true
 categories:
@@ -20,6 +20,12 @@ categories:
   fishing:
     icon: 'SALMON'
     default-max-quests: 1
+  mining:
+    icon: 'IRON_INGOT'
+    default-max-quests: 1
   crafting:
     icon: 'CRAFTING_TABLE'
+    default-max-quests: 1
+  explorer:
+    icon: 'COMPASS'
     default-max-quests: 1

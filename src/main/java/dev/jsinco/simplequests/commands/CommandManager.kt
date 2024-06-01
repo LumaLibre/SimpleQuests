@@ -33,7 +33,6 @@ class CommandManager(private val plugin: SimpleQuests) : TabExecutor {
         commands["wipe"] = WipeQuestCommand()
         commands["showprogressbar"] = ShowProgressBarCommand()
         commands["wipeplayer"] = WipePlayerCommand()
-        commands["debug"] = dev.jsinco.simplequests.commands.subcommands.Debug()
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {

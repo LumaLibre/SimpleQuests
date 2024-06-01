@@ -468,7 +468,7 @@ farming: # Category
       value: 80000
   seagrass_1:
     menu-item: SEAGRASS
-    name: '&a&lHarvest 500 Seagrass'
+    name: '&#fefccf&lHarvest 500 Seagrass'
     action: BREAK
     type: SEAGRASS
     amount: 500
@@ -497,7 +497,7 @@ farming: # Category
       value: 80000
   fern_1:
     menu-item: FERN
-    name: '&a&lHarvest 500 Ferns'
+    name: '&#fefccf&lHarvest 500 Ferns'
     action: BREAK
     type: FERN
     amount: 500

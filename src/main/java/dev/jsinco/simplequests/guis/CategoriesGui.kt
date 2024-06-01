@@ -20,7 +20,7 @@ class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
 
     companion object {
         val initItems = mapOf(
-            Util.basicItem(Material.GREEN_STAINED_GLASS_PANE) to listOf(0, 8, 45, 53),
+            Util.basicItem(Material.GREEN_STAINED_GLASS_PANE) to listOf(0, 8, 53),
             Util.basicItem(Material.SHORT_GRASS) to listOf(1, 7, 46, 52),
             Util.basicItem(Material.FERN) to listOf(2, 6, 47, 51),
             Util.basicItem(Material.PINK_TULIP) to listOf(3, 5),
@@ -40,6 +40,9 @@ class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
                 inv.setItem(slot, item.key)
             }
         }
+
+        inv.setItem(45, Util.createGuiItem(Material.DRAGON_BREATH, "&#C08EFA&lShow Progress Bar&7: &#f498f6${questPlayer.isShowActionBarProgress}", listOf(), questPlayer.isShowActionBarProgress, null)
+            .also { Util.setGuiItemData(it, GuiItemType.SHOW_PROGRESS_BAR, "") })
         inv.setItem(49, Util.getPlayerStatsIcon(questPlayer))
 
         val categoryItems: MutableList<ItemStack> = mutableListOf()
@@ -95,6 +98,20 @@ class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
 
             GuiItemType.ACHIEVEMENTS_GUI_OPENER -> {
                 player.openInventory(AchievementsGui(questPlayer).inventory)
+            }
+
+            GuiItemType.SHOW_PROGRESS_BAR -> {
+                questPlayer.isShowActionBarProgress = !questPlayer.isShowActionBarProgress
+                clickedItem.let {
+                    val meta = it.itemMeta
+                    meta.setDisplayName(Util.colorText("&#C08EFA&lShow Progress Bar&7: &#f498f6${questPlayer.isShowActionBarProgress}"))
+                    if (questPlayer.isShowActionBarProgress) {
+                        meta.addEnchant(Enchantment.LUCK, 1, true)
+                    } else {
+                        meta.removeEnchant(Enchantment.LUCK)
+                    }
+                    it.itemMeta = meta
+                }
             }
 
             else -> {}

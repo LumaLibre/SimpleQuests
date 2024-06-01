@@ -6,7 +6,8 @@ enum class GuiItemType {
     CATEGORY,
     RETURN,
     ACHIEVEMENT,
-    ACHIEVEMENTS_GUI_OPENER;
+    ACHIEVEMENTS_GUI_OPENER,
+    SHOW_PROGRESS_BAR;
 
     companion object{
         fun getItemType(s: String): GuiItemType? {

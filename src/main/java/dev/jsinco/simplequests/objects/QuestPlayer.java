@@ -84,7 +84,7 @@ public class QuestPlayer {
                 completedQuests.add(activeQuest.fullIdentifier());
 
                 activeQuest.executeReward(getPlayer());
-                Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have completed the quest: &a\"" + activeQuest.getName() + "&a\"&r!"));
+                Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have completed the quest: " + activeQuest.getName() + "&r!"));
                 Util.debugLog(uuid + " completed quest: " + activeQuest.getId());
             }
         }
@@ -97,7 +97,7 @@ public class QuestPlayer {
         }
 
         if (quest.getRequiredCompletedQuest() != null && !completedQuests.contains(quest.getRequiredCompletedQuest())) {
-            Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You must complete the quest: &a\"" + quest.getRequiredCompletedQuestObject().getName() + "&a\"&r!"));
+            Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You must complete the quest: " + quest.getRequiredCompletedQuestObject().getName() + "&r!"));
             return false;
         }
 
@@ -117,7 +117,7 @@ public class QuestPlayer {
 
         activeQuests.add(activeQuest);
         QuestManager.cacheQuestPlayer(this);
-        Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have started the quest: &a\"" + quest.getName() + "&a\"&r!"));
+        Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have started the quest: " + quest.getName() + "&r!"));
         return true;
     }
 
@@ -125,7 +125,7 @@ public class QuestPlayer {
         for (ActiveQuest activeQuest : activeQuests) {
             if (activeQuest.fullIdentifier().equals(quest.fullIdentifier())) {
                 activeQuests.remove(activeQuest);
-                Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have dropped the quest: &a\"" + quest.getName() + "&a\"&r!"));
+                Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have dropped the quest: " + quest.getName() + "&r!"));
                 return true;
             }
         }

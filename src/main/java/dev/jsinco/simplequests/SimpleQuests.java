@@ -83,10 +83,13 @@ public final class SimpleQuests extends JavaPlugin {
             ((SQLiteStorage) dataManager).closeConnection();
         }
 
-        for (final Player player : getServer().getOnlinePlayers()) {
-            if (player.getOpenInventory().getTopInventory().getHolder(false) instanceof AbstractGui) {
-                player.closeInventory();
+        try {
+            for (final Player player : getServer().getOnlinePlayers()) {
+                if (player.getOpenInventory().getTopInventory().getHolder(false) instanceof AbstractGui) {
+                    player.closeInventory();
+                }
             }
+        } catch (NoClassDefFoundError ignored) {
         }
 
         if (papiManager != null) {
@@ -98,9 +101,9 @@ public final class SimpleQuests extends JavaPlugin {
         configFile = new SnakeYamlConfig("config.yml");
         questsFile = new SnakeYamlConfig("quests.yml");
 
-        if (dataManager != null && dataManager.getStorageMethod() == StorageMethod.SQLITE) {
+        /*if (dataManager != null && dataManager.getStorageMethod() == StorageMethod.SQLITE) {
             ((SQLiteStorage) dataManager).closeConnection();
-        }
+        }*/
 
         switch (StorageMethod.valueOf(configFile.getString("storage-method").toUpperCase())) {
             case FLATFILE -> dataManager = new FlatFileStorage();
