@@ -57,6 +57,7 @@ class CommandManager(private val plugin: SimpleQuests) : TabExecutor {
     override fun onTabComplete(sender: CommandSender, command: Command, label: String, args: Array<out String>): List<String>? {
         if (args.size == 1) return commands.keys.toList()
 
+
         val subCommand = commands[args[0]] ?: return null
 
         if (subCommand.playerOnly() && sender !is Player) return null

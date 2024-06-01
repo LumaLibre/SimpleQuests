@@ -36,10 +36,12 @@ class AchievementsGui(val questPlayer: QuestPlayer) : AbstractGui() {
             val meta = item.itemMeta
             meta.addItemFlags(ItemFlag.HIDE_ITEM_SPECIFICS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS)
             meta.setDisplayName(Util.colorText("&f${achievement.name}"))
-            meta.lore = achievement.description.map { Util.colorText("&f$it") }.toMutableList().also { it.add(0, "") }
 
-            if (questPlayer.hasAchievement(achievement)) {
-                meta.addEnchant(Enchantment.LUCK, 1, true)
+            meta.addEnchant(Enchantment.LUCK, 1, true)
+            meta.lore = if (questPlayer.hasAchievement(achievement)) {
+                listOf("", Util.colorText("&dYou have completed this achievement!"))
+            } else {
+                achievement.description.map { Util.colorText("&f$it") }.toMutableList().also { it.add(0, "") }
             }
 
             item.itemMeta = meta
@@ -50,7 +52,7 @@ class AchievementsGui(val questPlayer: QuestPlayer) : AbstractGui() {
         paginatedGui = PaginatedGui(
             Util.colorText(
                 "&#F670F1&lA&#E975F4&lc&#DB7BF6&lh&#CE80F9&li&#C086FB&le&#B38BFE&lv&#A88FFF&le&#9F91FF&lm&#9793FF&le&#8E96FF&ln&#8698FF&lt&#7D9AFF&ls"
-            ), inv, items, Pair(19, 35), listOf(27, 28), null)
+            ), inv, items, Pair(20, 34), listOf(25, 26, 27, 28), null)
     }
 
     override fun onInventoryClick(event: InventoryClickEvent) {
@@ -76,6 +78,7 @@ class AchievementsGui(val questPlayer: QuestPlayer) : AbstractGui() {
                         player.openInventory(paginatedGui.getPage(paginatedGui.indexOf(inv) - 1))
                     }
                     "next" -> {
+                        if (paginatedGui.indexOf(inv) == paginatedGui.pages.size - 1) return
                         player.openInventory(paginatedGui.getPage(paginatedGui.indexOf(inv) + 1))
                     }
                 }

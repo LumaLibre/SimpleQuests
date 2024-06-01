@@ -101,9 +101,9 @@ object Util {
         val meta = item.itemMeta!!
         meta.setDisplayName(colorText(name))
         meta.lore = lore.map { colorText(it) }
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS)
         if (glow) {
             meta.addEnchant(Enchantment.DURABILITY, 1, true)
-            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS)
         }
         if (customModelData != null) {
             meta.setCustomModelData(customModelData)
@@ -161,7 +161,6 @@ object Util {
             ""
         ).map { colorText(it) }
         item.itemMeta = meta
-        setGuiItemData(item, GuiItemType.ACHIEVEMENTS_GUI_OPENER, "")
         return item
     }
 

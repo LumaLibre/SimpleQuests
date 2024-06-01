@@ -8,15 +8,16 @@ import dev.jsinco.simplequests.objects.Achievement;
 import org.bukkit.Material;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class AchievementsManager {
 
-    private static final Set<Achievement> achievements = new HashSet<>();
+    private static final List<Achievement> achievements = new ArrayList<>();
 
 
     public static void loadAchievements() { // do async
+        achievements.clear();
         final SnakeYamlConfig file = new SnakeYamlConfig("achievements.yml");
 
         for (final String key : file.getKeys()) {
@@ -36,7 +37,7 @@ public final class AchievementsManager {
         Util.debugLog("Loaded " + achievements.size() + " achievements.");
     }
 
-    public static Set<Achievement> getAchievements() {
+    public static List<Achievement> getAchievements() {
         return achievements;
     }
 

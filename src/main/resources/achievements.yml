@@ -1,10 +1,112 @@
-advancement_1:
-  name: 'Complete 25 quests'
+complete_25_quests:
+  name: '&#CFFED0&lQuest Completionist'
   type: NUMERICAL_QUESTS_COMPLETED
   value: 25
   reward:
     type: COMMAND
-    value: 'eco give %player% 1000'
-  menu-item: 'DIAMOND'
+    value: 'lumaitems relic %player% core lunar 3'
+  menu-item: DIAMOND
   description:
-    - 'Complete 25 quests to earn $1000'
+    - '&#F7FFC9Complete &625 &#F7FFC9quests to unlock'
+    - '&#F7FFC9this achievement and receive &a3'
+    - '&#6255FB&lLunar &#F7FFC9Cores!'
+complete_100_quests:
+  name: '&#CFFED0&lQuest Masterer'
+  type: NUMERICAL_QUESTS_COMPLETED
+  value: 100
+  reward:
+    type: COMMAND
+    value: 'lumaitems relic %player% core astral 2'
+  menu-item: MAP
+  description:
+    - '&#F7FFC9Complete &6100 &#F7FFC9quests to unlock'
+    - '&#F7FFC9this achievement and receive &a2'
+    - '&#AC87FB&lAstral &#F7FFC9Cores!'
+complete_farming_category:
+  name: '&#CFFED0&lRancher'
+  type: CATEGORY_COMPLETED
+  value: farming
+  reward:
+    type: POINTS
+    value: 70
+  menu-item: WHEAT
+  description:
+    - '&#F7FFC9Complete &6all farming quests &#F7FFC9to unlock'
+    - '&#F7FFC9this achievement and receive &a50 &#F7FFC9Lumins!'
+complete_building_category:
+  name: '&#CFFED0&lConstructionist'
+  type: CATEGORY_COMPLETED
+  value: building
+  reward:
+    type: POINTS
+    value: 50
+  menu-item: BRICKS
+  description:
+    - '&#F7FFC9Complete &6all building quests &#F7FFC9to unlock'
+    - '&#F7FFC9this achievement and receive &a50 &#F7FFC9Lumins!'
+complete_florist_category:
+  name: '&#CFFED0&lFlower Power'
+  type: CATEGORY_COMPLETED
+  value: florist
+  reward:
+    type: POINTS
+    value: 45
+  menu-item: ROSE_BUSH
+  description:
+    - '&#F7FFC9Complete &6all florist quests &#F7FFC9to unlock'
+    - '&#F7FFC9this achievement and receive &a45 &#F7FFC9Lumins!'
+complete_hunter_category:
+  name: '&#CFFED0&lHuntsman'
+  type: CATEGORY_COMPLETED
+  value: hunter
+  reward:
+    type: POINTS
+    value: 50
+  menu-item: CROSSBOW
+  description:
+    - '&#F7FFC9Complete &6all hunter quests &#F7FFC9to unlock'
+    - '&#F7FFC9this achievement and receive &a50 &#F7FFC9Lumins!'
+complete_fishing_category:
+  name: '&#CFFED0&lSeaside Specialist'
+  type: CATEGORY_COMPLETED
+  value: fishing
+  reward:
+    type: POINTS
+    value: 50
+  menu-item: FISHING_ROD
+  description:
+    - '&#F7FFC9Complete &6all fishing quests &#F7FFC9to unlock'
+    - '&#F7FFC9this achievement and receive &a50 &#F7FFC9Lumins!'
+complete_mining_category:
+  name: '&#CFFED0&lDredger'
+  type: CATEGORY_COMPLETED
+  value: mining
+  reward:
+    type: POINTS
+    value: 50
+  menu-item: GOLDEN_PICKAXE
+  description:
+    - '&#F7FFC9Complete &6all mining quests &#F7FFC9to unlock'
+    - '&#F7FFC9this achievement and receive &a50 &#F7FFC9Lumins!'
+complete_crafting_category:
+  name: '&#CFFED0&lCrafting Completionist'
+  type: CATEGORY_COMPLETED
+  value: crafting
+  reward:
+    type: POINTS
+    value: 40
+  menu-item: SMITHING_TABLE
+  description:
+    - '&#F7FFC9Complete &6all crafting quests &#F7FFC9to unlock'
+    - '&#F7FFC9this achievement and receive &a40 &#F7FFC9Lumins!'
+complete_explorer_category:
+  name: '&#CFFED0&lVoyager'
+  type: CATEGORY_COMPLETED
+  value: explorer
+  reward:
+    type: POINTS
+    value: 70
+  menu-item: AXOLOTL_BUCKET
+  description:
+    - '&#F7FFC9Complete &6all explorer quests &#F7FFC9to unlock'
+    - '&#F7FFC9this achievement and receive &a70 &#F7FFC9Lumins!'

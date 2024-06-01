@@ -41,8 +41,11 @@ class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
             }
         }
 
-        inv.setItem(45, Util.createGuiItem(Material.DRAGON_BREATH, "&#C08EFA&lShow Progress Bar&7: &#f498f6${questPlayer.isShowActionBarProgress}", listOf(), questPlayer.isShowActionBarProgress, null)
+        inv.setItem(45, Util.createGuiItem(Material.DRAGON_BREATH, "&#C08EFA&lShow Progress Bar&7: &#f498f6${questPlayer.isShowActionBarProgress}", listOf("&7Click to toggle the quest", "&7progress bar"), questPlayer.isShowActionBarProgress, null)
             .also { Util.setGuiItemData(it, GuiItemType.SHOW_PROGRESS_BAR, "") })
+        inv.setItem(53, Util.createGuiItem(Material.QUARTZ, "&#C08EFA&lAchievements", listOf("&7Click to view achievements"), true, null)
+            .also { Util.setGuiItemData(it, GuiItemType.ACHIEVEMENTS_GUI_OPENER, "") })
+
         inv.setItem(49, Util.getPlayerStatsIcon(questPlayer))
 
         val categoryItems: MutableList<ItemStack> = mutableListOf()
@@ -97,8 +100,8 @@ class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
             }
 
             GuiItemType.ACHIEVEMENTS_GUI_OPENER -> {
-                player.sendMessage("${Util.prefix}Quest Achievements are not viewable at this time.")
-                //player.openInventory(AchievementsGui(questPlayer).inventory)
+                //player.sendMessage("${Util.prefix}Quest Achievements are not viewable at this time.")
+                player.openInventory(AchievementsGui(questPlayer).inventory)
             }
 
             GuiItemType.SHOW_PROGRESS_BAR -> {
