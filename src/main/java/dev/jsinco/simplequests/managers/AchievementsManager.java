@@ -8,12 +8,12 @@ import dev.jsinco.simplequests.objects.Achievement;
 import org.bukkit.Material;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public final class AchievementsManager {
 
-    private static final List<Achievement> achievements = new ArrayList<>();
+    private static final Set<Achievement> achievements = new HashSet<>();
 
 
     public static void loadAchievements() { // do async
@@ -36,7 +36,7 @@ public final class AchievementsManager {
         Util.debugLog("Loaded " + achievements.size() + " achievements.");
     }
 
-    public static List<Achievement> getAchievements() {
+    public static Set<Achievement> getAchievements() {
         return achievements;
     }
 

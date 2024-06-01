@@ -7,6 +7,7 @@ import dev.jsinco.simplequests.managers.Util;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -144,13 +145,34 @@ public class QuestPlayer {
     }
 
     public int getMaxQuests(String category) {
-        final String permStr = "simplequests.maxquests." + category + ".";
+        //final String permStr = "simplequests.maxquests." + category + ".";
+        final List<String> list = new ArrayList<>();
 
-        return Objects.requireNonNull(getPlayer()).getEffectivePermissions().stream()
-                .filter(permission -> permission.getPermission().startsWith(permStr))
-                .map(permission -> Integer.parseInt(permission.getPermission().replace(permStr, "")))
-                .max(Integer::compareTo)
-                .orElse(SimpleQuests.getConfigFile().getInt("categories." + category + ".default-max-quests"));
+        for (String perm : getPlayer().getEffectivePermissions().stream().map(PermissionAttachmentInfo::getPermission).toList()) {
+            if (perm.startsWith("simplequests.maxquests.")) {
+                list.add(perm.replace("simplequests.maxquests.", ""));
+            }
+        }
+
+        int finalAmount = -1;
+
+        for (String reducedPerm : list) {
+            final String[] split = reducedPerm.split("\\.");
+            if (split.length == 2) {
+                if (split[0].equals(category) || split[0].equals("all")) {
+                    final int amount = Integer.parseInt(split[1]);
+                    if (amount > finalAmount) finalAmount = amount;
+
+                }
+            }
+        }
+
+        return finalAmount == -1 ? SimpleQuests.getConfigFile().getInt("categories." + category + ".default-max-quests") : finalAmount;
+        // return permissions.stream()
+        //                .filter(permission -> permission.getPermission().startsWith(permStr))
+        //                .map(permission -> Integer.parseInt(permission.getPermission().replace(permStr, "")))
+        //                .max(Integer::compareTo)
+        //                .orElse(SimpleQuests.getConfigFile().getInt("categories." + category + ".default-max-quests"));
     }
 
     @Nullable

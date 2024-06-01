@@ -4,14 +4,13 @@ import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.commands.SubCommand
 import dev.jsinco.simplequests.managers.QuestManager
 import dev.jsinco.simplequests.managers.Util
-import dev.jsinco.simplequests.objects.ActiveQuest
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 
 class QuestProgressionCommand : SubCommand {
     override fun execute(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>) {
         if (args.size < 2) {
-            sender.sendMessage("Usage: /simplequests progression <player>")
+            sender.sendMessage("${Util.prefix}Usage: /simplequests progression <player>")
             return
         }
 
@@ -20,7 +19,7 @@ class QuestProgressionCommand : SubCommand {
 
         val strBuilder = StringBuilder()
         for (activeQuest in questPlayer.activeQuests) {
-            strBuilder.append(Util.colorText("&6${activeQuest.id}: ${createProgressBar(activeQuest)}\n"))
+            strBuilder.append(Util.colorText("&6${activeQuest.id}: ${Util.createProgressBar(activeQuest)}\n"))
         }
         sender.sendMessage(Util.colorText("Completed Quests:\n ${questPlayer.completedQuests.joinToString("&f, ") { "&a$it" }}"))
         sender.sendMessage(Util.colorText("&rAchievements:\n ${questPlayer.achievementIds.joinToString("&f, ") { "&a$it" }}"))
@@ -39,10 +38,4 @@ class QuestProgressionCommand : SubCommand {
         return false
     }
 
-    fun createProgressBar(quest: ActiveQuest, totalBars: Int = 25): String {
-        val completedBars = (quest.progress.toDouble() / quest.amount * totalBars).toInt()
-        val completed = "&a|".repeat(completedBars)
-        val remaining = "&7|".repeat(totalBars - completedBars)
-        return completed + remaining
-    }
 }

@@ -1,6 +1,7 @@
 package dev.jsinco.simplequests.commands
 
 import dev.jsinco.simplequests.SimpleQuests
+import dev.jsinco.simplequests.commands.subcommands.AchievementsGuiCommand
 import dev.jsinco.simplequests.commands.subcommands.ClearQuestCommand
 import dev.jsinco.simplequests.commands.subcommands.DropQuestCommand
 import dev.jsinco.simplequests.commands.subcommands.PluginInfoCommand
@@ -33,6 +34,7 @@ class CommandManager(private val plugin: SimpleQuests) : TabExecutor {
         commands["wipe"] = WipeQuestCommand()
         commands["showprogressbar"] = ShowProgressBarCommand()
         commands["wipeplayer"] = WipePlayerCommand()
+        commands["achievementsgui"] = AchievementsGuiCommand()
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {

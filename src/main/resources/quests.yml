@@ -1375,7 +1375,7 @@ hunter: # Category
     name: '&#fefccf&lKill 30 Tadpole'
     action: KILL
     type: TADPOLE
-    amount: 10
+    amount: 30
     menu-item: FROGSPAWN
     reward:
       type: MONEY

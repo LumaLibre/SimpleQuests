@@ -20,7 +20,7 @@ class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
 
     companion object {
         val initItems = mapOf(
-            Util.basicItem(Material.GREEN_STAINED_GLASS_PANE) to listOf(0, 8, 53),
+            Util.basicItem(Material.GREEN_STAINED_GLASS_PANE) to listOf(0, 8, 45, 53),
             Util.basicItem(Material.SHORT_GRASS) to listOf(1, 7, 46, 52),
             Util.basicItem(Material.FERN) to listOf(2, 6, 47, 51),
             Util.basicItem(Material.PINK_TULIP) to listOf(3, 5),
@@ -97,7 +97,8 @@ class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
             }
 
             GuiItemType.ACHIEVEMENTS_GUI_OPENER -> {
-                player.openInventory(AchievementsGui(questPlayer).inventory)
+                player.sendMessage("${Util.prefix}Quest Achievements are not viewable at this time.")
+                //player.openInventory(AchievementsGui(questPlayer).inventory)
             }
 
             GuiItemType.SHOW_PROGRESS_BAR -> {

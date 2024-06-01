@@ -13,7 +13,7 @@ class StartQuestCommand : SubCommand {
 
     override fun execute(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>) {
         if (args.size < 2) {
-            sender.sendMessage("Usage: /simplequests start <player> <category:questId>")
+            sender.sendMessage("${Util.prefix}Usage: /simplequests start <player> <category:questId>")
             return
         }
 

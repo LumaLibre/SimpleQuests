@@ -12,7 +12,7 @@ import org.bukkit.command.CommandSender
 class DropQuestCommand : SubCommand {
     override fun execute(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>) {
     if (args.size < 2) {
-        sender.sendMessage("Usage: /simplequests drop <player> <category:questId>")
+        sender.sendMessage("${Util.prefix}Usage: /simplequests drop <player> <category:questId>")
         return
     }
 

@@ -18,3 +18,9 @@ permissions:
   simplequests.command:
     description: Command permission for SimpleQuests
     default: op
+  simplequests.maxquests.<category>.<amount>:
+    description: Maximum quests permission for SimpleQuests
+    default: false
+  simplequests.quest.all.amount:
+    description: Amount of all quests permission for SimpleQuests
+    default: false
