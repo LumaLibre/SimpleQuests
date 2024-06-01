@@ -302,7 +302,7 @@ farming: # Category
       type: MONEY
       value: 8000
   mushrooms_2:
-    menu-item:
+    menu-item: RED_MUSHROOM
     name: '&#f9e4bc&lHarvest 3,000 Mushrooms'
     action: BREAK
     type: RED_MUSHROOM
