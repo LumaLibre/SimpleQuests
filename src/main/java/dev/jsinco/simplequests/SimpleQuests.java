@@ -7,6 +7,8 @@ import dev.jsinco.simplequests.enums.StorageMethod;
 import dev.jsinco.simplequests.guis.tools.AbstractGui;
 import dev.jsinco.simplequests.hooks.papi.PapiManager;
 import dev.jsinco.simplequests.listeners.Events;
+import dev.jsinco.simplequests.managers.AchievementsManager;
+import dev.jsinco.simplequests.managers.QuestManager;
 import dev.jsinco.simplequests.objects.QuestPlayer;
 import dev.jsinco.simplequests.storage.DataManager;
 import dev.jsinco.simplequests.storage.FlatFileStorage;
@@ -16,7 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SimpleQuests extends JavaPlugin {
 
-    // TODO:
+    // TODO: - Idea: Quest achievements
     // - Max quests per category + permission node to adjust
     // - Configurability for categories to make my life easier
     // - Debug log -> config.yml
@@ -59,6 +61,7 @@ public final class SimpleQuests extends JavaPlugin {
                     }
                 }
             });
+            AchievementsManager.loadAchievements();
         });
 
         getServer().getPluginManager().registerEvents(new Events(), this);

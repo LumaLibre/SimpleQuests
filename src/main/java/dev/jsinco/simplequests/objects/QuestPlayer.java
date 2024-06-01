@@ -1,9 +1,9 @@
 package dev.jsinco.simplequests.objects;
 
-import dev.jsinco.simplequests.QuestManager;
 import dev.jsinco.simplequests.SimpleQuests;
-import dev.jsinco.simplequests.Util;
 import dev.jsinco.simplequests.enums.QuestAction;
+import dev.jsinco.simplequests.managers.QuestManager;
+import dev.jsinco.simplequests.managers.Util;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -20,12 +20,14 @@ public class QuestPlayer {
     @Nullable private Player player = null;
     private final UUID uuid;
     private final List<String> completedQuests;
+    private final List<String> achievementIds;
     private final ConcurrentLinkedQueue<ActiveQuest> activeQuests;
     private boolean showActionBarProgress;
 
-    public QuestPlayer(UUID uuid, List<String> completedQuests, ConcurrentLinkedQueue<ActiveQuest> activeQuests, boolean showActionBarProgress) {
+    public QuestPlayer(UUID uuid, List<String> completedQuests, List<String> achievementIds, ConcurrentLinkedQueue<ActiveQuest> activeQuests, boolean showActionBarProgress) {
         this.uuid = uuid;
         this.completedQuests = new ArrayList<>(completedQuests);
+        this.achievementIds = new ArrayList<>(achievementIds);
         this.activeQuests = new ConcurrentLinkedQueue<>(activeQuests);
         this.showActionBarProgress = showActionBarProgress;
     }
@@ -49,6 +51,10 @@ public class QuestPlayer {
         return completedQuests;
     }
 
+    public List<String> getAchievementIds() {
+        return achievementIds;
+    }
+
     public ConcurrentLinkedQueue<ActiveQuest> getActiveQuests() {
         return activeQuests;
     }
@@ -69,7 +75,7 @@ public class QuestPlayer {
 
             if (showActionBarProgress) {
                 getPlayer().sendActionBar(
-                        MiniMessage.miniMessage().deserialize("<gold>Quest Progress<gray>: " + Util.createProgressBar(activeQuest, 25, "<#f498f6>|", "<#F7FFC9>|"))
+                        MiniMessage.miniMessage().deserialize("<gold>Quest Progress<gray>: " + Util.createProgressBar(activeQuest, 25, "<#f498f6>|", "<#F7FFC9>|") + " <gray>(" + String.format("%.1f",Util.fractionToDecimal(activeQuest.getProgress(), activeQuest.getAmount())) +"%)")
                 );
             }
 
@@ -155,6 +161,51 @@ public class QuestPlayer {
             }
         }
         return null;
+    }
+
+    public boolean addAchievement(Achievement achievement) {
+        if (achievementIds.contains(achievement.getId())) {
+            getPlayer().sendMessage(Util.getPrefix() + "You have already unlocked this achievement!");
+            return false;
+        }
+
+        switch (achievement.getAchievementType()) {
+            case NUMERICAL_QUESTS_COMPLETED -> {
+                if (completedQuests.size() < (int) achievement.getValue()) {
+                    getPlayer().sendMessage(Util.getPrefix() + Util.colorText("You have not completed enough quests to unlock this achievement! &7(") + completedQuests.size() + "/" + achievement.getValue() + ")");
+                    return false;
+                }
+            }
+            case QUESTS_COMPLETED -> {
+                final List<String> questsNeededToBeCompleted = (List<String>) achievement.getValue();
+                for (String quest : questsNeededToBeCompleted) {
+                    if (!completedQuests.contains(quest)) {
+                        getPlayer().sendMessage(Util.getPrefix() + "You have not completed all the required quests to unlock this achievement!");
+                        return false;
+                    }
+                }
+            }
+            case CATEGORY_COMPLETED -> {
+                final String category = (String) achievement.getValue();
+                if (completedQuests.stream().filter(quest -> quest.startsWith(category)).count() < Objects.requireNonNull(QuestManager.getQuests(category)).size()) {
+                    getPlayer().sendMessage(Util.getPrefix() + "You have not completed all the quests in the required category to unlock this achievement!");
+                    return false;
+                }
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + achievement.getAchievementType());
+        }
+
+        getPlayer().sendMessage(Util.getPrefix() + "You have unlocked the achievement: &a" + achievement.getName() + "&r!");
+        achievementIds.add(achievement.getId());
+        achievement.executeReward(getPlayer());
+        return true;
+    }
+
+    public boolean hasAchievement(String id) {
+        return achievementIds.contains(id);
+    }
+    public boolean hasAchievement(Achievement achievement) {
+        return achievementIds.contains(achievement.getId());
     }
 
     public String getCategoryCompletion(String category) {

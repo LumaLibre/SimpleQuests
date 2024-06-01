@@ -1,0 +1,10 @@
+advancement_1:
+  name: 'Complete 25 quests'
+  type: NUMERICAL_QUESTS_COMPLETED
+  value: 25
+  reward:
+    type: COMMAND
+    value: 'eco give %player% 1000'
+  menu-item: 'DIAMOND'
+  description:
+    - 'Complete 25 quests to earn $1000'

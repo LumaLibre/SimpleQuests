@@ -1,7 +1,7 @@
 package dev.jsinco.simplequests.hooks.papi
 
-import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.SimpleQuests
+import dev.jsinco.simplequests.managers.QuestManager
 import org.bukkit.OfflinePlayer
 
 class ActiveQuestsPlaceholder : Placeholder {

@@ -1,9 +1,9 @@
 package dev.jsinco.simplequests.commands.subcommands
 
-import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.SimpleQuests
-import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.commands.SubCommand
+import dev.jsinco.simplequests.managers.QuestManager
+import dev.jsinco.simplequests.managers.Util
 import dev.jsinco.simplequests.objects.Quest
 import dev.jsinco.simplequests.objects.QuestPlayer
 import org.bukkit.Bukkit

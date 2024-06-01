@@ -4,7 +4,9 @@ enum class GuiItemType {
     PAGE_SWITCHER,
     QUEST,
     CATEGORY,
-    RETURN;
+    RETURN,
+    ACHIEVEMENT,
+    ACHIEVEMENTS_GUI_OPENER;
 
     companion object{
         fun getItemType(s: String): GuiItemType? {

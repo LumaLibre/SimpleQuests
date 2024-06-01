@@ -1,12 +1,13 @@
 package dev.jsinco.simplequests.guis
 
-import dev.jsinco.simplequests.QuestManager
-import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.enums.GuiItemType
 import dev.jsinco.simplequests.guis.tools.AbstractGui
 import dev.jsinco.simplequests.guis.tools.GuiCreator
+import dev.jsinco.simplequests.managers.QuestManager
+import dev.jsinco.simplequests.managers.Util
 import dev.jsinco.simplequests.objects.Quest
 import dev.jsinco.simplequests.objects.QuestPlayer
+import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Material
@@ -53,7 +54,7 @@ class QuestsGui(val questPlayer: QuestPlayer, val category: String) : AbstractGu
         }
 
 
-        val inv = Bukkit.createInventory(this, 45, Util.colorText("&#C08EFA&l${Util.format(category)} Quests"))
+        val inv = Bukkit.createInventory(this, 45, MiniMessage.miniMessage().deserialize("<bold><gradient:#F670F1:#AC8EFF:#7D9AFF>${Util.format(category)} Quests"))
         for (item in initItems) {
             for (slot in item.value) {
                 inv.setItem(slot, item.key)

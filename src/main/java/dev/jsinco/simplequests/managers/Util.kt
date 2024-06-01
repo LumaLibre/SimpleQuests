@@ -1,20 +1,27 @@
-package dev.jsinco.simplequests
+package dev.jsinco.simplequests.managers
 
+import com.google.gson.internal.LinkedTreeMap
+import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.enums.GuiItemType
 import dev.jsinco.simplequests.enums.RewardType
 import dev.jsinco.simplequests.objects.ActiveQuest
 import dev.jsinco.simplequests.objects.Quest
 import dev.jsinco.simplequests.objects.QuestPlayer
+import dev.jsinco.simplequests.objects.StorableQuest
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.enchantments.Enchantment
+import org.bukkit.entity.EntityType
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
 import org.bukkit.inventory.meta.SkullMeta
 import org.bukkit.persistence.PersistentDataType
+import java.util.UUID
+import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.logging.Level
 
 object Util {
 
@@ -154,6 +161,7 @@ object Util {
             ""
         ).map { colorText(it) }
         item.itemMeta = meta
+        setGuiItemData(item, GuiItemType.ACHIEVEMENTS_GUI_OPENER, "")
         return item
     }
 
@@ -176,6 +184,33 @@ object Util {
             return 0.0
         }
         return (x.toDouble() / y.toDouble()) * 100
+    }
+
+    fun getActiveQuestsList(list: List<*>, uuid: UUID): ConcurrentLinkedQueue<ActiveQuest> {
+        val activeQuests: ConcurrentLinkedQueue<ActiveQuest> = ConcurrentLinkedQueue()
+        for (obj: Any? in list) {
+            when (obj) {
+                is StorableQuest -> activeQuests.add(ActiveQuest(obj))
+                is LinkedTreeMap<*, *> -> activeQuests.add(ActiveQuest(obj["category"] as String, obj["id"] as String, (obj["progress"] as Double).toInt()))
+                else -> SimpleQuests.getInstance().logger.log(Level.SEVERE, "Unknown object in activeQuests list for uuid: $uuid value was: $obj")
+            }
+        }
+        return activeQuests
+    }
+
+    @JvmStatic
+    fun checkIfValidQuestType(s: String?): Boolean {
+        if (s == null) return false
+        var bool = Material.getMaterial(s) != null
+        if (!bool) {
+            bool = try {
+                EntityType.valueOf(s)
+                true
+            } catch (e: IllegalArgumentException) {
+                false
+            }
+        }
+        return bool
     }
 
 }

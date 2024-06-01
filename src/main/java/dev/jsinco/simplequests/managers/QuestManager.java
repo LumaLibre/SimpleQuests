@@ -1,7 +1,8 @@
-package dev.jsinco.simplequests;
+package dev.jsinco.simplequests.managers;
 
 import dev.jsinco.abstractjavafilelib.ConfigurationSection;
 import dev.jsinco.abstractjavafilelib.schemas.SnakeYamlConfig;
+import dev.jsinco.simplequests.SimpleQuests;
 import dev.jsinco.simplequests.enums.QuestAction;
 import dev.jsinco.simplequests.objects.Quest;
 import dev.jsinco.simplequests.objects.QuestPlayer;
@@ -56,12 +57,16 @@ public final class QuestManager {
                     final ConfigurationSection questSection = categorySection.getConfigurationSection(id);
                     final QuestAction questAction = QuestAction.valueOf(questSection.getString("action"));
                     final List<String> description = questSection.get("description") != null ? (List<String>) questSection.get("description") : null;
+                    final String type = questSection.getString("type");
 
+                    if (!Util.checkIfValidQuestType(type)) {
+                        instance.getLogger().warning("Quest: " + id + " has an invalid type: " + type);
+                    }
                     final Quest quest = new Quest(
                             category,
                             id,
                             questSection.getString("name"),
-                            questSection.getString("type"),
+                            type,
                             questAction,
                             questSection.getInt("amount"),
                             description,

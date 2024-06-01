@@ -1,9 +1,9 @@
 package dev.jsinco.simplequests.commands.subcommands
 
-import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.SimpleQuests
-import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.commands.SubCommand
+import dev.jsinco.simplequests.managers.QuestManager
+import dev.jsinco.simplequests.managers.Util
 import dev.jsinco.simplequests.objects.ActiveQuest
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
@@ -23,6 +23,7 @@ class QuestProgressionCommand : SubCommand {
             strBuilder.append(Util.colorText("&6${activeQuest.id}: ${createProgressBar(activeQuest)}\n"))
         }
         sender.sendMessage(Util.colorText("Completed Quests:\n ${questPlayer.completedQuests.joinToString("&f, ") { "&a$it" }}"))
+        sender.sendMessage(Util.colorText("&rAchievements:\n ${questPlayer.achievementIds.joinToString("&f, ") { "&a$it" }}"))
         sender.sendMessage(Util.colorText("&rActive Quests:\n $strBuilder"))
     }
 

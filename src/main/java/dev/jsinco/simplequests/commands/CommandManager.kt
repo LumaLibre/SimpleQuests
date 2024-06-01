@@ -1,6 +1,5 @@
 package dev.jsinco.simplequests.commands
 
-import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.commands.subcommands.ClearQuestCommand
 import dev.jsinco.simplequests.commands.subcommands.DropQuestCommand
@@ -13,6 +12,7 @@ import dev.jsinco.simplequests.commands.subcommands.StartQuestCommand
 import dev.jsinco.simplequests.commands.subcommands.WipePlayerCommand
 import dev.jsinco.simplequests.commands.subcommands.WipeQuestCommand
 import dev.jsinco.simplequests.guis.CategoriesGui
+import dev.jsinco.simplequests.managers.QuestManager
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
@@ -33,6 +33,7 @@ class CommandManager(private val plugin: SimpleQuests) : TabExecutor {
         commands["wipe"] = WipeQuestCommand()
         commands["showprogressbar"] = ShowProgressBarCommand()
         commands["wipeplayer"] = WipePlayerCommand()
+        commands["debug"] = dev.jsinco.simplequests.commands.subcommands.Debug()
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {

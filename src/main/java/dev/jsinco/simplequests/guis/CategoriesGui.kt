@@ -2,10 +2,10 @@ package dev.jsinco.simplequests.guis
 
 import dev.jsinco.abstractjavafilelib.ConfigurationSection
 import dev.jsinco.simplequests.SimpleQuests
-import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.enums.GuiItemType
 import dev.jsinco.simplequests.guis.tools.AbstractGui
 import dev.jsinco.simplequests.guis.tools.PaginatedGui
+import dev.jsinco.simplequests.managers.Util
 import dev.jsinco.simplequests.objects.QuestPlayer
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -59,7 +59,8 @@ class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
             categoryItems.add(itemStack)
         }
 
-        paginatedGui = PaginatedGui(Util.colorText(
+        paginatedGui = PaginatedGui(
+            Util.colorText(
             "&#F670F1&lQ&#EB74F3&lu&#E179F5&le&#D67DF7&ls&#CC81F9&lt &#C185FB&lC&#B78AFD&la&#AC8EFF&lt&#A590FF&le&#9F91FF&lg&#9893FF&lo&#9195FF&lr&#8A97FF&li&#8498FF&le&#7D9AFF&ls"
         ), inv, categoryItems, Pair(20, 34), listOf(25, 26, 27, 28), null)
     }
@@ -90,6 +91,10 @@ class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
                         player.openInventory(paginatedGui.getPage(paginatedGui.indexOf(inv) + 1))
                     }
                 }
+            }
+
+            GuiItemType.ACHIEVEMENTS_GUI_OPENER -> {
+                player.openInventory(AchievementsGui(questPlayer).inventory)
             }
 
             else -> {}

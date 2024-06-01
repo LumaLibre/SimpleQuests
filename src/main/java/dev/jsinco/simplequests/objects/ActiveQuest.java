@@ -1,8 +1,8 @@
 package dev.jsinco.simplequests.objects;
 
-import dev.jsinco.simplequests.QuestManager;
 import dev.jsinco.simplequests.enums.QuestAction;
 import dev.jsinco.simplequests.enums.RewardType;
+import dev.jsinco.simplequests.managers.QuestManager;
 import org.bukkit.Material;
 import org.jetbrains.annotations.Nullable;
 

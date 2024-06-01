@@ -2,8 +2,8 @@ package dev.jsinco.simplequests.storage
 
 import com.google.gson.Gson
 import dev.jsinco.simplequests.SimpleQuests
-import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.enums.StorageMethod
+import dev.jsinco.simplequests.managers.Util
 import dev.jsinco.simplequests.objects.ActiveQuest
 import dev.jsinco.simplequests.objects.QuestPlayer
 import dev.jsinco.simplequests.objects.StorableQuest
@@ -39,18 +39,18 @@ class SQLiteStorage : DataManager {
         }
 
         try {
-            connection.prepareStatement("CREATE TABLE IF NOT EXISTS questPlayers (uuid VARCHAR(36) PRIMARY KEY, completedQuestIds TEXT, activeQuests TEXT, showActionBarProgress BOOLEAN);")
+            connection.prepareStatement("CREATE TABLE IF NOT EXISTS questPlayers (uuid VARCHAR(36) PRIMARY KEY, completedQuests TEXT, achievementIds TEXT, activeQuests TEXT, showActionBarProgress BOOLEAN);")
                 .use { statement -> statement.executeUpdate(); statement.close() }
         } catch (e: SQLException) {
             e.printStackTrace()
         }
     }
 
-    override fun getCompletedQuestIds(uuid: UUID): List<String> {
+    override fun getCompletedQuests(uuid: UUID): List<String> {
         try {
             connection.prepareStatement("SELECT * FROM questPlayers WHERE uuid=?;").use { statement ->
                 statement.setString(1, uuid.toString())
-                val jsonStringList = statement.executeQuery().getString("completedQuestIds")
+                val jsonStringList = statement.executeQuery().getString("completedQuests") ?: return emptyList()
                 statement.close()
 
                 return gson.fromJson(jsonStringList, List::class.java) as? List<String> ?: emptyList()
@@ -61,9 +61,9 @@ class SQLiteStorage : DataManager {
         return emptyList()
     }
 
-    override fun setCompletedQuestIds(uuid: UUID, questIds: List<String>) {
+    override fun setCompletedQuests(uuid: UUID, questIds: List<String>) {
         try {
-            connection.prepareStatement("INSERT OR REPLACE INTO questPlayers (uuid, completedQuestIds) VALUES (?, ?);").use { statement ->
+            connection.prepareStatement("INSERT OR REPLACE INTO questPlayers (uuid, completedQuests) VALUES (?, ?);").use { statement ->
                 statement.setString(1, uuid.toString())
                 statement.setString(2, gson.toJson(questIds))
                 statement.executeUpdate()
@@ -74,17 +74,45 @@ class SQLiteStorage : DataManager {
         }
     }
 
-    @Suppress("DuplicatedCode")
+    override fun getAchievementIds(uuid: UUID): List<String> {
+        try {
+            connection.prepareStatement("SELECT * FROM questPlayers WHERE uuid=?;").use { statement ->
+                statement.setString(1, uuid.toString())
+                val jsonStringList = statement.executeQuery().getString("achievementIds") ?: return emptyList()
+                statement.close()
+
+                return gson.fromJson(jsonStringList, List::class.java) as? List<String> ?: emptyList()
+            }
+        } catch (e: SQLException) {
+            e.printStackTrace()
+        }
+        return emptyList()
+    }
+
+    override fun setAchievementIds(uuid: UUID, achievementIds: List<String>) {
+        try {
+            connection.prepareStatement("INSERT OR REPLACE INTO questPlayers (uuid, achievementIds) VALUES (?, ?);").use { statement ->
+                statement.setString(1, uuid.toString())
+                statement.setString(2, gson.toJson(achievementIds))
+                statement.executeUpdate()
+                statement.close()
+            }
+        } catch (e: SQLException) {
+            e.printStackTrace()
+        }
+    }
+
+
     override fun getActiveQuests(uuid: UUID): ConcurrentLinkedQueue<ActiveQuest> {
         try {
 
             connection.prepareStatement("SELECT * FROM questPlayers WHERE uuid=?;").use { statement ->
                 statement.setString(1, uuid.toString())
-                val jsonStringList = statement.executeQuery().getString("activeQuests")
+                val jsonStringList = statement.executeQuery().getString("activeQuests") ?: return ConcurrentLinkedQueue()
                 statement.close()
 
                 val list = gson.fromJson(jsonStringList, List::class.java)
-                return DataUtil.getActiveQuestsList(list, uuid)
+                return Util.getActiveQuestsList(list, uuid)
             }
         } catch (e: SQLException) {
             e.printStackTrace()
@@ -138,25 +166,34 @@ class SQLiteStorage : DataManager {
         try {
             connection.prepareStatement("SELECT * FROM questPlayers WHERE uuid=?;").use { statement ->
                 statement.setString(1, uuid.toString())
-                val completedQuestIds: List<String> = gson.fromJson(statement.executeQuery().getString("completedQuestIds"), List::class.java) as? List<String> ?: emptyList()
-                val activeQuests: ConcurrentLinkedQueue<ActiveQuest> = DataUtil.getActiveQuestsList(gson.fromJson(statement.executeQuery().getString("activeQuests"), List::class.java), uuid)
+                val completedQuests: List<String> = statement.executeQuery().getString("completedQuests").let {
+                    if (it == null) emptyList() else gson.fromJson(it, List::class.java) as? List<String> ?: emptyList()
+                }
+                val achievementIds: List<String> = statement.executeQuery().getString("achievementIds").let {
+                    if (it == null) emptyList() else gson.fromJson(it, List::class.java) as? List<String> ?: emptyList()
+                }
+                val activeQuests: ConcurrentLinkedQueue<ActiveQuest> = statement.executeQuery().getString("activeQuests").let {
+                    if (it == null) ConcurrentLinkedQueue() else Util.getActiveQuestsList(gson.fromJson(it, List::class.java), uuid)
+                }
                 val showActionBarProgress: Boolean = statement.executeQuery().getBoolean("showActionBarProgress")
                 statement.close()
 
-                return QuestPlayer(uuid, completedQuestIds, activeQuests, showActionBarProgress)
+                return QuestPlayer(uuid, completedQuests, achievementIds, activeQuests, showActionBarProgress)
             }
         } catch (e: SQLException) {
             e.printStackTrace()
         }
-        return QuestPlayer(uuid, emptyList(), ConcurrentLinkedQueue(), false)
+        return QuestPlayer(uuid, emptyList(), emptyList(), ConcurrentLinkedQueue(), false)
     }
 
     override fun saveQuestPlayer(questPlayer: QuestPlayer) {
         try {
-            connection.prepareStatement("INSERT OR REPLACE INTO questPlayers (uuid, completedQuestIds, activeQuests) VALUES (?, ?, ?);").use { statement ->
+            connection.prepareStatement("INSERT OR REPLACE INTO questPlayers (uuid, completedQuests, achievementIds, activeQuests, showActionBarProgress) VALUES (?, ?, ?, ?, ?);").use { statement ->
                 statement.setString(1, questPlayer.uuid.toString())
                 statement.setString(2, gson.toJson(questPlayer.completedQuests))
-                statement.setString(3, gson.toJson(StorableQuest.serializeToStorableQuests(questPlayer.activeQuests)))
+                statement.setString(3, gson.toJson(questPlayer.achievementIds))
+                statement.setString(4, gson.toJson(StorableQuest.serializeToStorableQuests(questPlayer.activeQuests)))
+                statement.setBoolean(5, questPlayer.isShowActionBarProgress)
                 statement.executeUpdate()
                 statement.close()
             }

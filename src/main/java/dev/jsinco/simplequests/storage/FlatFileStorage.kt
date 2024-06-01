@@ -1,8 +1,8 @@
 package dev.jsinco.simplequests.storage
 
 import dev.jsinco.abstractjavafilelib.schemas.JsonSavingSchema
-import dev.jsinco.simplequests.Util
 import dev.jsinco.simplequests.enums.StorageMethod
+import dev.jsinco.simplequests.managers.Util
 import dev.jsinco.simplequests.objects.ActiveQuest
 import dev.jsinco.simplequests.objects.QuestPlayer
 import dev.jsinco.simplequests.objects.StorableQuest
@@ -13,12 +13,21 @@ class FlatFileStorage : DataManager {
 
     private val savesFile = JsonSavingSchema("saves.json")
 
-    override fun getCompletedQuestIds(uuid: UUID): List<String> {
+    override fun getCompletedQuests(uuid: UUID): List<String> {
         return savesFile.get("$uuid.completedQuests") as? List<String> ?: emptyList()
     }
 
-    override fun setCompletedQuestIds(uuid: UUID, questIds: List<String>) {
+    override fun setCompletedQuests(uuid: UUID, questIds: List<String>) {
         savesFile.set("$uuid.completedQuests", questIds)
+        savesFile.save()
+    }
+
+    override fun getAchievementIds(uuid: UUID): List<String> {
+        return savesFile.get("$uuid.achievementIds") as? List<String> ?: emptyList()
+    }
+
+    override fun setAchievementIds(uuid: UUID, achievementIds: List<String>) {
+        savesFile.set("$uuid.achievementIds", achievementIds)
         savesFile.save()
     }
 
@@ -31,7 +40,7 @@ class FlatFileStorage : DataManager {
             return activeQuestList
         }
 
-        return DataUtil.getActiveQuestsList(list, uuid)
+        return Util.getActiveQuestsList(list, uuid)
     }
 
     override fun setActiveQuests(uuid: UUID, activeQuests: ConcurrentLinkedQueue<ActiveQuest>) {
@@ -49,18 +58,19 @@ class FlatFileStorage : DataManager {
     }
 
     override fun loadQuestPlayer(uuid: UUID): QuestPlayer {
-        return QuestPlayer(uuid, getCompletedQuestIds(uuid), getActiveQuests(uuid), savesFile.getBoolean("$uuid.showActionBarProgress"))
+        return QuestPlayer(uuid, getCompletedQuests(uuid), getAchievementIds(uuid), getActiveQuests(uuid), savesFile.getBoolean("$uuid.showActionBarProgress"))
     }
 
     override fun saveQuestPlayer(questPlayer: QuestPlayer) {
-        if (questPlayer.activeQuests.isEmpty() && questPlayer.completedQuests.isEmpty() && savesFile.contains(questPlayer.uuid.toString())) {
-            savesFile.remove(questPlayer.uuid.toString())
-            savesFile.save()
-            Util.debugLog("Removed QuestPlayer: ${questPlayer.uuid}")
-            return
-        }
+        //         if (questPlayer.activeQuests.isEmpty() && questPlayer.completedQuests.isEmpty() && savesFile.contains(questPlayer.uuid.toString())) {
+        //            savesFile.remove(questPlayer.uuid.toString())
+        //            savesFile.save()
+        //            Util.debugLog("Removed QuestPlayer: ${questPlayer.uuid}")
+        //            return
+        //        }
 
         savesFile.set("${questPlayer.uuid}.completedQuests", questPlayer.completedQuests)
+        savesFile.set("${questPlayer.uuid}.achievementIds", questPlayer.achievementIds)
         savesFile.set("${questPlayer.uuid}.activeQuests", StorableQuest.serializeToStorableQuests(questPlayer.activeQuests))
         savesFile.set("${questPlayer.uuid}.showActionBarProgress", questPlayer.isShowActionBarProgress)
         savesFile.save()

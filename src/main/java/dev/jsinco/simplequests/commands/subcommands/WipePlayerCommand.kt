@@ -1,8 +1,8 @@
 package dev.jsinco.simplequests.commands.subcommands
 
-import dev.jsinco.simplequests.QuestManager
 import dev.jsinco.simplequests.SimpleQuests
 import dev.jsinco.simplequests.commands.SubCommand
+import dev.jsinco.simplequests.managers.QuestManager
 import org.bukkit.command.CommandSender
 
 class WipePlayerCommand : SubCommand {

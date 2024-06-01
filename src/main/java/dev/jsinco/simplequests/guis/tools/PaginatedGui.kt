@@ -1,6 +1,6 @@
 package dev.jsinco.simplequests.guis.tools
 
-import dev.jsinco.simplequests.Util
+import dev.jsinco.simplequests.managers.Util
 import org.bukkit.Bukkit
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
