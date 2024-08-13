@@ -17,6 +17,7 @@ import org.bukkit.event.inventory.CraftItemEvent
 import org.bukkit.event.inventory.FurnaceSmeltEvent
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
+import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.player.PlayerFishEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerQuitEvent
@@ -84,8 +85,16 @@ class Events : Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onFurnaceSmelt(event: FurnaceSmeltEvent) {
+        val materialName = event.recipe?.input?.type?.name ?: return
         for (player in event.block.location.getNearbyPlayers(25.0)) {
-            QuestManager.questPlayerFromCache(player.uniqueId)?.updateQuests(event.recipe?.input?.type?.name ?: return, QuestAction.SMELT, 1) ?: continue
+            println("Player: ${player.name}, Recipe: ${event.recipe?.input?.type?.name}")
+            QuestManager.questPlayerFromCache(player.uniqueId)?.updateQuests(materialName, QuestAction.SMELT, 1) ?: continue
         }
     }
+
+    /*@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    fun onFurnaceInventoryClick(event: InventoryClickEvent) {
+        if (event.inventory.type != InventoryType.FURNACE && event.inventory.type != InventoryType.BLAST_FURNACE && event.inventory.type != InventoryType.SMOKER) return
+        QuestManager.questPlayerFromCache(event.whoClicked.uniqueId)?.updateQuests(event.currentItem?.type?.name, QuestAction.SMELT, 1)
+    }*/
 }

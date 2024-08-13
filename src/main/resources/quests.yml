@@ -3369,7 +3369,7 @@ cook: # Category
   bake_potatoes_1:
     name: '&#fefccf&lBake 1,000 Potatoes'
     action: SMELT
-    type: POTATOES
+    type: POTATO
     amount: 1000
     menu-item: BAKED_POTATO
     reward:
@@ -3378,7 +3378,7 @@ cook: # Category
   bake_potatoes_2:
     name: '&#f9e4bc&lBake 10,000 Potatoes'
     action: SMELT
-    type: POTATOES
+    type: POTATO
     amount: 10000
     menu-item: BAKED_POTATO
     required: cook:bake_potatoes_1
@@ -3388,7 +3388,7 @@ cook: # Category
   bake_potatoes_3:
     name: '&#c8ae97&lBake 100,000 Potatoes'
     action: SMELT
-    type: POTATOES
+    type: POTATO
     amount: 100000
     menu-item: BAKED_POTATO
     required: cook:bake_potatoes_2
