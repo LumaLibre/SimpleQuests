@@ -1,5 +1,6 @@
-storage-method: 'SQLite' # SQLite, FlatFile
-prefix: '&7[&6SimpleQuests&7]&r ' # &#F498F6&lQ&#DA93F8&lu&#C08EFA&le&#A68AFB&ls&#8C85FD&lt&#7280FF&ls
+# SQLite or FlatFile
+storage-method: 'SQLite'
+prefix: '&7[&6SimpleQuests&7]&r '
 debug: true
 categories:
   farming:

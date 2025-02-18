@@ -13,7 +13,7 @@ public class ActiveQuest extends Quest {
 
     private int progress;
 
-    public ActiveQuest(int progress, String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable List<String> description, @Nullable RewardType rewardType, @Nullable Object rewardValue, @Nullable Material menuItem, @Nullable String requiredCompletedQuest) {
+    public ActiveQuest(int progress, String category, String id, String name, List<String> type, QuestAction questAction, int amount, @Nullable List<String> description, @Nullable RewardType rewardType, @Nullable Object rewardValue, @Nullable Material menuItem, @Nullable String requiredCompletedQuest) {
         super(category, id, name, type, questAction, amount,  description, rewardType, rewardValue, menuItem, requiredCompletedQuest);
         this.progress = progress;
     }

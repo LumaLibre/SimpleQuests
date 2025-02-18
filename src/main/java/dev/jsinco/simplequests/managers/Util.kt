@@ -26,12 +26,14 @@ import java.util.logging.Level
 object Util {
 
     private val plugin: SimpleQuests = SimpleQuests.getInstance()
-    @JvmStatic var prefix: String = colorText(SimpleQuests.getConfigFile().getString("prefix") ?: "&8[&6SimpleQuests&8]&r ")
+    @JvmStatic
+    var prefix: String = colorText(SimpleQuests.getConfigFile().getString("prefix") ?: "&8[&6SimpleQuests&8]&r ")
     private const val WITH_DELIMITER = "((?<=%1\$s)|(?=%1\$s))"
+    private const val FORMAT_SEPARATOR = " or "
 
     @JvmStatic
     fun debugLog(msg: String) {
-        if (SimpleQuests.getConfigFile().getBoolean("debug")) { // TODO
+        if (SimpleQuests.getConfigFile().getBoolean("debug")) {
             Bukkit.getConsoleSender().sendMessage(colorText("[SimpleQuests] &6DEBUG: $msg"))
         }
     }
@@ -68,6 +70,18 @@ object Util {
             }
         }
         return name
+    }
+
+    @JvmStatic
+    fun format(m: List<String>): String {
+        val stringBuilder = StringBuilder()
+        for (i in m.indices) {
+            stringBuilder.append(format(m[i]))
+            if (i != m.size - 1) {
+                stringBuilder.append(FORMAT_SEPARATOR)
+            }
+        }
+        return stringBuilder.toString()
     }
 
     fun setGuiItemData(item: ItemStack, guiItemType: GuiItemType, data: String) {
@@ -212,4 +226,12 @@ object Util {
         return bool
     }
 
+    @JvmStatic
+    fun checkIfValidQuestType(s: List<String>?): Boolean {
+        if (s == null) return false
+        for (str in s) {
+            if (!checkIfValidQuestType(str)) return false
+        }
+        return true
+    }
 }

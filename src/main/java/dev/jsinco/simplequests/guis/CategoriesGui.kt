@@ -56,8 +56,8 @@ class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
             val meta = itemStack.itemMeta
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ITEM_SPECIFICS, ItemFlag.HIDE_ATTRIBUTES)
             meta.addEnchant(Enchantment.LUCK, 1, true)
-            meta.setDisplayName(Util.colorText( "&#f498f6&l${Util.format(cat)} Quests"))
-            meta.lore = listOf("&7Click to view quests in the", "&#f498f6${Util.format(cat)} &7category!",
+            meta.setDisplayName(Util.colorText( "&#FCB75C&l${Util.format(cat)} Quests"))
+            meta.lore = listOf("&7Click to view quests in the", "&#FCB75C${Util.format(cat)} &7category!",
                 "", "&7Category Completion: &#F7FFC9${questPlayer.getCategoryCompletion(cat)}").map { Util.colorText(it) }
             itemStack.itemMeta = meta
 
@@ -66,9 +66,7 @@ class CategoriesGui(val questPlayer: QuestPlayer) : AbstractGui() {
         }
 
         paginatedGui = PaginatedGui(
-            Util.colorText(
-            "&#F670F1&lQ&#EB74F3&lu&#E179F5&le&#D67DF7&ls&#CC81F9&lt &#C185FB&lC&#B78AFD&la&#AC8EFF&lt&#A590FF&le&#9F91FF&lg&#9893FF&lo&#9195FF&lr&#8A97FF&li&#8498FF&le&#7D9AFF&ls"
-        ), inv, categoryItems, Pair(20, 34), listOf(25, 26, 27, 28), null)
+            Util.colorText("&#b986f9&lQuests"), inv, categoryItems, Pair(20, 34), listOf(25, 26, 27, 28), null)
     }
 
     override fun onInventoryClick(event: InventoryClickEvent) {

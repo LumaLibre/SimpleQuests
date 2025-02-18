@@ -70,7 +70,7 @@ public class QuestPlayer {
 
     public void updateQuests(String type, QuestAction action, int amount) {
         for (ActiveQuest activeQuest : activeQuests) {
-            if (!activeQuest.getType().equals(type) || activeQuest.getQuestAction() != action) continue;
+            if (!activeQuest.getType().contains(type) || activeQuest.getQuestAction() != action) continue;
 
             activeQuest.setProgress(activeQuest.getProgress() + amount);
 

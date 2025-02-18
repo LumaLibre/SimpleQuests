@@ -180,7 +180,7 @@ farming: # Category
     menu-item: NETHER_WART
     name: '&#fefccf&lHarvest 50 Sweet Berries'
     action: BREAK
-    type: SWEET_BERRIES
+    type: SWEET_BERRY_BUSH
     amount: 50
     reward:
       type: MONEY
@@ -189,7 +189,7 @@ farming: # Category
     menu-item: FERN
     name: '&#f9e4bc&lHarvest 500 Sweet Berries'
     action: BREAK
-    type: SWEET_BERRIES
+    type: SWEET_BERRY_BUSH
     required: farming:sweet_berries_1
     amount: 500
     reward:
@@ -199,7 +199,7 @@ farming: # Category
     menu-item: SWEET_BERRIES
     name: '&#c8ae97&lHarvest 5,000 Sweet Berries'
     action: BREAK
-    type: SWEET_BERRIES
+    type: SWEET_BERRY_BUSH
     required: farming:sweet_berries_2
     amount: 5000
     reward:
@@ -1502,7 +1502,7 @@ hunter: # Category
     type: PIG
     amount: 750
     menu-item: PORKCHOP
-    required: hunter:kill_pigs_2
+    required: hunter:kill_pigs_1
     reward:
       type: MONEY
       value: 30000
@@ -1512,7 +1512,7 @@ hunter: # Category
     type: PIG
     amount: 1500
     menu-item: PIG_SPAWN_EGG
-    required: hunter:kill_pigs_3
+    required: hunter:kill_pigs_2
     reward:
       type: MONEY
       value: 65000
@@ -1790,7 +1790,7 @@ hunter: # Category
       type: MONEY
       value: 10000
   kill_blazes_2:
-    name: '&#f9e4bc&lKill 5,000 Blazes'
+    name: '&#f9e4bc&lKill 750 Blazes'
     action: KILL
     type: BLAZE
     amount: 750
@@ -3005,12 +3005,12 @@ crafting: # TODO 1
     reward:
       type: MONEY
       value: 1000
-  craft_bell:
-    name: '&e&lCraft a Bell'
+  craft_lightning_rod:
+    name: '&e&lCraft a Lightning Rod'
     action: CRAFT
-    type: BELL
+    type: LIGHTNING_ROD
     amount: 1
-    menu-item: BELL
+    menu-item: LIGHTNING_ROD
     reward:
       type: MONEY
       value: 1000
@@ -3367,29 +3367,29 @@ cook: # Category
       type: MONEY
       value: 15000
   bake_potatoes_1:
-    name: '&#fefccf&lBake 1,000 Potatoes'
+    name: '&#fefccf&lBake 100 Potatoes'
     action: SMELT
     type: POTATO
-    amount: 1000
+    amount: 100
     menu-item: BAKED_POTATO
     reward:
       type: MONEY
       value: 3000
   bake_potatoes_2:
-    name: '&#f9e4bc&lBake 10,000 Potatoes'
+    name: '&#f9e4bc&lBake 1,000 Potatoes'
     action: SMELT
     type: POTATO
-    amount: 10000
+    amount: 1000
     menu-item: BAKED_POTATO
     required: cook:bake_potatoes_1
     reward:
       type: MONEY
       value: 15000
   bake_potatoes_3:
-    name: '&#c8ae97&lBake 100,000 Potatoes'
+    name: '&#c8ae97&lBake 5,000 Potatoes'
     action: SMELT
     type: POTATO
-    amount: 100000
+    amount: 5000
     menu-item: BAKED_POTATO
     required: cook:bake_potatoes_2
     reward:

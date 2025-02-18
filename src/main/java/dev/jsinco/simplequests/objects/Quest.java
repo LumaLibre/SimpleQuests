@@ -14,7 +14,7 @@ public class Quest extends AbstractRewardable {
     private final String category;
     private final String id;
     private final String name;
-    private final String type;
+    private final List<String> type;
     private final QuestAction questAction;
     private final int amount;
     private final List<String> description;
@@ -23,7 +23,7 @@ public class Quest extends AbstractRewardable {
 
 
 
-    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable List<String> description, @Nullable RewardType rewardType, @Nullable Object rewardValue, @Nullable Material menuItem, @Nullable String requiredCompletedQuest) {
+    public Quest(String category, String id, String name, List<String> type, QuestAction questAction, int amount, @Nullable List<String> description, @Nullable RewardType rewardType, @Nullable Object rewardValue, @Nullable Material menuItem, @Nullable String requiredCompletedQuest) {
         super(rewardType, rewardValue);
         this.category = category;
         this.id = id;
@@ -38,7 +38,7 @@ public class Quest extends AbstractRewardable {
         this.description = description != null ? Util.formatDescription(description, this) : Util.getDefaultQuestDescription(this);
     }
 
-    public Quest(String category, String id, String name, String type, QuestAction questAction, int amount, @Nullable List<String> description, @Nullable String rewardTypeStr, @Nullable Object rewardValue, @Nullable String menuItemStr, @Nullable String requiredCompletedQuest) {
+    public Quest(String category, String id, String name, List<String> type, QuestAction questAction, int amount, @Nullable List<String> description, @Nullable String rewardTypeStr, @Nullable Object rewardValue, @Nullable String menuItemStr, @Nullable String requiredCompletedQuest) {
         super(rewardTypeStr != null ? RewardType.valueOf(rewardTypeStr.toUpperCase()) : null, rewardValue);
         this.category = category;
         this.id = id;
@@ -65,7 +65,7 @@ public class Quest extends AbstractRewardable {
         return name;
     }
 
-    public String getType() {
+    public List<String> getType() {
         return type;
     }
 

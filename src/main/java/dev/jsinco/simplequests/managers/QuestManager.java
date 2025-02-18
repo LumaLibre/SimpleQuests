@@ -57,7 +57,9 @@ public final class QuestManager {
                     final ConfigurationSection questSection = categorySection.getConfigurationSection(id);
                     final QuestAction questAction = QuestAction.valueOf(questSection.getString("action"));
                     final List<String> description = questSection.get("description") != null ? (List<String>) questSection.get("description") : null;
-                    final String type = questSection.getString("type");
+                    final List<String> type = getStringOrStringList(questSection.get("type"))
+                            .stream()
+                            .map(String::toUpperCase).toList();
 
                     if (!Util.checkIfValidQuestType(type)) {
                         instance.getLogger().warning("Quest: " + id + " has an invalid type: " + type);
@@ -143,5 +145,16 @@ public final class QuestManager {
     public static List<Quest> getQuests(String category) {
         if (!mappedQuests.containsKey(category)) return null;
         return List.copyOf(mappedQuests.get(category));
+    }
+
+
+
+    private static List<String> getStringOrStringList(Object object) {
+        if (object instanceof String) {
+            return List.of((String) object);
+        } else if (object instanceof List) {
+            return (List<String>) object;
+        }
+        return List.of();
     }
 }
