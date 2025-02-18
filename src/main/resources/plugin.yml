@@ -3,6 +3,8 @@ version: '${version}'
 main: dev.jsinco.simplequests.SimpleQuests
 api-version: '1.20'
 author: Jsinco
+libraries:
+  - 'org.jetbrains.kotlin:kotlin-stdlib:2.0.21'
 softdepend:
   - Vault
   - PlayerPoints

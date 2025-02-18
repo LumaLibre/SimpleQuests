@@ -46,10 +46,7 @@ tasks {
     }
 
     shadowJar {
-        dependencies {
-            include(dependency("com.github.Jsinco:AbstractJavaFileLib"))
-            include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
-        }
+        relocate("dev.jsinco.abstractjavafilelib", "dev.jsinco.simplequests.filelib")
         archiveClassifier.set("")
     }
 

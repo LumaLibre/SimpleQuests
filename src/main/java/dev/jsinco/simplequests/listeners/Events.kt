@@ -87,7 +87,6 @@ class Events : Listener {
     fun onFurnaceSmelt(event: FurnaceSmeltEvent) {
         val materialName = event.recipe?.input?.type?.name ?: return
         for (player in event.block.location.getNearbyPlayers(25.0)) {
-            println("Player: ${player.name}, Recipe: ${event.recipe?.input?.type?.name}")
             QuestManager.questPlayerFromCache(player.uniqueId)?.updateQuests(materialName, QuestAction.SMELT, 1) ?: continue
         }
     }
