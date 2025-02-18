@@ -2367,7 +2367,9 @@ mining: # Category
   mine_coal_1:
     name: '&#fefccf&lMine 500 Coal Ore'
     action: BREAK
-    type: COAL_ORE
+    type:
+      - COAL_ORE
+      - DEEPSLATE_COAL_ORE
     amount: 500
     menu-item: COAL
     reward:
@@ -2376,7 +2378,9 @@ mining: # Category
   mine_coal_2:
     name: '&#f9e4bc&lMine 5,000 Coal Ore'
     action: BREAK
-    type: COAL_ORE
+    type:
+      - COAL_ORE
+      - DEEPSLATE_COAL_ORE
     amount: 5000
     menu-item: COAL_BLOCK
     required: mining:mine_coal_1
@@ -2386,7 +2390,9 @@ mining: # Category
   mine_coal_3:
     name: '&#c8ae97&lMine 10,000 Coal Ore'
     action: BREAK
-    type: COAL_ORE
+    type:
+      - COAL_ORE
+      - DEEPSLATE_COAL_ORE
     amount: 10000
     menu-item: COAL_BLOCK
     required: mining:mine_coal_2
@@ -2396,7 +2402,9 @@ mining: # Category
   mine_iron_1:
     name: '&#fefccf&lMine 500 Iron Ore'
     action: BREAK
-    type: IRON_ORE
+    type:
+      - IRON_ORE
+      - DEEPSLATE_IRON_ORE
     amount: 500
     menu-item: IRON_NUGGET
     reward:
@@ -2405,7 +2413,9 @@ mining: # Category
   mine_iron_2:
     name: '&#f9e4bc&lMine 5,000 Iron Ore'
     action: BREAK
-    type: IRON_ORE
+    type:
+      - IRON_ORE
+      - DEEPSLATE_IRON_ORE
     amount: 5000
     menu-item: IRON_INGOT
     required: mining:mine_iron_1
@@ -2415,7 +2425,9 @@ mining: # Category
   mine_iron_3:
     name: '&#c8ae97&lMine 10,000 Iron Ore'
     action: BREAK
-    type: IRON_ORE
+    type:
+      - IRON_ORE
+      - DEEPSLATE_IRON_ORE
     amount: 10000
     menu-item: IRON_BLOCK
     required: mining:mine_iron_2
@@ -2425,7 +2437,9 @@ mining: # Category
   mine_copper_1:
     name: '&#fefccf&lMine 500 Copper Ore'
     action: BREAK
-    type: COPPER_ORE
+    type:
+      - COPPER_ORE
+      - DEEPSLATE_COPPER_ORE
     amount: 500
     menu-item: COPPER_INGOT
     reward:
@@ -2434,7 +2448,9 @@ mining: # Category
   mine_copper_2:
     name: '&#f9e4bc&lMine 5,000 Copper Ore'
     action: BREAK
-    type: COPPER_ORE
+    type:
+      - COPPER_ORE
+      - DEEPSLATE_COPPER_ORE
     amount: 5000
     menu-item: COPPER_BLOCK
     required: mining:mine_copper_1
@@ -2444,7 +2460,9 @@ mining: # Category
   mine_copper_3:
     name: '&#c8ae97&lMine 10,000 Copper Ore'
     action: BREAK
-    type: COPPER_ORE
+    type:
+      - COPPER_ORE
+      - DEEPSLATE_COPPER_ORE
     amount: 10000
     menu-item: COPPER_BLOCK
     required: mining:mine_copper_2
@@ -2628,7 +2646,9 @@ mining: # Category
   mine_gold_1:
     name: '&#fefccf&lMine 250 Gold Ore'
     action: BREAK
-    type: GOLD_ORE
+    type:
+      - GOLD_ORE
+      - DEEPSLATE_GOLD_ORE
     amount: 250
     menu-item: GOLD_NUGGET
     reward:
@@ -2637,7 +2657,9 @@ mining: # Category
   mine_gold_2:
     name: '&#f9e4bc&lMine 2,500 Gold Ore'
     action: BREAK
-    type: GOLD_ORE
+    type:
+      - GOLD_ORE
+      - DEEPSLATE_GOLD_ORE
     amount: 2500
     menu-item: GOLD_INGOT
     required: mining:mine_gold_1
@@ -2647,7 +2669,9 @@ mining: # Category
   mine_gold_3:
     name: '&#c8ae97&lMine 5,000 Gold Ore'
     action: BREAK
-    type: GOLD_ORE
+    type:
+      - GOLD_ORE
+      - DEEPSLATE_GOLD_ORE
     amount: 5000
     menu-item: GOLD_BLOCK
     required: mining:mine_gold_2
@@ -2657,7 +2681,9 @@ mining: # Category
   mine_redstone_1:
     name: 'Mine 250 Redstone Ore'
     action: BREAK
-    type: REDSTONE_ORE
+    type:
+      - REDSTONE_ORE
+      - DEEPSLATE_REDSTONE_ORE
     amount: 250
     menu-item: REDSTONE
     reward:
@@ -2666,7 +2692,9 @@ mining: # Category
   mine_redstone_2:
     name: 'Mine 2,500 Redstone Ore'
     action: BREAK
-    type: REDSTONE_ORE
+    type:
+      - REDSTONE_ORE
+      - DEEPSLATE_REDSTONE_ORE
     amount: 2500
     menu-item: REDSTONE
     required: mining:mine_redstone_1
@@ -2676,7 +2704,9 @@ mining: # Category
   mine_redstone_3:
     name: 'Mine 5,000 Redstone Ore'
     action: BREAK
-    type: REDSTONE_ORE
+    type:
+      - REDSTONE_ORE
+      - DEEPSLATE_REDSTONE_ORE
     amount: 5000
     menu-item: REDSTONE_BLOCK
     required: mining:mine_redstone_2
@@ -2686,7 +2716,9 @@ mining: # Category
   mine_lapis_1:
     name: 'Mine 100 Lapis Lazuli Ore'
     action: BREAK
-    type: LAPIS_ORE
+    type:
+      - LAPIS_ORE
+      - DEEPSLATE_LAPIS_ORE
     amount: 100
     menu-item: LAPIS_LAZULI
     reward:
@@ -2695,7 +2727,9 @@ mining: # Category
   mine_lapis_2:
     name: 'Mine 1,000 Lapis Lazuli Ore'
     action: BREAK
-    type: LAPIS_ORE
+    type:
+      - LAPIS_ORE
+      - DEEPSLATE_LAPIS_ORE
     amount: 1000
     menu-item: LAPIS_BLOCK
     required: mining:mine_lapis_1
@@ -2705,7 +2739,9 @@ mining: # Category
   mine_lapis_3:
     name: 'Mine 2,000 Lapis Lazuli Ore'
     action: BREAK
-    type: LAPIS_ORE
+    type:
+      - LAPIS_ORE
+      - DEEPSLATE_LAPIS_ORE
     amount: 2000
     menu-item: LAPIS_BLOCK
     required: mining:mine_lapis_2
@@ -2715,7 +2751,9 @@ mining: # Category
   mine_diamond_1:
     name: '&#fefccf&lMine 100 Diamond Ore'
     action: BREAK
-    type: DIAMOND_ORE
+    type:
+      - DIAMOND_ORE
+      - DEEPSLATE_DIAMOND_ORE
     amount: 100
     menu-item: DIAMOND
     reward:
@@ -2724,7 +2762,9 @@ mining: # Category
   mine_diamond_2:
     name: '&#f9e4bc&lMine 1,000 Diamond Ore'
     action: BREAK
-    type: DIAMOND_ORE
+    type:
+      - DIAMOND_ORE
+      - DEEPSLATE_DIAMOND_ORE
     amount: 1000
     menu-item: DIAMOND_BLOCK
     required: mining:mine_diamond_1
@@ -2734,7 +2774,9 @@ mining: # Category
   mine_diamond_3:
     name: '&#c8ae97&lMine 2,000 Diamond Ore'
     action: BREAK
-    type: DIAMOND_ORE
+    type:
+      - DIAMOND_ORE
+      - DEEPSLATE_DIAMOND_ORE
     amount: 2000
     menu-item: DIAMOND_BLOCK
     required: mining:mine_diamond_2
@@ -2744,7 +2786,9 @@ mining: # Category
   mine_emerald_1:
     name: '&#fefccf&lMine 50 Emerald Ore'
     action: BREAK
-    type: EMERALD_ORE
+    type:
+      - EMERALD_ORE
+      - DEEPSLATE_EMERALD_ORE
     amount: 50
     menu-item: EMERALD
     reward:
@@ -2753,7 +2797,9 @@ mining: # Category
   mine_emerald_2:
     name: '&#f9e4bc&lMine 500 Emerald Ore'
     action: BREAK
-    type: EMERALD_ORE
+    type:
+      - EMERALD_ORE
+      - DEEPSLATE_EMERALD_ORE
     amount: 500
     menu-item: EMERALD_BLOCK
     required: mining:mine_emerald_1
@@ -2763,7 +2809,9 @@ mining: # Category
   mine_emerald_3:
     name: '&#c8ae97&lMine 1,000 Emerald Ore'
     action: BREAK
-    type: EMERALD_ORE
+    type:
+      - EMERALD_ORE
+      - DEEPSLATE_EMERALD_ORE
     amount: 1000
     menu-item: EMERALD_BLOCK
     required: mining:mine_emerald_2
@@ -2800,29 +2848,29 @@ mining: # Category
       type: MONEY
       value: 80000
   mine_obsidian_1:
-    name: '&7&lMine 10 Obsidian'
+    name: '&7&lMine 100 Obsidian'
     action: BREAK
     type: OBSIDIAN
-    amount: 10
+    amount: 100
     menu-item: OBSIDIAN
     reward:
       type: MONEY
       value: 6000
   mine_obsidian_2:
-    name: '&8&lMine 100 Obsidian'
+    name: '&8&lMine 1,000 Obsidian'
     action: BREAK
     type: OBSIDIAN
-    amount: 100
+    amount: 1000
     menu-item: OBSIDIAN
     required: mining:mine_obsidian_1
     reward:
       type: MONEY
       value: 30000
   mine_obsidian_3:
-    name: '&#f9e4bc&lMine 500 Obsidian'
+    name: '&#f9e4bc&lMine 5,000 Obsidian'
     action: BREAK
     type: OBSIDIAN
-    amount: 500
+    amount: 5000
     menu-item: OBSIDIAN
     required: mining:mine_obsidian_2
     reward:
