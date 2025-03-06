@@ -72,22 +72,47 @@ public class QuestPlayer {
         for (ActiveQuest activeQuest : activeQuests) {
             if (!activeQuest.getType().contains(type) || activeQuest.getQuestAction() != action) continue;
 
-            activeQuest.setProgress(activeQuest.getProgress() + amount);
+            updateQuest(activeQuest, amount);
+        }
+    }
 
-            if (showActionBarProgress) {
-                getPlayer().sendActionBar(
-                        MiniMessage.miniMessage().deserialize("<gold>Quest Progress<gray>: " + Util.createProgressBar(activeQuest, 25, "<#f498f6>|", "<#F7FFC9>|") + " <gray>(" + String.format("%.1f",Util.fractionToDecimal(activeQuest.getProgress(), activeQuest.getAmount())) +"%)")
-                );
+    public void updateQuest(String category, String id, int amount) {
+        String fullIdentifier = category + ":" + id;
+        updateQuest(fullIdentifier, amount);
+    }
+
+    public void updateQuest(String fullIdentifier, int amount) {
+        for (ActiveQuest activeQuest : activeQuests) {
+            if (activeQuest.fullIdentifier().equals(fullIdentifier)) {
+                updateQuest(activeQuest, amount);
             }
+        }
+    }
 
-            if (activeQuest.getAmount() <= activeQuest.getProgress()) {
-                activeQuests.remove(activeQuest);
-                completedQuests.add(activeQuest.fullIdentifier());
-
-                activeQuest.executeReward(getPlayer());
-                Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have completed the quest: " + activeQuest.getName() + "&r!"));
-                Util.debugLog(uuid + " completed quest: " + activeQuest.getId());
+    public void updateQuest(Quest quest, int amount) {
+        for (ActiveQuest activeQuest : activeQuests) {
+            if (activeQuest.fullIdentifier().equals(quest.fullIdentifier())) {
+                updateQuest(activeQuest, amount);
             }
+        }
+    }
+
+    public void updateQuest(ActiveQuest activeQuest, int amount) {
+        activeQuest.setProgress(activeQuest.getProgress() + amount);
+
+        if (showActionBarProgress) {
+            getPlayer().sendActionBar(
+                    MiniMessage.miniMessage().deserialize("<gold>Quest Progress<gray>: " + Util.createProgressBar(activeQuest, 25, "<#f498f6>|", "<#F7FFC9>|") + " <gray>(" + String.format("%.1f",Util.fractionToDecimal(activeQuest.getProgress(), activeQuest.getAmount())) +"%)")
+            );
+        }
+
+        if (activeQuest.getAmount() <= activeQuest.getProgress()) {
+            activeQuests.remove(activeQuest);
+            completedQuests.add(activeQuest.fullIdentifier());
+
+            activeQuest.executeReward(getPlayer());
+            Objects.requireNonNull(getPlayer()).sendMessage(Util.colorText(Util.getPrefix() + "You have completed the quest: " + activeQuest.getName() + "&r!"));
+            Util.debugLog(uuid + " completed quest: " + activeQuest.getId());
         }
     }
 
