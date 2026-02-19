@@ -74,6 +74,7 @@ class Events : Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onEntityDeath(event: EntityDeathEvent) {
+        //if (event.entity.hasAI())
         QuestManager.questPlayerFromCache(event.entity.killer?.uniqueId ?: return)?.updateQuests(event.entity.type.name, QuestAction.KILL, 1) ?: return
     }
 
