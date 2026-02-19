@@ -7,7 +7,8 @@ import dev.jsinco.simplequests.enums.QuestAction;
 import dev.jsinco.simplequests.objects.Quest;
 import dev.jsinco.simplequests.objects.QuestPlayer;
 import dev.jsinco.simplequests.storage.DataManager;
-import org.bukkit.scheduler.BukkitRunnable;
+import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
+import org.bukkit.Bukkit;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -18,6 +19,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public final class QuestManager {
@@ -28,20 +30,17 @@ public final class QuestManager {
     private static final DataManager dataManager = SimpleQuests.getDataManager();
     private static final SimpleQuests instance = SimpleQuests.getInstance();
 
-    @Contract(value = " -> new", pure = true)
-    public static @NotNull BukkitRunnable asyncCacheManager() {
-        return new BukkitRunnable() {
-            @Override
-            public void run() {
-                for (final QuestPlayer questPlayer : questPlayersCache.values()) {
-                    dataManager.saveQuestPlayer(questPlayer);
-                    if (questPlayer.getActiveQuests().isEmpty() || questPlayer.getPlayer() == null || !questPlayer.getPlayer().isOnline()) {
-                        questPlayersCache.remove(questPlayer.getUuid());
-                        Util.debugLog("Uncaching QuestPlayer: " + questPlayer.getUuid());
-                    }
+    @Contract(pure = true)
+    public static @NotNull ScheduledTask asyncCacheManager(long delay, long period, TimeUnit timeUnit) {
+        return Bukkit.getAsyncScheduler().runAtFixedRate(SimpleQuests.getInstance(), (task) -> {
+            for (final QuestPlayer questPlayer : questPlayersCache.values()) {
+                dataManager.saveQuestPlayer(questPlayer);
+                if (questPlayer.getActiveQuests().isEmpty() || questPlayer.getPlayer() == null || !questPlayer.getPlayer().isOnline()) {
+                    questPlayersCache.remove(questPlayer.getUuid());
+                    Util.debugLog("Uncaching QuestPlayer: " + questPlayer.getUuid());
                 }
             }
-        };
+        }, delay, period, timeUnit);
     }
 
     public static void loadQuests() { // async

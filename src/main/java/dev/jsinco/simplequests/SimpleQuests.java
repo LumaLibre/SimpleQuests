@@ -16,6 +16,8 @@ import dev.jsinco.simplequests.storage.SQLiteStorage;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.concurrent.TimeUnit;
+
 public final class SimpleQuests extends JavaPlugin {
 
     // TODO: - Idea: Quest achievements
@@ -49,10 +51,11 @@ public final class SimpleQuests extends JavaPlugin {
         loadData();
 
 
-        QuestManager.asyncCacheManager().runTaskTimerAsynchronously(this, 0L, 36000L); // 30 minutes
-        getServer().getScheduler().runTaskAsynchronously(this, () -> {
+        QuestManager.asyncCacheManager(0L, 30L, TimeUnit.MINUTES); // 30 minutes
+
+        getServer().getAsyncScheduler().runNow(this, (async) -> {
             QuestManager.loadQuests();
-            getServer().getScheduler().runTask(this, () -> {
+            getServer().getGlobalRegionScheduler().run(this, (global) -> {
                 // Cache players in case of reload
                 for (final Player player : getServer().getOnlinePlayers()) {
                     final QuestPlayer questPlayer = QuestManager.getQuestPlayer(player.getUniqueId());
@@ -83,7 +86,7 @@ public final class SimpleQuests extends JavaPlugin {
             ((SQLiteStorage) dataManager).closeConnection();
         }
 
-        try {
+        try { // Should be fine
             for (final Player player : getServer().getOnlinePlayers()) {
                 if (player.getOpenInventory().getTopInventory().getHolder(false) instanceof AbstractGui) {
                     player.closeInventory();
@@ -100,10 +103,6 @@ public final class SimpleQuests extends JavaPlugin {
     public static void loadData() {
         configFile = new SnakeYamlConfig("config.yml");
         questsFile = new SnakeYamlConfig("quests.yml");
-
-        /*if (dataManager != null && dataManager.getStorageMethod() == StorageMethod.SQLITE) {
-            ((SQLiteStorage) dataManager).closeConnection();
-        }*/
 
         switch (StorageMethod.valueOf(configFile.getString("storage-method").toUpperCase())) {
             case FLATFILE -> dataManager = new FlatFileStorage();
