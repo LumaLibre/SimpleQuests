@@ -18,13 +18,13 @@ class WipeQuestCommand : SubCommand {
         val player = Bukkit.getOfflinePlayer(args[1])
         val questPlayer: QuestPlayer = QuestManager.getQuestPlayer(player.uniqueId)
 
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, Runnable {
+        Bukkit.getAsyncScheduler().runNow(plugin) {
             if (questPlayer.completedQuests.remove(args[2])) {
                 sender.sendMessage(Util.colorText("${Util.prefix}Wiped quest &a\"${args[2]}&a\"&r from ${player.name}'s completed record."))
             } else {
                 sender.sendMessage("${Util.prefix}Player ${player.name} has not completed this quest.")
             }
-        })
+        }
     }
 
     override fun tabComplete(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>): List<String>? {

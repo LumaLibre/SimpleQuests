@@ -13,7 +13,7 @@ class ReloadCommand : SubCommand {
     override fun execute(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>) {
         sender.sendMessage("${Util.prefix}Reloading...")
         val start = System.currentTimeMillis()
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, Runnable {
+        Bukkit.getAsyncScheduler().runNow(plugin) {
             for (questPlayer: QuestPlayer in QuestManager.getQuestPlayers()) {
                 SimpleQuests.getDataManager().saveQuestPlayer(questPlayer)
             }
@@ -22,7 +22,7 @@ class ReloadCommand : SubCommand {
             AchievementsManager.loadAchievements()
             Util.prefix = Util.colorText(SimpleQuests.getConfigFile().getString("prefix") ?: "&8[&6SimpleQuests&8]&r ")
             sender.sendMessage(Util.colorText("${Util.prefix}Finished reloading in &6${System.currentTimeMillis() - start}ms"))
-        })
+        }
     }
 
     override fun tabComplete(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>): List<String>? {

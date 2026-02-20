@@ -20,10 +20,10 @@ class DropQuestCommand : SubCommand {
     val questPlayer: QuestPlayer = QuestManager.getQuestPlayer(player.uniqueId)
 
     val questString = args[2].split(":")
-    Bukkit.getScheduler().runTaskAsynchronously(plugin, Runnable {
+    Bukkit.getAsyncScheduler().runNow(plugin) {
         val quest: Quest = QuestManager.getQuest(questString[0], questString[1]) ?: run {
             sender.sendMessage("${Util.prefix}Quest not found.")
-            return@Runnable
+            return@runNow
         }
 
         if (questPlayer.dropQuest(quest)) {
@@ -31,8 +31,8 @@ class DropQuestCommand : SubCommand {
         } else {
             sender.sendMessage("${Util.prefix}Player ${player.name} has not started this quest.")
         }
-    })
-}
+    }
+    }
 
     override fun tabComplete(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>): List<String>? {
         if (args.size == 2) {

@@ -20,17 +20,17 @@ class SetProgressionCommand : SubCommand {
         val questPlayer: QuestPlayer = QuestManager.getQuestPlayer(player.uniqueId)
 
         val questString = args[2].split(":")
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, Runnable {
-            val quest: Quest = QuestManager.getQuest(questString[0], questString[1]) ?: return@Runnable run {
+        Bukkit.getAsyncScheduler().runNow(plugin) {
+            val quest: Quest = QuestManager.getQuest(questString[0], questString[1]) ?: return@runNow run {
                 sender.sendMessage("${Util.prefix}Quest not found.")
             }
 
-            val amt = args[3].toIntOrNull() ?: return@Runnable run {
+            val amt = args[3].toIntOrNull() ?: return@runNow run {
                 sender.sendMessage("${Util.prefix}Invalid progress amount.")
             }
             questPlayer.updateQuest(quest, amt)
             sender.sendMessage(Util.colorText("${Util.prefix}Set progress for quest &a\"${quest.name}\"&r to ${amt} for ${player.name}."))
-        })
+        }
     }
 
     override fun tabComplete(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>): List<String>? {

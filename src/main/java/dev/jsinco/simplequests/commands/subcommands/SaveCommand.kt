@@ -10,12 +10,12 @@ import org.bukkit.command.CommandSender
 
 class SaveCommand : SubCommand {
     override fun execute(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>) {
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, Runnable {
+        Bukkit.getAsyncScheduler().runNow(plugin) {
             for (questPlayer: QuestPlayer in QuestManager.getQuestPlayers()) {
                 SimpleQuests.getDataManager().saveQuestPlayer(questPlayer)
             }
             sender.sendMessage("${Util.prefix}Saved all quest player data.")
-        })
+        }
     }
 
     override fun tabComplete(plugin: SimpleQuests, sender: CommandSender, args: Array<out String>): List<String>? {
