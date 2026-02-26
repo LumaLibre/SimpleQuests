@@ -242,7 +242,7 @@ public class QuestPlayer {
             default -> throw new IllegalStateException("Unexpected value: " + achievement.getAchievementType());
         }
 
-        getPlayer().sendMessage(Util.getPrefix() + "You have unlocked the achievement: &a" + achievement.getName() + "&r!");
+        getPlayer().sendMessage(Util.getPrefix() + Util.colorText("You have unlocked the achievement: &a" + achievement.getName() + "&r!"));
         achievementIds.add(achievement.getId());
         achievement.executeReward(getPlayer());
         return true;
