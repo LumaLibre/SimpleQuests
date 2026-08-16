@@ -80,6 +80,7 @@ class Events : Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onPlayerFish(event: PlayerFishEvent) {
+        if (event.state != PlayerFishEvent.State.CAUGHT_FISH) return
         val caught: Item = event.caught as? Item ?: return
         QuestManager.questPlayerFromCache(event.player.uniqueId)?.updateQuests(caught.itemStack.type.name, QuestAction.FISH, 1) ?: return
     }
